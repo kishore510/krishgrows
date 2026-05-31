@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KrishGrows — Travel Stories</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --ink:#1a1208;
+  --ink2:#4a3a28;
+  --cream:#faf8f4;
+  --warm:#f2ede4;
+  --accent:#c87830;
+  --accent2:#3a7a58;
+  --accent3:#4a6898;
+  --border:rgba(74,58,40,.1);
+  --shadow:0 4px 24px rgba(26,18,8,.08);
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,248,244,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+  height:62px;
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:700;
+  letter-spacing:-.3px;color:var(--ink);
+  text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+}
+.logo-leaf{font-size:18px}
+.logo em{color:var(--accent);font-style:italic}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--ink2);text-decoration:none;letter-spacing:.3px;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-badge{
+  background:var(--accent);color:white;
+  font-size:10px;font-weight:600;
+  padding:3px 8px;border-radius:20px;
+  letter-spacing:.5px;text-transform:uppercase;
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:88vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:0;
+  padding:60px 5vw 60px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 80% 50%, rgba(200,120,48,.06) 0%, transparent 70%),
+             radial-gradient(ellipse 50% 80% at 10% 80%, rgba(58,122,88,.05) 0%, transparent 60%);
+  pointer-events:none;
+}
+.hero-text{position:relative;z-index:2}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--accent);margin-bottom:20px;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--accent)}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(48px,6vw,86px);
+  font-weight:700;line-height:.98;
+  letter-spacing:-1px;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.hero h1 em{
+  color:var(--accent);
+  font-style:italic;
+  display:block;
+}
+.hero-desc{
+  font-size:15px;font-weight:300;line-height:1.75;
+  color:var(--ink2);max-width:420px;margin-bottom:36px;
+}
+.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.btn-primary{
+  background:var(--ink);color:white;
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;
+  padding:13px 28px;border-radius:4px;
+  text-decoration:none;letter-spacing:.4px;
+  transition:background .2s,transform .1s;
+  display:inline-block;
+}
+.btn-primary:hover{background:var(--accent);transform:translateY(-1px)}
+.btn-ghost{
+  font-size:13px;font-weight:500;color:var(--ink2);
+  text-decoration:none;display:flex;align-items:center;gap:6px;
+  transition:color .2s;
+}
+.btn-ghost:hover{color:var(--accent)}
+.btn-ghost svg{width:16px;height:16px}
+
+/* Hero mosaic */
+.hero-mosaic{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:200px 160px 200px;
+  gap:10px;
+  padding-left:40px;
+}
+.mosaic-cell{border-radius:12px;overflow:hidden;position:relative;background:var(--warm)}
+.mosaic-cell:nth-child(1){grid-row:1/3;background:linear-gradient(135deg,#2d4a30,#1a3020)}
+.mosaic-cell:nth-child(2){background:linear-gradient(135deg,#3a5a7a,#1a3050)}
+.mosaic-cell:nth-child(3){background:linear-gradient(135deg,#5a4030,#3a2018)}
+.mosaic-cell:nth-child(4){grid-column:1/3;background:linear-gradient(135deg,#3a5040,#1a3028)}
+.mosaic-label{
+  position:absolute;bottom:12px;left:14px;right:14px;
+  color:white;font-size:11px;font-weight:500;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.mosaic-tag{
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;padding:3px 10px;font-size:10px;font-weight:600;
+  color:white;backdrop-filter:blur(4px);
+}
+.mosaic-icon{font-size:32px;position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);opacity:.4}
+
+/* ── STATS BAR ── */
+.stats-bar{
+  background:var(--ink);
+  padding:22px 5vw;
+  display:flex;align-items:center;justify-content:center;gap:0;
+  flex-wrap:wrap;
+}
+.stat{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:0 36px;
+  border-right:1px solid rgba(255,255,255,.1);
+}
+.stat:last-child{border-right:none}
+.stat-n{
+  font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;
+  color:white;line-height:1;
+}
+.stat-n span{color:var(--accent);font-style:italic}
+.stat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+/* ── SECTION SHARED ── */
+.section{padding:72px 5vw}
+.section-header{margin-bottom:48px}
+.section-eyebrow{
+  font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.section-eyebrow::before{content:'';width:20px;height:1px;background:var(--accent)}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(30px,4vw,46px);font-weight:700;
+  letter-spacing:-.5px;color:var(--ink);line-height:1.1;
+}
+.section-title em{color:var(--accent);font-style:italic}
+.section-sub{font-size:14px;color:var(--ink2);margin-top:10px;font-weight:300;line-height:1.6;max-width:520px}
+
+/* ── TRIP CARDS ── */
+.trips-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:28px;
+}
+.trip-card{
+  background:white;border-radius:16px;overflow:hidden;
+  box-shadow:var(--shadow);
+  display:flex;flex-direction:column;
+  text-decoration:none;color:inherit;
+  transition:transform .25s,box-shadow .25s;
+}
+.trip-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(26,18,8,.13)}
+
+/* FEATURED card spans 2 cols */
+.trip-card.featured{grid-column:1/-1}
+.trip-card.featured .tc-image{height:380px}
+.trip-card.featured .tc-body{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:28px}
+.trip-card.featured .tc-title{font-size:clamp(22px,3vw,36px)}
+
+.tc-image{
+  position:relative;height:220px;overflow:hidden;
+  background:var(--warm);flex-shrink:0;
+}
+.tc-image-inner{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:60px;
+  transition:transform .4s;
+}
+.trip-card:hover .tc-image-inner{transform:scale(1.05)}
+.tc-status{
+  position:absolute;top:14px;left:14px;
+  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  padding:5px 12px;border-radius:20px;
+}
+.status-plan{background:#fffbea;color:#8a5c08}
+.status-report{background:#e8f5ee;color:#1a5a38}
+.status-coming{background:rgba(255,255,255,.85);color:#5a5a5a}
+.tc-country{
+  position:absolute;bottom:14px;right:14px;
+  background:rgba(0,0,0,.5);color:white;backdrop-filter:blur(4px);
+  font-size:11px;font-weight:500;padding:4px 10px;border-radius:10px;
+}
+.tc-body{padding:20px 22px 24px;flex:1;display:flex;flex-direction:column}
+.tc-meta{
+  display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;
+}
+.tc-tag{
+  font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;
+  padding:3px 9px;border-radius:9px;
+}
+.tag-wales{background:#e6f2df;color:#2d6020}
+.tag-highlands{background:#e8eef8;color:#2a3a70}
+.tag-lake{background:#e8f5ee;color:#1a4a38}
+.tag-coast{background:#fff0e0;color:#7a4008}
+.tc-date{font-size:11px;color:var(--ink2);opacity:.6}
+.tc-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(19px,2.2vw,24px);font-weight:700;
+  color:var(--ink);line-height:1.2;margin-bottom:10px;
+}
+.tc-title em{color:var(--accent);font-style:italic}
+.tc-desc{font-size:13px;color:var(--ink2);line-height:1.65;flex:1;font-weight:300}
+.tc-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:18px;padding-top:16px;
+  border-top:1px solid var(--border);
+}
+.tc-pills{display:flex;flex-wrap:wrap;gap:5px}
+.tc-pill{
+  font-size:10px;font-weight:500;
+  padding:3px 8px;border-radius:8px;
+  background:var(--warm);color:var(--ink2);
+}
+.tc-arrow{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--ink);color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+  transition:background .2s,transform .2s;
+}
+.trip-card:hover .tc-arrow{background:var(--accent);transform:translateX(3px)}
+
+/* ── ABOUT STRIP ── */
+.about-strip{
+  background:var(--warm);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:72px 5vw;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+}
+.about-portrait{
+  width:200px;height:200px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent2),#1a3a28);
+  display:flex;align-items:center;justify-content:center;
+  font-size:80px;
+  margin-bottom:24px;border:4px solid white;
+  box-shadow:var(--shadow);
+}
+.about-text .section-eyebrow{margin-bottom:14px}
+.about-text .section-title{margin-bottom:16px}
+.about-body{font-size:14px;font-weight:300;line-height:1.8;color:var(--ink2);max-width:480px}
+.about-body p{margin-bottom:14px}
+.about-body p:last-child{margin-bottom:0}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.about-tag{
+  font-size:12px;font-weight:500;
+  padding:5px 14px;border-radius:20px;
+  background:white;color:var(--ink2);
+  box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid var(--border);
+}
+.about-visual{display:flex;flex-direction:column;align-items:center;gap:20px}
+.about-map-placeholder{
+  width:100%;aspect-ratio:4/3;border-radius:16px;
+  background:linear-gradient(135deg,#d0e8d8,#b8d4e8);
+  display:flex;align-items:center;justify-content:center;
+  font-size:48px;color:rgba(0,0,0,.15);
+  position:relative;overflow:hidden;
+}
+.about-map-placeholder::after{
+  content:'🗺️';position:absolute;font-size:80px;opacity:.15;
+}
+.map-dots{display:flex;flex-wrap:wrap;gap:8px;width:100%;justify-content:center}
+.map-dot{
+  background:white;border-radius:20px;
+  font-size:11px;font-weight:500;padding:4px 12px;
+  color:var(--ink2);box-shadow:0 1px 4px rgba(0,0,0,.08);
+}
+
+/* ── HOW IT WORKS ── */
+.how-wrap{padding:72px 5vw;background:var(--cream)}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.how-step{
+  background:white;border-radius:16px;padding:28px;
+  border:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.how-step::before{
+  content:attr(data-n);
+  position:absolute;top:-10px;right:16px;
+  font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:700;
+  color:var(--ink);opacity:.04;line-height:1;
+}
+.how-icon{font-size:28px;margin-bottom:16px}
+.how-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.how-desc{font-size:13px;font-weight:300;color:var(--ink2);line-height:1.65}
+
+/* ── NEWSLETTER ── */
+.newsletter{
+  background:var(--ink);padding:64px 5vw;text-align:center;
+}
+.newsletter .section-eyebrow{justify-content:center;color:var(--accent)}
+.newsletter .section-eyebrow::before{display:none}
+.newsletter .section-title{color:white;margin-bottom:12px}
+.newsletter .section-sub{color:rgba(255,255,255,.5);margin:0 auto 32px;text-align:center}
+.nl-form{
+  display:flex;align-items:center;gap:0;
+  max-width:400px;margin:0 auto;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:8px;overflow:hidden;
+}
+.nl-input{
+  flex:1;background:transparent;border:none;outline:none;
+  font-family:'Outfit',sans-serif;font-size:14px;
+  color:white;padding:14px 16px;
+}
+.nl-input::placeholder{color:rgba(255,255,255,.3)}
+.nl-btn{
+  background:var(--accent);color:white;border:none;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;
+  padding:14px 20px;letter-spacing:.3px;white-space:nowrap;
+  transition:background .2s;
+}
+.nl-btn:hover{background:#e89040}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);border-top:1px solid rgba(255,255,255,.06);
+  padding:32px 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;
+  color:rgba(255,255,255,.7);text-decoration:none;
+}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.7)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.2);width:100%;text-align:center;padding-top:16px;border-top:1px solid rgba(255,255,255,.06);margin-top:8px}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;min-height:auto;padding:40px 5vw}
+  .hero-mosaic{display:none}
+  .stats-bar{gap:0}
+  .stat{padding:16px 20px;border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
+  .stat:last-child{border-bottom:none}
+  .trips-grid{grid-template-columns:1fr}
+  .trip-card.featured{grid-column:auto}
+  .trip-card.featured .tc-body{grid-template-columns:1fr}
+  .about-strip{grid-template-columns:1fr}
+  .about-visual{display:none}
+  .how-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;align-items:flex-start}
+}
+
+/* ── PAGE TRANSITION FADE ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-text{animation:fadeUp .7s ease both}
+.hero-mosaic{animation:fadeUp .7s .15s ease both}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">
+    <span class="logo-leaf">🌿</span>
+    Krish<em>Grows</em>
+  </a>
+  <div class="nav-links">
+    <a href="#trips">Trips</a>
+    <a href="#about">About</a>
+    <a href="#how">How It Works</a>
+    <span class="nav-badge">New: Wales May 2026</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Travel Stories Worth Reading</div>
+    <h1>Slow travel,<br><em>good stories.</em></h1>
+    <p class="hero-desc">Trip plans before we go, honest reports after. Real photos, real drives, real opinions — mostly UK and Europe, mostly accessible, always worth it.</p>
+    <div class="hero-actions">
+      <a href="#trips" class="btn-primary">Browse All Trips</a>
+      <a href="walesmay2026.html" class="btn-ghost">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+        Latest: North Wales
+      </a>
+    </div>
+  </div>
+  <div class="hero-mosaic">
+    <div class="mosaic-cell">
+      <span class="mosaic-icon">🏴󠁧󠁢󠁷󠁬󠁳󠁿</span>
+      <div class="mosaic-label">
+        <span>North Wales</span>
+        <span class="mosaic-tag">May 2026</span>
+      </div>
+    </div>
+    <div class="mosaic-cell">
+      <span class="mosaic-icon">🏔️</span>
+      <div class="mosaic-label">
+        <span>Highlands</span>
+        <span class="mosaic-tag">Coming</span>
+      </div>
+    </div>
+    <div class="mosaic-cell">
+      <span class="mosaic-icon">🏛️</span>
+      <div class="mosaic-label">
+        <span>Rome</span>
+        <span class="mosaic-tag">Planned</span>
+      </div>
+    </div>
+    <div class="mosaic-cell">
+      <span class="mosaic-icon">🌊</span>
+      <div class="mosaic-label">
+        <span>Coastal Drives</span>
+        <span class="mosaic-tag">Series</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><span class="stat-n">1<span>✓</span></span><span class="stat-l">Trip Report</span></div>
+  <div class="stat"><span class="stat-n">3</span><span class="stat-l">Waterfalls</span></div>
+  <div class="stat"><span class="stat-n">512</span><span class="stat-l">Miles Driven</span></div>
+  <div class="stat"><span class="stat-n">All</span><span class="stat-l">Accessible</span></div>
+</div>
+
+<!-- TRIPS -->
+<section class="section" id="trips">
+  <div class="section-header">
+    <div class="section-eyebrow">Destinations</div>
+    <h2 class="section-title">Trips &amp; <em>Travel Plans</em></h2>
+    <p class="section-sub">Plans before we go, full reports when we're back — with real photos and video.</p>
+  </div>
+
+  <div class="trips-grid">
+
+    <!-- FEATURED: Wales -->
+    <a href="walesmay2026.html" class="trip-card featured">
+      <div class="tc-image" style="background:linear-gradient(135deg,#1a3a20,#2a5030,#3a6040)">
+        <div class="tc-image-inner">🏴󠁧󠁢󠁷󠁬󠁳󠁿</div>
+        <div class="tc-status status-plan">📋 Trip Plan</div>
+        <div class="tc-country">📍 Wales, UK</div>
+      </div>
+      <div class="tc-body">
+        <div>
+          <div class="tc-meta">
+            <span class="tc-tag tag-wales">North Wales</span>
+            <span class="tc-date">May 2026 · 3 days · 2 nights</span>
+          </div>
+          <div class="tc-title">Waterfalls, <em>Castles</em> &amp; Coast</div>
+          <p class="tc-desc">Church Fenton to Llanrwst via Pistyll Rhaeadr — the tallest waterfall in England or Wales. Bala Lake Railway, Beaumaris Castle, the Llyn Peninsula, Swallow Falls, Aber Falls and Penrhyn Castle. Elderly-friendly throughout, all accessible. 512 miles in 3 days.</p>
+        </div>
+        <div class="tc-footer">
+          <div class="tc-pills">
+            <span class="tc-pill">💧 3 Waterfalls</span>
+            <span class="tc-pill">🚂 Steam Train</span>
+            <span class="tc-pill">🏰 2 Castles</span>
+            <span class="tc-pill">🌊 Llyn Peninsula</span>
+            <span class="tc-pill">♿ Accessible</span>
+          </div>
+          <div class="tc-arrow">→</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Placeholder: Scottish Highlands -->
+    <div class="trip-card" style="opacity:.7;cursor:default">
+      <div class="tc-image" style="background:linear-gradient(135deg,#2a3a50,#1a2840)">
+        <div class="tc-image-inner">🏔️</div>
+        <div class="tc-status status-coming">🕐 Coming Soon</div>
+        <div class="tc-country">📍 Scotland, UK</div>
+      </div>
+      <div class="tc-body">
+        <div class="tc-meta">
+          <span class="tc-tag tag-highlands">Scottish Highlands</span>
+          <span class="tc-date">Planning 2026</span>
+        </div>
+        <div class="tc-title">The Road to <em>Skye</em></div>
+        <p class="tc-desc">Glencoe, Eilean Donan Castle, the Isle of Skye and the Quiraing. A driving trip we're planning for later this year.</p>
+        <div class="tc-footer">
+          <div class="tc-pills">
+            <span class="tc-pill">🏔️ Glencoe</span>
+            <span class="tc-pill">🏰 Eilean Donan</span>
+            <span class="tc-pill">🌊 Isle of Skye</span>
+          </div>
+          <div class="tc-arrow" style="background:#ccc">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder: Lake District -->
+    <div class="trip-card" style="opacity:.7;cursor:default">
+      <div class="tc-image" style="background:linear-gradient(135deg,#283a28,#1a2a1a)">
+        <div class="tc-image-inner">🌲</div>
+        <div class="tc-status status-coming">🕐 Coming Soon</div>
+        <div class="tc-country">📍 Cumbria, UK</div>
+      </div>
+      <div class="tc-body">
+        <div class="tc-meta">
+          <span class="tc-tag tag-lake">Lake District</span>
+          <span class="tc-date">Planned</span>
+        </div>
+        <div class="tc-title">Lakes &amp; <em>Villages</em></div>
+        <p class="tc-desc">Windermere, Grasmere, Ullswater and the fells. A gentler trip focused on scenic drives and lakeside walks.</p>
+        <div class="tc-footer">
+          <div class="tc-pills">
+            <span class="tc-pill">🏞️ Windermere</span>
+            <span class="tc-pill">🌧️ Grasmere</span>
+            <span class="tc-pill">⛵ Ullswater</span>
+          </div>
+          <div class="tc-arrow" style="background:#ccc">→</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-wrap" id="how">
+  <div class="section-header">
+    <div class="section-eyebrow">How This Works</div>
+    <h2 class="section-title">Plan, Go, <em>Report</em></h2>
+    <p class="section-sub">Every trip starts as a detailed plan. After we go, it becomes a proper report with real photos and video.</p>
+  </div>
+  <div class="how-grid">
+    <div class="how-step" data-n="01">
+      <div class="how-icon">📋</div>
+      <div class="how-title">The Trip Plan</div>
+      <p class="how-desc">Before we leave, a full plan goes up: driving routes, distances, accessibility notes, booking tips, costs. Everything you'd want to know before your own trip.</p>
+    </div>
+    <div class="how-step" data-n="02">
+      <div class="how-icon">🚗</div>
+      <div class="how-title">We Go & Document</div>
+      <p class="how-desc">Photos, notes, video along the way. What matched the plan, what didn't, what we'd do differently. Honest, not promotional.</p>
+    </div>
+    <div class="how-step" data-n="03">
+      <div class="how-icon">📸</div>
+      <div class="how-title">The Trip Report</div>
+      <p class="how-desc">The plan gets upgraded with real photos and YouTube clips. The status changes from Plan to Report. You get the full story.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-strip" id="about">
+  <div class="about-text">
+    <div class="section-eyebrow">The Writer</div>
+    <h2 class="section-title">About <em>KrishGrows</em></h2>
+    <div class="about-body">
+      <p>A personal travel blog documenting trips from Yorkshire — mostly UK destinations, always driving, always looking for the waterfalls and castles that most people walk straight past.</p>
+      <p>Based in Church Fenton, North Yorkshire. Trips designed to be manageable for all ages and abilities. Real notes, real costs, real opinions.</p>
+    </div>
+    <div class="about-tags">
+      <span class="about-tag">📍 Church Fenton, Yorkshire</span>
+      <span class="about-tag">🚗 Road Trips</span>
+      <span class="about-tag">♿ Accessible Travel</span>
+      <span class="about-tag">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Wales Enthusiast</span>
+    </div>
+  </div>
+  <div class="about-visual">
+    <div class="about-map-placeholder">
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:14px;color:rgba(0,0,0,.3);font-family:'Outfit',sans-serif">
+        <span style="font-size:36px">🗺️</span>
+        <span>Destinations map</span>
+        <span style="font-size:11px">coming soon</span>
+      </div>
+    </div>
+    <div class="map-dots">
+      <span class="map-dot">🏴󠁧󠁢󠁷󠁬󠁳󠁿 North Wales ✓</span>
+      <span class="map-dot">🏔️ Highlands →</span>
+      <span class="map-dot">🌲 Lake District →</span>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="section-eyebrow">Stay in Touch</div>
+  <h2 class="section-title" style="color:white">New trips, straight to you</h2>
+  <p class="section-sub">No spam, just a note when a new plan or report goes up.</p>
+  <div class="nl-form">
+    <input class="nl-input" type="email" placeholder="your@email.com">
+    <button class="nl-btn">Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">🌿 KrishGrows</a>
+  <div class="footer-links">
+    <a href="#trips">Trips</a>
+    <a href="#about">About</a>
+    <a href="walesmay2026.html">Wales 2026</a>
+  </div>
+  <div class="footer-copy">krishgrows.com — Personal travel writing from Church Fenton, Yorkshire</div>
+</footer>
+
+</body>
+</html>
