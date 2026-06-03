@@ -1,655 +1,523 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-/* === BRAND SYSTEM === */
-/* ============================================================
-   KrishGrows — Shared Brand System
-   krishgrows.com | travel | allotment | projects
-   All subdomains import this file.
-   ============================================================ */
-
-/* ── GOOGLE FONTS ── */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
-
-/* ── DESIGN TOKENS ── */
-:root {
-  /* Colours */
-  --ink:        #1a1208;
-  --ink2:       #4a3a28;
-  --cream:      #faf8f4;
-  --warm:       #f2ede4;
-  --border:     rgba(74,58,40,.1);
-  --shadow:     0 4px 24px rgba(26,18,8,.08);
-
-  /* Brand accents */
-  --copper:     #c87830;   /* primary accent */
-  --green:      #3a7a58;   /* secondary accent */
-  --blue:       #4a6898;   /* tertiary accent */
-
-  /* Aliases (used in components) */
-  --accent:     var(--copper);
-  --accent2:    var(--green);
-  --accent3:    var(--blue);
-
-  /* Typography */
-  --font-heading: 'Cormorant Garamond', serif;
-  --font-body:    'Outfit', sans-serif;
-
-  /* Spacing scale */
-  --space-xs:   8px;
-  --space-sm:   16px;
-  --space-md:   24px;
-  --space-lg:   48px;
-  --space-xl:   72px;
-
-  /* Layout */
-  --page-pad:   5vw;
-  --radius-sm:  4px;
-  --radius-md:  12px;
-  --radius-lg:  16px;
-}
-
-/* ── RESET ── */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* ── BASE ── */
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font-body);
-  background: var(--cream);
-  color: var(--ink);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ── TYPOGRAPHY ── */
-h1, h2, h3, h4 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  letter-spacing: -.5px;
-  line-height: 1.1;
-  color: var(--ink);
-}
-
-h1 { font-size: clamp(48px, 6vw, 86px); letter-spacing: -1px; line-height: .98; }
-h2 { font-size: clamp(30px, 4vw, 46px); }
-h3 { font-size: clamp(20px, 2.5vw, 28px); }
-
-h1 em, h2 em, h3 em {
-  color: var(--copper);
-  font-style: italic;
-}
-
-p {
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--ink2);
-}
-
-a { color: inherit; text-decoration: none; }
-
-/* ── NAV ── */
-.kg-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(250,248,244,.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 var(--page-pad);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 62px;
-}
-
-.kg-logo {
-  font-family: var(--font-heading);
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -.3px;
-  color: var(--ink);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.kg-logo em { color: var(--copper); font-style: italic; }
-
-.kg-nav-links {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  list-style: none;
-}
-
-.kg-nav-links a {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink2);
-  letter-spacing: .3px;
-  transition: color .2s;
-}
-
-.kg-nav-links a:hover { color: var(--copper); }
-
-.kg-nav-links a.active { color: var(--copper); }
-
-.kg-nav-badge {
-  background: var(--copper);
-  color: white;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 20px;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-}
-
-/* ── SECTION STRUCTURE ── */
-.kg-section { padding: var(--space-xl) var(--page-pad); }
-
-.kg-eyebrow {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--copper);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.kg-eyebrow::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-  background: var(--copper);
-}
-
-.kg-section-sub {
-  font-size: 14px;
-  color: var(--ink2);
-  margin-top: 10px;
-  font-weight: 300;
-  line-height: 1.6;
-  max-width: 520px;
-}
-
-/* ── BUTTONS ── */
-.kg-btn {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  padding: 13px 28px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  letter-spacing: .4px;
-  transition: background .2s, transform .1s;
-  display: inline-block;
-  cursor: pointer;
-  border: none;
-}
-
-.kg-btn-primary {
-  background: var(--ink);
-  color: white;
-}
-
-.kg-btn-primary:hover {
-  background: var(--copper);
-  transform: translateY(-1px);
-}
-
-.kg-btn-ghost {
-  background: transparent;
-  color: var(--ink2);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.kg-btn-ghost:hover { color: var(--copper); }
-
-/* ── FOOTER ── */
-.kg-footer {
-  background: var(--ink);
-  padding: var(--space-lg) var(--page-pad);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-sm);
-  text-align: center;
-}
-
-.kg-footer-logo {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  font-weight: 700;
-  color: white;
-  text-decoration: none;
-}
-
-.kg-footer-logo em { color: var(--copper); font-style: italic; }
-
-.kg-footer-links {
-  display: flex;
-  gap: 24px;
-  list-style: none;
-}
-
-.kg-footer-links a {
-  font-size: 12px;
-  color: rgba(255,255,255,.45);
-  letter-spacing: .3px;
-  transition: color .2s;
-}
-
-.kg-footer-links a:hover { color: var(--copper); }
-
-.kg-footer-copy {
-  font-size: 11px;
-  color: rgba(255,255,255,.25);
-  letter-spacing: .5px;
-}
-
-/* ── UTILITY ── */
-.kg-tag {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 20px;
-}
-
-.kg-tag-copper { background: rgba(200,120,48,.12); color: var(--copper); }
-.kg-tag-green  { background: rgba(58,122,88,.12);  color: var(--green);  }
-.kg-tag-blue   { background: rgba(74,104,152,.12); color: var(--blue);   }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  :root {
-    --page-pad: 6vw;
-  }
-
-  .kg-nav-links { gap: 16px; }
-
-  h1 { font-size: clamp(36px, 8vw, 56px); }
-  h2 { font-size: clamp(24px, 5vw, 36px); }
-}
-
-@media (max-width: 480px) {
-  :root { --page-pad: 5vw; }
-  .kg-nav-links .hide-mobile { display: none; }
-}
-
-/* === END BRAND === */
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>North Wales — May 2026</title>
-
+<title>Wales May 2026 — KrishGrows Travel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* Wales trip — local overrides only, brand tokens from shared/brand.css */
-:root{--g:#5a9448;--g-lt:#e6f2df;--g-md:#b8d9a8;--b:#3d88b0;--b-lt:#daeef8;--b-md:#8ecae6;--p:#7b5ea7;--p-lt:#ede8f5;--p-md:#c4b0e0;--am-lt:#fdf0dc;--cr:var(--cream);--bk:var(--ink2)}
-body{font-family:var(--font-body);background:var(--cream);color:var(--ink)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#1a1208;--ink2:#4a3a28;
+  --cream:#faf8f4;--warm:#f2ede4;
+  --copper:#c87830;--green:#3a7a58;--blue:#4a6898;
+  --border:rgba(74,58,40,.1);
+  --shadow:0 4px 24px rgba(26,18,8,.08);
+  --font-h:'Cormorant Garamond',serif;
+  --font-b:'Outfit',sans-serif;
+  --pad:20px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:3px}
+.nav-logo em{color:var(--copper);font-style:italic}
+.nav-links{display:flex;gap:4px}
+.nav-links a{font-family:var(--font-b);font-size:13px;font-weight:500;color:var(--ink2);text-decoration:none;padding:8px 12px;border-radius:8px;transition:all .2s}
+.nav-links a.active{color:var(--copper);background:rgba(200,120,48,.08)}
 
 /* HERO */
-.hero{position:relative;min-height:310px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:#1a3020}
-.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,20,12,.1) 0%,rgba(8,20,12,.82) 100%)}
-.hero-content{position:relative;z-index:2;padding:32px 36px 40px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);border-radius:30px;padding:5px 14px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.9);margin-bottom:14px}
-.hero h1{font-family:var(--font-heading);font-size:clamp(34px,7vw,60px);font-weight:900;color:#fff;line-height:1.0;margin-bottom:8px}
-.hero h1 em{color:#90e070;font-style:italic}
-.hero-sub{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:22px}
-.pills{display:flex;flex-wrap:wrap;gap:8px}
-.pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:6px 13px;font-size:12px;font-weight:500;color:#fff}
+.hero{
+  position:relative;min-height:80vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--pad) 48px;overflow:hidden;
+  background:#0a1820;
+}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0a1820,#162a3a,#0e2030);opacity:1}
+.hero-grain{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");pointer-events:none}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,14,20,.98) 0%,rgba(8,14,20,.4) 60%,transparent 100%)}
+.hero-content{position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,120,48,.15);border:1px solid rgba(200,120,48,.3);color:#f4b06a;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-family:var(--font-h);font-size:clamp(44px,8vw,80px);font-weight:700;line-height:.93;letter-spacing:-1.5px;color:white;margin-bottom:16px}
+.hero h1 em{color:var(--copper);font-style:italic}
+.hero-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);margin-bottom:24px;line-height:1.6}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.hero-pill{font-size:12px;font-weight:500;color:rgba(255,255,255,.7);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:20px;backdrop-filter:blur(4px)}
+.hero-actions{display:flex;flex-direction:column;gap:12px}
+.btn-primary{display:flex;align-items:center;justify-content:center;background:white;color:var(--ink);font-family:var(--font-b);font-size:15px;font-weight:600;padding:16px 24px;border-radius:12px;text-decoration:none}
+.btn-ghost{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-family:var(--font-b);font-size:15px;font-weight:500;padding:16px 24px;border-radius:12px;text-decoration:none}
+
+/* STATS */
+.stats{background:var(--ink);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:16px 8px;border-right:1px solid rgba(255,255,255,.1)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--font-h);font-size:24px;font-weight:700;color:white;line-height:1}
+.stat-n em{color:var(--copper);font-style:italic}
+.stat-l{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
 
 /* STAY BANNER */
-.stay-banner{background:linear-gradient(135deg,#dff2d6,#d0eaf6);border-bottom:2px solid var(--g-md);padding:18px 36px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.stay-ico{font-size:36px;flex-shrink:0}
-.stay-txt h2{font-family:var(--font-heading);font-size:16px;color:var(--ink);margin-bottom:2px}
-.stay-txt p{font-size:12px;color:var(--bk)}
-.nts{margin-left:auto;display:flex;gap:9px}
-.nb{background:white;border-radius:10px;padding:9px 16px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.08);border:1px solid var(--g-md)}
-.nb .n{font-family:var(--font-heading);font-size:20px;font-weight:700;color:var(--g);display:block}
-.nb .l{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--bk)}
+.stay{background:var(--green);padding:20px var(--pad);display:flex;gap:16px;align-items:flex-start}
+.stay-icon{font-size:28px;flex-shrink:0}
+.stay-title{font-family:var(--font-h);font-size:20px;font-weight:700;color:white;margin-bottom:4px}
+.stay-desc{font-size:13px;color:rgba(255,255,255,.7);font-weight:300;line-height:1.5}
 
-/* ROUTE TIMELINE */
-.rt-wrap{padding:32px 36px 0}
-.sec-e{font-size:10px;text-transform:uppercase;letter-spacing:2.5px;color:var(--bk);opacity:.5;margin-bottom:4px}
-.sec-h{font-family:var(--font-heading);font-size:20px;color:var(--ink);margin-bottom:20px}
-.tl{display:flex;align-items:flex-start;overflow-x:auto;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--g-md) transparent}
-.tn{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
-.td{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;border:3px solid white;box-shadow:0 3px 12px rgba(0,0,0,.14);z-index:2}
-.tl-lbl{font-size:10px;font-weight:600;text-align:center;max-width:68px;margin-top:6px;line-height:1.3;color:var(--bk)}
-.tday{font-size:9px;color:white;border-radius:6px;padding:2px 6px;margin-top:3px;font-weight:700}
-.tc{flex:1;min-width:26px;display:flex;flex-direction:column;align-items:center;padding-top:20px}
-.tc svg{width:100%;min-width:28px;height:24px;overflow:visible}
-.dur{font-size:9px;color:var(--bk);opacity:.5;margin-top:1px;white-space:nowrap}
+/* SECTION */
+.section{padding:36px var(--pad)}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.eyebrow::before{content:'';width:16px;height:1px;background:var(--copper)}
+h2{font-family:var(--font-h);font-size:clamp(28px,5vw,40px);font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-.5px;margin-bottom:24px}
+h2 em{color:var(--copper);font-style:italic}
 
-/* DAYS */
-.dw{padding:24px 36px 44px;display:grid;gap:36px}
-.dh{display:flex;align-items:center;gap:14px;margin-bottom:20px}
-.dp{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:21px;font-weight:700;color:white;flex-shrink:0;box-shadow:0 4px 16px rgba(0,0,0,.18)}
-.d1 .dp{background:linear-gradient(135deg,#6db85a,#3d8030)}
-.d2 .dp{background:linear-gradient(135deg,#4a9ec0,#2268a0)}
-.d3 .dp{background:linear-gradient(135deg,#9b72bc,#5c3898)}
-.dhl{font-family:var(--font-heading);font-size:clamp(16px,2.5vw,22px);color:var(--ink);line-height:1.2}
-.dsl{font-size:11px;color:var(--bk);margin-top:3px}
+/* DAY HEADER */
+.day-header{
+  display:flex;align-items:center;gap:16px;
+  padding:20px var(--pad);
+  border-left:4px solid var(--copper);
+  margin:0 0 4px;
+}
+.day-header.d1{border-color:#5a9448}
+.day-header.d2{border-color:#3d88b0}
+.day-header.d3{border-color:#7b5ea7}
+.day-num{font-family:var(--font-h);font-size:52px;font-weight:700;color:rgba(200,120,48,.15);line-height:1;flex-shrink:0}
+.day-num.d1{color:rgba(90,148,72,.2)}
+.day-num.d2{color:rgba(61,136,176,.2)}
+.day-num.d3{color:rgba(123,94,167,.2)}
+.day-title{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:4px}
+.day-meta{font-size:12px;color:var(--ink2);font-weight:300}
 
-/* CARDS */
-.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.sc{background:white;border-radius:16px;overflow:hidden;box-shadow:0 3px 16px rgba(0,0,0,.07);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
-.sc:hover{transform:translateY(-3px);box-shadow:0 9px 28px rgba(0,0,0,.12)}
-.si{width:100%;height:170px;position:relative;overflow:hidden;flex-shrink:0;background:#c8d8e0}
-.si img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s,opacity .5s;opacity:0}
-.si img.loaded{opacity:1}
-.sc:hover .si img{transform:scale(1.05)}
-.si::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50px;background:linear-gradient(transparent,rgba(0,0,0,.42));pointer-events:none}
-.si-ph{position:absolute;inset:0;background:linear-gradient(135deg,#c8d8e4,#dce8f0);display:flex;align-items:center;justify-content:center;font-size:36px;opacity:.3}
-.ib{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.93);border-radius:7px;padding:3px 9px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;z-index:2}
-.it{position:absolute;bottom:8px;right:10px;color:white;font-size:11px;font-weight:500;z-index:2}
-.sb{padding:14px 16px 16px;flex:1;display:flex;flex-direction:column}
-.sn{font-family:var(--font-heading);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:5px}
-.sd{font-size:12px;color:var(--bk);line-height:1.6;flex:1;margin-bottom:10px}
-.ct{display:flex;flex-wrap:wrap;gap:5px}
-.ctag{font-size:10px;font-weight:600;padding:3px 8px;border-radius:9px}
-.ac{background:var(--g-lt);color:#2d6020}
-.co{background:var(--am-lt);color:#7a4a08}
-.st{background:#fff8e8;color:#906010}
-.stayc{background:linear-gradient(135deg,#fffbea,#fdf3d4)!important;border:2px dashed #e0c050!important}
-.stayc .sb{background:transparent}
+/* STOP CARD */
+.stop-card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);margin:0 var(--pad) 16px}
+.stop-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative}
+.stop-type{position:absolute;bottom:12px;left:12px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:rgba(0,0,0,.4);color:white;backdrop-filter:blur(4px)}
+.stop-time{position:absolute;bottom:12px;right:12px;font-size:11px;color:white;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);padding:4px 10px;border-radius:20px}
+.stop-body{padding:20px}
+.stop-name{font-family:var(--font-h);font-size:24px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.1}
+.stop-desc{font-size:14px;color:var(--ink2);line-height:1.65;font-weight:300;margin-bottom:14px}
+.stop-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.stop-tag{font-size:12px;font-weight:500;padding:5px 12px;border-radius:20px}
+.tag-access{background:rgba(58,122,88,.1);color:var(--green)}
+.tag-cost{background:rgba(200,120,48,.1);color:var(--copper)}
+.tag-rating{background:rgba(26,18,8,.06);color:var(--ink2)}
+.maps-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:white;font-family:var(--font-b);font-size:13px;font-weight:600;padding:12px;border-radius:10px;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.maps-btn:active{background:var(--copper)}
 
-/* DRIVING DISTANCES */
-.drive-wrap{padding:32px 36px 16px;background:var(--cr)}
+/* STAY CARD */
+.stay-card{background:linear-gradient(135deg,#1a3a20,#0e2010);border-radius:20px;padding:22px;margin:0 var(--pad) 16px;display:flex;gap:16px;align-items:flex-start}
+.stay-card-icon{font-size:32px;flex-shrink:0}
+.stay-card-title{font-family:var(--font-h);font-size:20px;font-weight:700;color:white;margin-bottom:6px}
+.stay-card-desc{font-size:13px;color:rgba(255,255,255,.6);font-weight:300;line-height:1.55;margin-bottom:12px}
+.stay-maps-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-family:var(--font-b);font-size:13px;font-weight:600;padding:10px;border-radius:10px;text-decoration:none}
+
+/* DRIVE SECTION */
+.drive-section{padding:36px var(--pad);background:var(--warm)}
 .drive-day{margin-bottom:24px}
-.drive-day-label{display:inline-block;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:14px;letter-spacing:.3px}
-.d1-label{background:var(--g-lt);color:#2d6020}
-.d2-label{background:var(--b-lt);color:#1a4a70}
-.d3-label{background:var(--p-lt);color:#4a2a70}
-.drive-legs{display:flex;flex-direction:column;gap:0}
-.drive-leg{display:grid;grid-template-columns:140px 1fr 140px;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(92,74,56,.07)}
-.drive-leg:last-child{border-bottom:none}
-.leg-from,.leg-to{font-size:12px;font-weight:600;color:var(--ink);line-height:1.3}
+.drive-day-label{font-size:12px;font-weight:600;color:var(--ink2);letter-spacing:.5px;text-transform:uppercase;padding:10px 14px;background:white;border-radius:10px;margin-bottom:12px;border-left:3px solid var(--copper)}
+.d1-label{border-color:#5a9448}
+.d2-label{border-color:#3d88b0}
+.d3-label{border-color:#7b5ea7}
+.drive-legs{display:flex;flex-direction:column;gap:8px}
+.drive-leg{background:white;border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;box-shadow:var(--shadow)}
+.leg-from,.leg-to{font-size:12px;font-weight:500;color:var(--ink)}
 .leg-to{text-align:right}
-.leg-arrow{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
-.leg-line{width:100%;height:2px;background:linear-gradient(to right,var(--g-md),var(--b-md));border-radius:2px;position:relative}
-.leg-line::after{content:'▶';position:absolute;right:-4px;top:-7px;font-size:10px;color:var(--b-md)}
-.leg-info{display:flex;gap:8px;align-items:center}
-.leg-miles{font-size:12px;font-weight:700;color:var(--ink)}
-.leg-time{font-size:11px;color:var(--bk);background:var(--st);padding:2px 7px;border-radius:8px}
-.leg-route{font-size:10px;color:var(--bk);opacity:.6;text-align:center}
-.trip-total{display:flex;background:var(--ink);border-radius:16px;padding:20px;margin-top:8px;justify-content:space-around;align-items:center}
-.total-item{display:flex;flex-direction:column;align-items:center;gap:3px}
-.total-num{font-family:var(--font-heading);font-size:24px;font-weight:700;color:white}
-.total-label{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.5)}
-.total-divider{width:1px;height:32px;background:rgba(255,255,255,.15)}
+.leg-mid{display:flex;flex-direction:column;align-items:center;gap:2px}
+.leg-miles{font-family:var(--font-h);font-size:16px;font-weight:700;color:var(--copper)}
+.leg-time{font-size:10px;color:var(--ink2);font-weight:300}
+.leg-route{font-size:10px;color:var(--ink2);text-align:center}
+.trip-total{display:grid;grid-template-columns:repeat(4,1fr);background:var(--ink);border-radius:16px;overflow:hidden;margin-top:20px}
+.total-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:18px 8px;border-right:1px solid rgba(255,255,255,.1)}
+.total-item:last-child{border-right:none}
+.total-num{font-family:var(--font-h);font-size:22px;font-weight:700;color:white;line-height:1}
+.total-label{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
 
 /* TIPS */
-.tips-s{background:var(--st);padding:32px 36px;border-top:1px solid rgba(92,74,56,.1)}
-.tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:16px}
-.tip{background:white;border-radius:13px;padding:15px;display:flex;gap:10px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.tic{font-size:20px;flex-shrink:0;margin-top:2px}
-.tt strong{font-size:13px;font-weight:600;color:var(--ink);display:block;margin-bottom:2px}
-.tt p{font-size:12px;color:var(--bk);line-height:1.55}
+.tips-section{padding:36px var(--pad)}
+.tips-grid{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.tip{background:white;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;box-shadow:var(--shadow)}
+.tip-icon{font-size:28px;flex-shrink:0}
+.tip-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.tip-desc{font-size:13px;color:var(--ink2);font-weight:300;line-height:1.6}
 
-footer{background:var(--ink);color:rgba(255,255,255,.35);text-align:center;padding:16px;font-size:11px}
-footer span{color:rgba(255,255,255,.65)}
+/* FOOTER */
+.footer{background:var(--ink);padding:40px var(--pad);text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+.footer-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:white;text-decoration:none}
+.footer-logo em{color:var(--copper);font-style:italic}
+.footer-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap;justify-content:center}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.5px}
 
-@media(max-width:660px){
-  .hero-content,.stay-banner,.rt-wrap,.dw,.drive-wrap,.tips-s{padding-left:18px;padding-right:18px}
-  .nts{margin-left:0}.sg{grid-template-columns:1fr}
-  .drive-leg{grid-template-columns:90px 1fr 90px}
-  .leg-from,.leg-to{font-size:11px}
+/* DESKTOP */
+@media(min-width:768px){
+  :root{--pad:5vw}
+  .hero{min-height:85vh;padding:0 var(--pad) 80px}
+  .hero h1{font-size:clamp(64px,7vw,96px)}
+  .hero-actions{flex-direction:row}
+  .btn-primary,.btn-ghost{width:auto}
+  .stops-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:0 var(--pad)}
+  .stop-card{margin:0}
+  .stay-card{margin:0 var(--pad)}
+  .tips-grid{display:grid;grid-template-columns:1fr 1fr}
+  .drive-leg{grid-template-columns:1fr auto 1fr}
 }
-
-.maps-link{display:inline-flex;align-items:center;gap:4px;background:#e8f0fe;color:#1a56c4;border-radius:8px;padding:3px 9px;font-size:10px;font-weight:600;text-decoration:none;margin-bottom:8px;border:1px solid #c5d4f8}
-.maps-link:hover{background:#d2e3fc}
-
 </style>
 </head>
 <body>
 
-<nav style="position:sticky;top:0;z-index:100;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(74,58,40,.1);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;font-family:'Outfit',sans-serif">
-  <a href="https://travel.krishgrows.com" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#1a1208;text-decoration:none;display:flex;align-items:center;gap:3px">🌿 Krish<em style="color:#c87830;font-style:italic">Grows</em></a>
-  <div style="display:flex;gap:4px">
-    <a href="https://travel.krishgrows.com" style="font-size:13px;font-weight:500;color:#c87830;background:rgba(200,120,48,.08);text-decoration:none;padding:8px 12px;border-radius:8px">Travel</a>
-    <a href="https://allotment.krishgrows.com" style="font-size:13px;font-weight:500;color:#4a3a28;text-decoration:none;padding:8px 12px;border-radius:8px">Allotment</a>
-    <a href="https://projects.krishgrows.com" style="font-size:13px;font-weight:500;color:#4a3a28;text-decoration:none;padding:8px 12px;border-radius:8px">Projects</a>
+<!-- NAV -->
+<nav class="nav">
+  <a href="https://travel.krishgrows.com" class="nav-logo">🌿 Krish<em>Grows</em></a>
+  <div class="nav-links">
+    <a href="https://travel.krishgrows.com" class="active">Travel</a>
+    <a href="https://allotment.krishgrows.com">Allotment</a>
+    <a href="https://projects.krishgrows.com">Projects</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-gradient"></div>
   <div class="hero-content">
-    <div class="eyebrow">&#x1F3F4; North Wales &nbsp;&middot;&nbsp; 3 Days &middot; 2 Nights</div>
-    <h1>Waterfalls,<br><em>Castles</em> &amp; Coast</h1>
-    <p class="hero-sub">North Yorkshire &rarr; Llanrwst (LL26) &nbsp;&middot;&nbsp; Scenic drives &nbsp;&middot;&nbsp; Elderly-friendly throughout</p>
-    <div class="pills">
-      <div class="pill">&#x1F4A7; 3 Waterfalls</div>
-      <div class="pill">&#x1F682; Bala Lake Railway</div>
-      <div class="pill">&#x1F3F0; 2 Castles</div>
-      <div class="pill">&#x1F30A; Llyn Peninsula</div>
-      <div class="pill">&#x1F3E8; 2 Nights Llanrwst</div>
-      <div class="pill">&#x267F; All accessible</div>
+    <div class="hero-badge">🏴󠁧󠁢󠁷󠁬󠁳󠁿 North Wales · 3 Days · 2 Nights</div>
+    <h1>Waterfalls,<br><em>Castles</em><br>&amp; Coast</h1>
+    <p class="hero-sub">North Yorkshire → Llanrwst · Scenic drives · Elderly-friendly throughout</p>
+    <div class="hero-pills">
+      <span class="hero-pill">💧 3 Waterfalls</span>
+      <span class="hero-pill">🚂 Bala Lake Railway</span>
+      <span class="hero-pill">🏰 2 Castles</span>
+      <span class="hero-pill">🌊 Llyn Peninsula</span>
+      <span class="hero-pill">♿ All accessible</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#day1" class="btn-primary">Start Day 1 →</a>
+      <a href="#driving" class="btn-ghost">Driving distances</a>
     </div>
   </div>
 </div>
 
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-n">512</div><div class="stat-l">Miles</div></div>
+  <div class="stat"><div class="stat-n">3</div><div class="stat-l">Days</div></div>
+  <div class="stat"><div class="stat-n">8</div><div class="stat-l">Stops</div></div>
+  <div class="stat"><div class="stat-n">All</div><div class="stat-l">Accessible</div></div>
+</div>
+
 <!-- STAY BANNER -->
-<div class="stay-banner">
-  <div class="stay-ico">&#x1F3E0;</div>
-  <div class="stay-txt">
-    <h2>Your Base: 15 Bridge St, Llanrwst LL26 0ET &mdash; 2 Nights</h2>
-    <p>Self catering &nbsp;&middot;&nbsp; Central Llanrwst &nbsp;&middot;&nbsp; 5 mins Betws-y-Coed &nbsp;&middot;&nbsp; Perfect for all 3 days</p>
-  </div>
-  <div class="nts">
-    <div class="nb"><span class="n">1</span><span class="l">Night One</span></div>
-    <div class="nb"><span class="n">2</span><span class="l">Night Two</span></div>
+<div class="stay">
+  <div class="stay-icon">🏠</div>
+  <div>
+    <div class="stay-title">Base: 15 Bridge St, Llanrwst</div>
+    <div class="stay-desc">Self catering · 2 nights · Central Llanrwst · 5 mins from Betws-y-Coed · Perfect for all 3 days</div>
   </div>
 </div>
-
-<!-- ROUTE TIMELINE -->
-<div class="rt-wrap">
-<p class="sec-e">Your Journey</p>
-<h2 class="sec-h">The Full Route at a Glance</h2>
-<div class="tl">
-  <div class="tn"><div class="td" style="background:#fdf3dc">&#x1F3E0;</div><div class="tl-lbl">North Yorkshire</div><div class="tday" style="background:#999">Start</div></div>
-  <div class="tc"><svg viewBox="0 0 46 22"><path d="M0,11 Q11,1 23,11 Q35,21 46,11" stroke="#b8d9a8" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/><text x="18" y="7" font-size="12">&#x1F697;</text></svg><span class="dur">148mi 2h54</span></div>
-  <div class="tn"><div class="td" style="background:#daeef8;border-color:#8ecae6">&#x1F4A7;</div><div class="tl-lbl">Pistyll Rhaeadr</div><div class="tday" style="background:#5a9448">Day 1</div></div>
-  <div class="tc"><svg viewBox="0 0 46 22"><path d="M0,11 Q11,21 23,11 Q35,1 46,11" stroke="#b8d9a8" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/><text x="18" y="21" font-size="12">&#x1F697;</text></svg><span class="dur">26mi 56m</span></div>
-  <div class="tn"><div class="td" style="background:#e6f2df;border-color:#b8d9a8">&#x1F682;</div><div class="tl-lbl">Bala Railway</div><div class="tday" style="background:#5a9448">Day 1</div></div>
-  <div class="tc"><svg viewBox="0 0 46 22"><path d="M0,11 Q11,1 23,11 Q35,21 46,11" stroke="#b8d9a8" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/><text x="18" y="7" font-size="12">&#x1F697;</text></svg><span class="dur">26mi 40m</span></div>
-  <div class="tn"><div class="td" style="background:#fffbdd;border-color:#f0d040">&#x1F319;</div><div class="tl-lbl">Llanrwst Night 1</div><div class="tday" style="background:#c88020">Stay</div></div>
-  <div class="tc"><svg viewBox="0 0 46 22"><path d="M0,11 Q11,21 23,11 Q35,1 46,11" stroke="#8ecae6" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/><text x="18" y="21" font-size="12">&#x1F697;</text></svg><span class="dur">31mi 53m</span></div>
-  <div class="tn"><div class="td" style="background:#daeef8;border-color:#8ecae6">&#x26D3;&#xFE0F;</div><div class="tl-lbl">Beaumaris Gaol</div><div class="tday" style="background:#3d88b0">Day 2</div></div>
-  <div class="tc"><svg viewBox="0 0 46 22"><path d="M0,11 Q11,1 23,11 Q35,21 46,11" stroke="#8ecae6" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/><text x="18" y="7" font-size="12">&#x1F697;</text></svg><span class="dur">39mi 59m</span></div>
-  <div class="tn"><div class="td" style="background:#daeef8;border-color:#8ecae6">&#x1F30A;</div><div class="tl-lbl">Abersoch Llyn</div><div class="tday" style="background:#3d88b0">Day 2</div></div>
-  <div class="tc"><svg viewBox="0 0 46 22"><path d="M0,11 Q11,21 23,11 Q35,1 46,11" stroke="#8ecae6" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/><text x="18" y="21" font-size="12">&#x1F697;</text></svg><span class="dur">47mi 1h15</span></div>
-  <div class="tn"><div class="td" style="background:#fffbdd;border-color:#f0d040">&#x1F319;</div><div class="tl-lbl">Llanrwst Night 2</div><div class="tday" style="background:#c88020">Stay</div></div>
-  <div class="tc"><svg viewBox="0 0 46 22"><path d="M0,11 Q11,1 23,11 Q35,21 46,11" stroke="#c4b0e0" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/><text x="18" y="7" font-size="12">&#x1F697;</text></svg><span class="dur">4.8mi 15m</span></div>
-  <div class="tn"><div class="td" style="background:#ede8f5;border-color:#c4b0e0">&#x1F4A7;</div><div class="tl-lbl">Swallow Falls</div><div class="tday" style="background:#7b5ea7">Day 3</div></div>
-  <div class="tc"><svg viewBox="0 0 46 22"><path d="M0,11 Q11,21 23,11 Q35,1 46,11" stroke="#c4b0e0" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/><text x="18" y="21" font-size="12">&#x1F697;</text></svg><span class="dur">26mi 52m</span></div>
-  <div class="tn"><div class="td" style="background:#ede8f5;border-color:#c4b0e0">&#x1F4A7;</div><div class="tl-lbl">Aber Falls</div><div class="tday" style="background:#7b5ea7">Day 3</div></div>
-  <div class="tc"><svg viewBox="0 0 46 22"><path d="M0,11 Q11,1 23,11 Q35,21 46,11" stroke="#c4b0e0" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/><text x="18" y="7" font-size="12">&#x1F697;</text></svg><span class="dur">7.4mi 26m</span></div>
-  <div class="tn"><div class="td" style="background:#ede8f5;border-color:#c4b0e0">&#x1F3F0;</div><div class="tl-lbl">Penrhyn Castle</div><div class="tday" style="background:#7b5ea7">Day 3</div></div>
-  <div class="tc"><svg viewBox="0 0 46 22"><path d="M0,11 Q11,21 23,11 Q35,1 46,11" stroke="#f0c840" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/><text x="18" y="21" font-size="12">&#x1F697;</text></svg><span class="dur">157mi 2h47</span></div>
-  <div class="tn"><div class="td" style="background:#fdf3dc">&#x1F3E0;</div><div class="tl-lbl">North Yorkshire</div><div class="tday" style="background:#999">Home</div></div>
-</div>
-</div>
-
-<!-- DAYS -->
-<div class="dw">
 
 <!-- DAY 1 -->
-<div class="d1">
-<div class="dh"><div class="dp">1</div><div>
-  <div class="dhl">Arrive via Pistyll Rhaeadr &amp; Bala Lake Railway</div>
-  <div class="dsl">~4h 30m driving &nbsp;&middot;&nbsp; A5 / A490 &nbsp;&middot;&nbsp; Check in 15 Bridge St (Night 1 of 2)</div>
-</div></div>
-<div class="sg">
-  <div class="sc">
-    <div class="si"><div class="si-ph">&#x1F4A7;</div><img data-src="https://source.unsplash.com/800x500/?waterfall,wales" alt="Pistyll Rhaeadr"><div class="ib" style="color:#1a6030">&#x1F4A7; Waterfall</div><div class="it">En route &middot; midday</div></div>
-    <div class="sb"><div class="sn">Pistyll Rhaeadr</div>
-<a class="maps-link" href="https://maps.google.com/?q=Pistyll+Rhaeadr,SY10+0BZ" target="_blank">&#x1F4CD; Open in Maps</a><div class="sd">Tallest waterfall in England or Wales &mdash; 80m single drop. Car park right next to it, caf&eacute; on site. Just 2 minutes flat walk to the base. On your route via A490 from Oswestry.</div><div class="ct"><span class="ctag ac">&#x267F; 2-min flat walk</span><span class="ctag co">&pound;5 parking &middot; 50p WC</span><span class="ctag st">&#x2B50; 4.7</span></div></div>
+<div id="day1">
+  <div class="day-header d1">
+    <div class="day-num d1">1</div>
+    <div>
+      <div class="day-title">Arrive via Pistyll Rhaeadr &amp; Bala Lake Railway</div>
+      <div class="day-meta">~4h 30m driving · A5 / A490 · Check in 15 Bridge St (Night 1 of 2)</div>
+    </div>
   </div>
-  <div class="sc">
-    <div class="si"><div class="si-ph">&#x1F682;</div><img data-src="https://source.unsplash.com/800x500/?steam,train,railway,lake" alt="Bala Lake Railway"><div class="ib" style="color:#1a4060">&#x1F682; Steam Railway</div><div class="it">Afternoon &middot; 2 hrs</div></div>
-    <div class="sb"><div class="sn">Bala Lake Railway</div>
-<a class="maps-link" href="https://maps.google.com/?q=Bala+Lake+Railway,Llanuwchllyn,LL23+7DD" target="_blank">&#x1F4CD; Open in Maps</a><div class="sd">Narrow gauge steam train along the shores of Llyn Tegid &mdash; Wales&rsquo;s largest natural lake. No walking needed. Start from Llanuwchllyn station. Book ahead at bala-lake-railway.co.uk.</div><div class="ct"><span class="ctag ac">&#x267F; Sit back, no walking</span><span class="ctag co">~&pound;18 adult return</span><span class="ctag st">&#x2B50; 4.6</span></div></div>
+  <div class="stops-grid">
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#1a3a40,#0e2030)">
+        💧
+        <div class="stop-type">💧 Waterfall</div>
+        <div class="stop-time">En route · midday</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Pistyll Rhaeadr</div>
+        <p class="stop-desc">Tallest waterfall in England or Wales — 80m single drop. Car park right next to it, café on site. Just 2 minutes flat walk to the base.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ 2-min flat walk</span>
+          <span class="stop-tag tag-cost">£5 parking · 50p WC</span>
+          <span class="stop-tag tag-rating">⭐ 4.7</span>
+        </div>
+        <a href="https://maps.google.com/?q=Pistyll+Rhaeadr,SY10+0BZ" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#1a3020,#0e2018)">
+        🚂
+        <div class="stop-type">🚂 Steam Railway</div>
+        <div class="stop-time">Afternoon · 2 hrs</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Bala Lake Railway</div>
+        <p class="stop-desc">Narrow gauge steam train along Llyn Tegid — Wales's largest natural lake. No walking needed. Book ahead at bala-lake-railway.co.uk.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ Sit back, no walking</span>
+          <span class="stop-tag tag-cost">~£18 adult return</span>
+          <span class="stop-tag tag-rating">⭐ 4.6</span>
+        </div>
+        <a href="https://maps.google.com/?q=Bala+Lake+Railway,Llanuwchllyn,LL23+7DD" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
   </div>
-  <div class="sc stayc">
-    <div class="si" style="background:linear-gradient(135deg,#3a5a40,#1a3020)"><div class="si-ph">&#x1F3E0;</div><img data-src="https://source.unsplash.com/800x500/?wales,river,bridge,village" alt="Llanrwst"><div class="ib" style="color:#8a6010">&#x1F319; Night 1 of 2</div><div class="it">Check in &middot; Evening</div></div>
-    <div class="sb"><div class="sn">&#x1F3E0; 15 Bridge St &mdash; Night 1 of 2</div>
-<a class="maps-link" href="https://maps.google.com/?q=15+Bridge+Street,Llanrwst,LL26+0ET" target="_blank">&#x1F4CD; Open in Maps</a><div class="sd">Your base for the whole trip. Self catering at 15 Bridge St, Llanrwst LL26 0ET. Central market town in the Conwy Valley with the medieval Pont Fawr bridge. 5 mins from Betws-y-Coed.</div><div class="ct"><span class="ctag co">&#x1F4CD; 15 Bridge St, LL26 0ET</span><span class="ctag st">&#x1F319; 2 nights</span></div></div>
+
+  <div class="stay-card">
+    <div class="stay-card-icon">🏠</div>
+    <div style="flex:1">
+      <div class="stay-card-title">Night 1 of 2 — 15 Bridge St</div>
+      <p class="stay-card-desc">Central market town in the Conwy Valley with the medieval Pont Fawr bridge. 5 mins from Betws-y-Coed. Your base for the whole trip.</p>
+      <a href="https://maps.google.com/?q=15+Bridge+Street,Llanrwst,LL26+0ET" target="_blank" class="stay-maps-btn">📍 15 Bridge St, Llanrwst LL26 0ET</a>
+    </div>
   </div>
-</div>
 </div>
 
 <!-- DAY 2 -->
-<div class="d2">
-<div class="dh"><div class="dp">2</div><div>
-  <div class="dhl">Beaumaris &amp; the Llyn Peninsula</div>
-  <div class="dsl">~3h 7m driving &nbsp;&middot;&nbsp; A55 / Menai Bridge &nbsp;&middot;&nbsp; Return to 15 Bridge St (Night 2 of 2)</div>
-</div></div>
-<div class="sg">
-  <div class="sc">
-    <div class="si"><div class="si-ph">&#x26D3;&#xFE0F;</div><img data-src="https://source.unsplash.com/800x500/?victorian,prison,historic,building" alt="Beaumaris Gaol"><div class="ib" style="color:#4a1a6a">&#x26D3;&#xFE0F; Heritage</div><div class="it">Morning &middot; 1 hr</div></div>
-    <div class="sb"><div class="sn">Beaumaris Gaol &amp; Courthouse</div>
-<a class="maps-link" href="https://maps.google.com/?q=Beaumaris+Gaol,Steeple+Lane,Beaumaris,LL58+8EP" target="_blank">&#x1F4CD; Open in Maps</a><div class="sd">Brilliantly preserved Victorian prison &mdash; original cells, working treadmill, execution pit. Get the joint ticket with the courthouse. People love this more than expected.</div><div class="ct"><span class="ctag ac">&#x267F; Ground floor</span><span class="ctag co">~&pound;8 joint ticket</span><span class="ctag st">&#x2B50; 4.6</span></div></div>
+<div id="day2">
+  <div class="day-header d2">
+    <div class="day-num d2">2</div>
+    <div>
+      <div class="day-title">Beaumaris &amp; the Llyn Peninsula</div>
+      <div class="day-meta">~3h 7m driving · A55 / Menai Bridge · Return to 15 Bridge St (Night 2 of 2)</div>
+    </div>
   </div>
-  <div class="sc">
-    <div class="si"><div class="si-ph">&#x1F3F0;</div><img data-src="https://source.unsplash.com/800x500/?castle,moat,medieval,wales" alt="Beaumaris Castle"><div class="ib" style="color:#3a1058">&#x1F3F0; UNESCO Castle</div><div class="it">Late morning &middot; 1 hr</div></div>
-    <div class="sb"><div class="sn">Beaumaris Castle</div>
-<a class="maps-link" href="https://maps.google.com/?q=Beaumaris+Castle,LL58+8AP" target="_blank">&#x1F4CD; Open in Maps</a><div class="sd">The most perfectly designed concentric castle in Britain &mdash; moat still full of water on the Menai Strait. More intimate than Conwy. Charming town for a harbour-side lunch.</div><div class="ct"><span class="ctag ac">&#x267F; Flat courtyard</span><span class="ctag co">~&pound;10 adult</span><span class="ctag st">&#x2B50; 4.6</span></div></div>
+  <div class="stops-grid">
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#1a1a3a,#0e0e28)">
+        ⛓️
+        <div class="stop-type">⛓️ Heritage</div>
+        <div class="stop-time">Morning · 1 hr</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Beaumaris Gaol &amp; Courthouse</div>
+        <p class="stop-desc">Brilliantly preserved Victorian prison — original cells, working treadmill, execution pit. Get the joint ticket with the courthouse.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ Ground floor</span>
+          <span class="stop-tag tag-cost">~£8 joint ticket</span>
+          <span class="stop-tag tag-rating">⭐ 4.6</span>
+        </div>
+        <a href="https://maps.google.com/?q=Beaumaris+Gaol,Steeple+Lane,Beaumaris,LL58+8EP" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#2a1a3a,#1a0a28)">
+        🏰
+        <div class="stop-type">🏰 UNESCO Castle</div>
+        <div class="stop-time">Late morning · 1 hr</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Beaumaris Castle</div>
+        <p class="stop-desc">The most perfectly designed concentric castle in Britain — moat still full of water on the Menai Strait. More intimate than Conwy.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ Flat courtyard</span>
+          <span class="stop-tag tag-cost">~£10 adult</span>
+          <span class="stop-tag tag-rating">⭐ 4.6</span>
+        </div>
+        <a href="https://maps.google.com/?q=Beaumaris+Castle,LL58+8AP" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#0e2030,#1a3a50)">
+        🌊
+        <div class="stop-type">🌊 Coastal Drive</div>
+        <div class="stop-time">Afternoon · en route</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Abersoch &amp; Llyn Peninsula</div>
+        <p class="stop-desc">The most scenic coastal drive in Wales most people never take. Abersoch harbour village for lunch. Push to Aberdaron at the very tip.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">🌊 Flat promenade</span>
+          <span class="stop-tag tag-cost">Free · pay parking</span>
+          <span class="stop-tag tag-rating">⭐ 4.6</span>
+        </div>
+        <a href="https://maps.google.com/?q=Abersoch,Gwynedd,LL53+7EA" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
   </div>
-  <div class="sc">
-    <div class="si"><div class="si-ph">&#x1F30A;</div><img data-src="https://source.unsplash.com/800x500/?harbour,coastal,sailing,peninsula" alt="Abersoch"><div class="ib" style="color:#5a1010">&#x1F30A; Coastal Drive</div><div class="it">Afternoon &middot; en route</div></div>
-    <div class="sb"><div class="sn">Abersoch &amp; Llyn Peninsula</div>
-<a class="maps-link" href="https://maps.google.com/?q=Abersoch,Gwynedd,LL53+7EA" target="_blank">&#x1F4CD; Open in Maps</a><div class="sd">The most scenic coastal drive in Wales most people never take. Abersoch harbour village for lunch. Push to Aberdaron at the very tip for dramatic views before heading back.</div><div class="ct"><span class="ctag ac">&#x1F30A; Flat promenade</span><span class="ctag co">Free &middot; pay parking</span><span class="ctag st">&#x2B50; 4.6</span></div></div>
+
+  <div class="stay-card" style="background:linear-gradient(135deg,#1a2a40,#0e1828)">
+    <div class="stay-card-icon">🏠</div>
+    <div style="flex:1">
+      <div class="stay-card-title">Night 2 of 2 — 15 Bridge St</div>
+      <p class="stay-card-desc">Pont y Pair Inn in Betws-y-Coed (5 min drive) for the evening — 4.2★ pub food, lively, dog friendly. Last night before the waterfalls day.</p>
+      <a href="https://maps.google.com/?q=15+Bridge+Street,Llanrwst,LL26+0ET" target="_blank" class="stay-maps-btn">📍 15 Bridge St, Llanrwst LL26 0ET</a>
+    </div>
   </div>
-  <div class="sc stayc">
-    <div class="si" style="background:linear-gradient(135deg,#2a3a50,#101828)"><div class="si-ph">&#x1F3E0;</div><img data-src="https://source.unsplash.com/800x500/?wales,river,bridge,village" alt="Llanrwst"><div class="ib" style="color:#8a6010">&#x1F319; Night 2 of 2</div><div class="it">Return &middot; Evening</div></div>
-    <div class="sb"><div class="sn">&#x1F3E0; 15 Bridge St &mdash; Night 2 of 2</div>
-<a class="maps-link" href="https://maps.google.com/?q=15+Bridge+Street,Llanrwst,LL26+0ET" target="_blank">&#x1F4CD; Open in Maps</a><div class="sd">Return to base. Pont y Pair Inn in Betws-y-Coed (5 min drive) is perfect for the evening &mdash; 4.2&#x2605; pub food, lively atmosphere, dog friendly. Last night before the waterfalls day.</div><div class="ct"><span class="ctag co">&#x1F4CD; 15 Bridge St, LL26 0ET</span><span class="ctag st">&#x1F319; Final night</span></div></div>
-  </div>
-</div>
 </div>
 
 <!-- DAY 3 -->
-<div class="d3">
-<div class="dh"><div class="dp">3</div><div>
-  <div class="dhl">Waterfalls &amp; Penrhyn Castle &mdash; Then Home</div>
-  <div class="dsl">~4h 20m driving &nbsp;&middot;&nbsp; A55 east &nbsp;&middot;&nbsp; Penrhyn Castle straight onto A55 home</div>
-</div></div>
-<div class="sg">
-  <div class="sc">
-    <div class="si"><div class="si-ph">&#x1F4A7;</div><img data-src="https://source.unsplash.com/800x500/?waterfall,forest,stream" alt="Swallow Falls"><div class="ib" style="color:#1a4a7a">&#x1F4A7; Waterfall</div><div class="it">Morning &middot; 30 min</div></div>
-    <div class="sb"><div class="sn">Swallow Falls</div>
-<a class="maps-link" href="https://maps.google.com/?q=Swallow+Falls,Betws-y-Coed,LL24+0DW" target="_blank">&#x1F4CD; Open in Maps</a><div class="sd">5 minutes from base. Paved viewing platforms with handrails &mdash; no rough terrain. Very powerful falls, completely accessible for all ages. &pound;2 entry, card accepted.</div><div class="ct"><span class="ctag ac">&#x267F; Paved + handrails</span><span class="ctag co">&pound;2 entry</span><span class="ctag st">&#x2B50; 4.5</span></div></div>
+<div id="day3">
+  <div class="day-header d3">
+    <div class="day-num d3">3</div>
+    <div>
+      <div class="day-title">Waterfalls &amp; Penrhyn Castle — Then Home</div>
+      <div class="day-meta">~4h 20m driving · A55 east · Penrhyn Castle straight onto A55 home</div>
+    </div>
   </div>
-  <div class="sc">
-    <div class="si"><div class="si-ph">&#x1F4A7;</div><img data-src="https://source.unsplash.com/800x500/?waterfall,mountain,hiking,path" alt="Aber Falls"><div class="ib" style="color:#1a3a6a">&#x1F4A7; Waterfall</div><div class="it">Mid-morning &middot; 1.5 hrs</div></div>
-    <div class="sb"><div class="sn">Aber Falls (Rhaeadr Fawr)</div>
-<a class="maps-link" href="https://maps.google.com/?q=Aber+Falls+Car+Park,Abergwyngregyn,LL33+0LP" target="_blank">&#x1F4CD; Open in Maps</a><div class="sd">Highest rated attraction in North Wales. 1.4-mile flat path &mdash; Lord of the Rings scenery &mdash; to a stunning 37m waterfall. Wheelchair friendly. Arrive before 10am for parking.</div><div class="ct"><span class="ctag ac">&#x267F; Flat path</span><span class="ctag co">Free &middot; &pound;5 parking</span><span class="ctag st">&#x2B50; 4.8</span></div></div>
-  </div>
-  <div class="sc">
-    <div class="si"><div class="si-ph">&#x1F3F0;</div><img data-src="https://source.unsplash.com/800x500/?castle,stately,national,trust" alt="Penrhyn Castle"><div class="ib" style="color:#1a2a40">&#x1F3F0; National Trust</div><div class="it">Afternoon &middot; 2.5 hrs</div></div>
-    <div class="sb"><div class="sn">Penrhyn Castle</div>
-<a class="maps-link" href="https://maps.google.com/?q=Penrhyn+Castle,Bangor,LL57+4HN" target="_blank">&#x1F4CD; Open in Maps</a><div class="sd">Victorian neo-Norman castle of extraordinary grandeur. Remarkable interiors, railway museum, walled gardens and Menai Strait views. Free with NT membership. Then straight onto A55 home.</div><div class="ct"><span class="ctag ac">&#x267F; Accessible gardens</span><span class="ctag co">Free (NT) or ~&pound;15</span><span class="ctag st">&#x2B50; 4.7</span></div></div>
-  </div>
-</div>
-</div>
+  <div class="stops-grid">
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#1a2a40,#0a1828)">
+        💧
+        <div class="stop-type">💧 Waterfall</div>
+        <div class="stop-time">Morning · 30 min</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Swallow Falls</div>
+        <p class="stop-desc">5 minutes from base. Paved viewing platforms with handrails — no rough terrain. Very powerful falls, completely accessible for all ages.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ Paved + handrails</span>
+          <span class="stop-tag tag-cost">£2 entry</span>
+          <span class="stop-tag tag-rating">⭐ 4.5</span>
+        </div>
+        <a href="https://maps.google.com/?q=Swallow+Falls,Betws-y-Coed,LL24+0DW" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
 
-</div><!-- end .dw -->
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#1a3040,#0e1e30)">
+        💧
+        <div class="stop-type">💧 Waterfall</div>
+        <div class="stop-time">Mid-morning · 1.5 hrs</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Aber Falls (Rhaeadr Fawr)</div>
+        <p class="stop-desc">Highest rated attraction in North Wales. 1.4-mile flat path — Lord of the Rings scenery — to a stunning 37m waterfall. Wheelchair friendly.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ Flat path</span>
+          <span class="stop-tag tag-cost">Free · £5 parking</span>
+          <span class="stop-tag tag-rating">⭐ 4.8</span>
+        </div>
+        <a href="https://maps.google.com/?q=Aber+Falls+Car+Park,Abergwyngregyn,LL33+0LP" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#201828,#100c1a)">
+        🏰
+        <div class="stop-type">🏰 National Trust</div>
+        <div class="stop-time">Afternoon · 2.5 hrs</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Penrhyn Castle</div>
+        <p class="stop-desc">Victorian neo-Norman castle of extraordinary grandeur. Remarkable interiors, railway museum, walled gardens and Menai Strait views. Free with NT.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ Accessible gardens</span>
+          <span class="stop-tag tag-cost">Free (NT) or ~£15</span>
+          <span class="stop-tag tag-rating">⭐ 4.7</span>
+        </div>
+        <a href="https://maps.google.com/?q=Penrhyn+Castle,Bangor,LL57+4HN" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- DRIVING DISTANCES -->
-<div class="drive-wrap">
-<p class="sec-e">Planning Your Drive</p>
-<h2 class="sec-h">Distances &amp; Drive Times</h2>
-<p style="font-size:11px;color:#2d6020;background:#e6f2df;border-radius:8px;padding:8px 12px;margin-bottom:16px;display:inline-block">&#x2705; All figures verified via Google Maps</p>
+<div class="drive-section" id="driving">
+  <div class="eyebrow">Planning Your Drive</div>
+  <h2>Distances &amp; <em>Drive Times</em></h2>
 
-<div class="drive-day">
-  <div class="drive-day-label d1-label">Day 1 &nbsp;&middot;&nbsp; 200 miles &nbsp;&middot;&nbsp; ~4h 30m driving</div>
-  <div class="drive-legs">
-    <div class="drive-leg"><div class="leg-from">&#x1F3E0; North Yorkshire</div><div class="leg-arrow"><div class="leg-line"></div><div class="leg-info"><span class="leg-miles">148 mi</span><span class="leg-time">2h 54m</span></div><div class="leg-route">A1(M) &rarr; A59 &rarr; A483 &rarr; B4396</div></div><div class="leg-to">&#x1F4A7; Pistyll Rhaeadr</div></div>
-    <div class="drive-leg"><div class="leg-from">&#x1F4A7; Pistyll Rhaeadr</div><div class="leg-arrow"><div class="leg-line"></div><div class="leg-info"><span class="leg-miles">26 mi</span><span class="leg-time">56m</span></div><div class="leg-route">B4580 &rarr; B4391 &rarr; A494</div></div><div class="leg-to">&#x1F682; Bala Lake Railway</div></div>
-    <div class="drive-leg"><div class="leg-from">&#x1F682; Bala (Llanuwchllyn)</div><div class="leg-arrow"><div class="leg-line"></div><div class="leg-info"><span class="leg-miles">26 mi</span><span class="leg-time">40m</span></div><div class="leg-route">A494 &rarr; A5 &rarr; A470</div></div><div class="leg-to">&#x1F3E0; 15 Bridge St</div></div>
+  <div class="drive-day">
+    <div class="drive-day-label d1-label">Day 1 · 200 miles · ~4h 30m driving</div>
+    <div class="drive-legs">
+      <div class="drive-leg">
+        <div class="leg-from">🏠 North Yorkshire</div>
+        <div class="leg-mid"><span class="leg-miles">148 mi</span><span class="leg-time">2h 54m</span><span class="leg-route">A1(M) → A59 → A483</span></div>
+        <div class="leg-to">💧 Pistyll Rhaeadr</div>
+      </div>
+      <div class="drive-leg">
+        <div class="leg-from">💧 Pistyll Rhaeadr</div>
+        <div class="leg-mid"><span class="leg-miles">26 mi</span><span class="leg-time">56m</span><span class="leg-route">B4580 → A494</span></div>
+        <div class="leg-to">🚂 Bala Railway</div>
+      </div>
+      <div class="drive-leg">
+        <div class="leg-from">🚂 Bala</div>
+        <div class="leg-mid"><span class="leg-miles">26 mi</span><span class="leg-time">40m</span><span class="leg-route">A494 → A5 → A470</span></div>
+        <div class="leg-to">🏠 Llanrwst</div>
+      </div>
+    </div>
   </div>
-</div>
 
-<div class="drive-day">
-  <div class="drive-day-label d2-label">Day 2 &nbsp;&middot;&nbsp; 117 miles &nbsp;&middot;&nbsp; ~3h 7m driving</div>
-  <div class="drive-legs">
-    <div class="drive-leg"><div class="leg-from">&#x1F3E0; 15 Bridge St</div><div class="leg-arrow"><div class="leg-line"></div><div class="leg-info"><span class="leg-miles">31 mi</span><span class="leg-time">53m</span></div><div class="leg-route">A470 &rarr; A55 &rarr; Menai Bridge</div></div><div class="leg-to">&#x26D3;&#xFE0F; Beaumaris</div></div>
-    <div class="drive-leg"><div class="leg-from">&#x1F3F0; Beaumaris</div><div class="leg-arrow"><div class="leg-line"></div><div class="leg-info"><span class="leg-miles">39 mi</span><span class="leg-time">59m</span></div><div class="leg-route">A55 &rarr; A487 &rarr; A499</div></div><div class="leg-to">&#x1F30A; Abersoch</div></div>
-    <div class="drive-leg"><div class="leg-from">&#x1F30A; Abersoch</div><div class="leg-arrow"><div class="leg-line"></div><div class="leg-info"><span class="leg-miles">47 mi</span><span class="leg-time">1h 15m</span></div><div class="leg-route">A499 &rarr; A487 &rarr; A470</div></div><div class="leg-to">&#x1F3E0; 15 Bridge St</div></div>
+  <div class="drive-day">
+    <div class="drive-day-label d2-label">Day 2 · 117 miles · ~3h 7m driving</div>
+    <div class="drive-legs">
+      <div class="drive-leg">
+        <div class="leg-from">🏠 Llanrwst</div>
+        <div class="leg-mid"><span class="leg-miles">31 mi</span><span class="leg-time">53m</span><span class="leg-route">A470 → A55 → Menai</span></div>
+        <div class="leg-to">⛓️ Beaumaris</div>
+      </div>
+      <div class="drive-leg">
+        <div class="leg-from">🏰 Beaumaris</div>
+        <div class="leg-mid"><span class="leg-miles">39 mi</span><span class="leg-time">59m</span><span class="leg-route">A55 → A487 → A499</span></div>
+        <div class="leg-to">🌊 Abersoch</div>
+      </div>
+      <div class="drive-leg">
+        <div class="leg-from">🌊 Abersoch</div>
+        <div class="leg-mid"><span class="leg-miles">47 mi</span><span class="leg-time">1h 15m</span><span class="leg-route">A499 → A487 → A470</span></div>
+        <div class="leg-to">🏠 Llanrwst</div>
+      </div>
+    </div>
   </div>
-</div>
 
-<div class="drive-day">
-  <div class="drive-day-label d3-label">Day 3 &nbsp;&middot;&nbsp; 195 miles &nbsp;&middot;&nbsp; ~4h 20m driving (inc. home)</div>
-  <div class="drive-legs">
-    <div class="drive-leg"><div class="leg-from">&#x1F3E0; 15 Bridge St</div><div class="leg-arrow"><div class="leg-line"></div><div class="leg-info"><span class="leg-miles">4.8 mi</span><span class="leg-time">15m</span></div><div class="leg-route">A470 west</div></div><div class="leg-to">&#x1F4A7; Swallow Falls</div></div>
-    <div class="drive-leg"><div class="leg-from">&#x1F4A7; Swallow Falls</div><div class="leg-arrow"><div class="leg-line"></div><div class="leg-info"><span class="leg-miles">26 mi</span><span class="leg-time">52m</span></div><div class="leg-route">A5 &rarr; A55 &rarr; Abergwyngregyn</div></div><div class="leg-to">&#x1F4A7; Aber Falls</div></div>
-    <div class="drive-leg"><div class="leg-from">&#x1F4A7; Aber Falls</div><div class="leg-arrow"><div class="leg-line"></div><div class="leg-info"><span class="leg-miles">7.4 mi</span><span class="leg-time">26m</span></div><div class="leg-route">A55 &rarr; Bangor</div></div><div class="leg-to">&#x1F3F0; Penrhyn Castle</div></div>
-    <div class="drive-leg"><div class="leg-from">&#x1F3F0; Penrhyn Castle</div><div class="leg-arrow"><div class="leg-line"></div><div class="leg-info"><span class="leg-miles">157 mi</span><span class="leg-time">2h 47m</span></div><div class="leg-route">A55 &rarr; A494 &rarr; A483 &rarr; A59 &rarr; A1(M)</div></div><div class="leg-to">&#x1F3E0; North Yorkshire</div></div>
+  <div class="drive-day">
+    <div class="drive-day-label d3-label">Day 3 · 195 miles · ~4h 20m driving</div>
+    <div class="drive-legs">
+      <div class="drive-leg">
+        <div class="leg-from">🏠 Llanrwst</div>
+        <div class="leg-mid"><span class="leg-miles">4.8 mi</span><span class="leg-time">15m</span><span class="leg-route">A470 west</span></div>
+        <div class="leg-to">💧 Swallow Falls</div>
+      </div>
+      <div class="drive-leg">
+        <div class="leg-from">💧 Swallow Falls</div>
+        <div class="leg-mid"><span class="leg-miles">26 mi</span><span class="leg-time">52m</span><span class="leg-route">A5 → A55</span></div>
+        <div class="leg-to">💧 Aber Falls</div>
+      </div>
+      <div class="drive-leg">
+        <div class="leg-from">💧 Aber Falls</div>
+        <div class="leg-mid"><span class="leg-miles">7.4 mi</span><span class="leg-time">26m</span><span class="leg-route">A55 → Bangor</span></div>
+        <div class="leg-to">🏰 Penrhyn Castle</div>
+      </div>
+      <div class="drive-leg">
+        <div class="leg-from">🏰 Penrhyn</div>
+        <div class="leg-mid"><span class="leg-miles">157 mi</span><span class="leg-time">2h 47m</span><span class="leg-route">A55 → A1(M)</span></div>
+        <div class="leg-to">🏠 North Yorkshire</div>
+      </div>
+    </div>
   </div>
-</div>
 
-<div class="trip-total">
-  <div class="total-item"><span class="total-num">512</span><span class="total-label">Total Miles</span></div>
-  <div class="total-divider"></div>
-  <div class="total-item"><span class="total-num">~12h</span><span class="total-label">Drive Time</span></div>
-  <div class="total-divider"></div>
-  <div class="total-item"><span class="total-num">3</span><span class="total-label">Days</span></div>
-  <div class="total-divider"></div>
-  <div class="total-item"><span class="total-num">8</span><span class="total-label">Stops</span></div>
-</div>
+  <div class="trip-total">
+    <div class="total-item"><div class="total-num">512</div><div class="total-label">Miles</div></div>
+    <div class="total-item"><div class="total-num">~12h</div><div class="total-label">Drive Time</div></div>
+    <div class="total-item"><div class="total-num">3</div><div class="total-label">Days</div></div>
+    <div class="total-item"><div class="total-num">8</div><div class="total-label">Stops</div></div>
+  </div>
 </div>
 
 <!-- TIPS -->
-<div class="tips-s">
-<p class="sec-e">Practical Notes</p>
-<h2 class="sec-h">Before You Go</h2>
-<div class="tg">
-  <div class="tip"><div class="tic">&#x1F682;</div><div class="tt"><strong>Book Bala Railway First</strong><p>Sells out in advance. Book at bala-lake-railway.co.uk. Start from Llanuwchllyn for free parking.</p></div></div>
-  <div class="tip"><div class="tic">&#x1F6E3;&#xFE0F;</div><div class="tt"><strong>Pistyll Rhaeadr Road</strong><p>Last 3 miles are narrow single-track. Take it steady &mdash; allow extra time.</p></div></div>
-  <div class="tip"><div class="tic">&#x1F558;</div><div class="tt"><strong>Aber Falls Early Start</strong><p>Car park fills fast in summer. Arrive before 10am. Free entry, &pound;5 parking.</p></div></div>
-  <div class="tip"><div class="tic">&#x1F4B7;</div><div class="tt"><strong>Pistyll Rhaeadr Cash</strong><p>Bring coins &mdash; &pound;5 parking, 50p toilets. No card machine on site.</p></div></div>
-  <div class="tip"><div class="tic">&#x1F3DB;&#xFE0F;</div><div class="tt"><strong>National Trust Tip</strong><p>Penrhyn Castle free with NT membership &mdash; saves ~&pound;30 for two people.</p></div></div>
-  <div class="tip"><div class="tic">&#x1F374;</div><div class="tt"><strong>Evening Dinner</strong><p>Pont y Pair Inn, Betws-y-Coed &mdash; 5 min drive, 4.2&#x2605;, great pub food, dog friendly.</p></div></div>
-</div>
+<div class="tips-section">
+  <div class="eyebrow">Practical Notes</div>
+  <h2>Before <em>You Go</em></h2>
+  <div class="tips-grid">
+    <div class="tip"><div class="tip-icon">🚂</div><div><div class="tip-title">Book Bala Railway First</div><p class="tip-desc">Sells out in advance. Book at bala-lake-railway.co.uk. Start from Llanuwchllyn for free parking.</p></div></div>
+    <div class="tip"><div class="tip-icon">🛣️</div><div><div class="tip-title">Pistyll Rhaeadr Road</div><p class="tip-desc">Last 3 miles are narrow single-track. Take it steady — allow extra time.</p></div></div>
+    <div class="tip"><div class="tip-icon">🕗</div><div><div class="tip-title">Aber Falls Early Start</div><p class="tip-desc">Car park fills fast in summer. Arrive before 10am. Free entry, £5 parking.</p></div></div>
+    <div class="tip"><div class="tip-icon">💷</div><div><div class="tip-title">Pistyll Rhaeadr Cash</div><p class="tip-desc">Bring coins — £5 parking, 50p toilets. No card machine on site.</p></div></div>
+    <div class="tip"><div class="tip-icon">🏛️</div><div><div class="tip-title">National Trust Tip</div><p class="tip-desc">Penrhyn Castle free with NT membership — saves ~£30 for two people.</p></div></div>
+    <div class="tip"><div class="tip-icon">🍽️</div><div><div class="tip-title">Evening Dinner</div><p class="tip-desc">Pont y Pair Inn, Betws-y-Coed — 5 min drive, 4.2★, great pub food, dog friendly.</p></div></div>
+  </div>
 </div>
 
-<footer><span>North Wales &middot; 3 Days &middot; 2 Nights at 15 Bridge St, Llanrwst LL26 0ET</span> &nbsp;&middot;&nbsp; Waterfalls, Steam Railway, Castles &amp; Coastal Drives</footer>
+<!-- FOOTER -->
+<footer class="footer">
+  <a href="https://krishgrows.com" class="footer-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="footer-links">
+    <li><a href="https://krishgrows.com">Home</a></li>
+    <li><a href="https://travel.krishgrows.com">Travel</a></li>
+    <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
+    <li><a href="https://projects.krishgrows.com">Projects</a></li>
+  </ul>
+  <p class="footer-copy">North Wales · 3 Days · 2 Nights at Llanrwst</p>
+</footer>
 
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('heroBg').style.backgroundImage = "url('https://source.unsplash.com/1400x600/?waterfall,wales,mountain')";
-  document.querySelectorAll('img[data-src]').forEach(img => {
-    const ph = img.previousElementSibling;
-    img.onload = () => { img.classList.add('loaded'); if (ph && ph.classList.contains('si-ph')) ph.style.display = 'none'; };
-    img.onerror = () => { if (ph) ph.style.opacity = '0.2'; };
-    img.src = img.getAttribute('data-src');
-    img.removeAttribute('data-src');
-  });
-});
-</script>
 </body>
 </html>
