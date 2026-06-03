@@ -3,17 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KrishGrows — Coming Soon</title>
+<title>KrishGrows — Allotment</title>
 <link rel="stylesheet" href="../shared/brand.css">
+<style>
+.hero{min-height:85vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:60px var(--page-pad);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 15% 50%,rgba(58,122,88,.07) 0%,transparent 60%);pointer-events:none}
+.hero-text{position:relative;z-index:2}
+.hero-desc{font-size:15px;font-weight:300;line-height:1.75;color:var(--ink2);max-width:400px;margin:20px 0 36px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.beds-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-left:40px}
+.bed-card{background:white;border-radius:12px;padding:16px;box-shadow:var(--shadow);border-left:3px solid var(--green)}
+.bed-num{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:4px}
+.bed-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:4px}
+.bed-status{font-size:11px;color:var(--ink2);font-weight:300;display:flex;align-items:center;gap:5px}
+.bed-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+.green-bar{background:var(--green);padding:22px var(--page-pad);display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
+.g-stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:0 36px;border-right:1px solid rgba(255,255,255,.2)}
+.g-stat:last-child{border-right:none}
+.g-stat-n{font-family:var(--font-heading);font-size:32px;font-weight:600;color:white;line-height:1}
+.g-stat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.grow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.grow-card{background:white;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform .25s}
+.grow-card:hover{transform:translateY(-3px)}
+.grow-img{height:150px;display:flex;align-items:center;justify-content:center;font-size:52px}
+.grow-body{padding:16px}
+.grow-tag{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:20px;background:rgba(58,122,88,.1);color:var(--green);display:inline-block;margin-bottom:8px}
+.grow-title{font-family:var(--font-heading);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.grow-desc{font-size:12px;color:var(--ink2);line-height:1.6;font-weight:300}
+.channel-strip{background:var(--warm);padding:56px var(--page-pad);display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px;border-top:1px solid var(--border)}
+.yt-btn{display:flex;align-items:center;gap:12px;background:#ff0000;color:white;font-family:var(--font-body);font-size:13px;font-weight:600;padding:14px 24px;border-radius:8px;text-decoration:none;white-space:nowrap;transition:all .2s}
+.yt-btn:hover{background:#cc0000;transform:translateY(-1px)}
+.yt-btn svg{width:20px;height:20px;fill:white;flex-shrink:0}
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;min-height:auto;padding:48px var(--page-pad)}
+  .beds-grid{display:none}
+  .channel-strip{grid-template-columns:1fr}
+  .g-stat{padding:0 20px}
+}
+</style>
 </head>
 <body>
 <nav class="kg-nav">
-  <a href="../hub/index.html" class="kg-logo">🌿 Krish<em>Grows</em></a>
+  <a href="https://krishgrows.com" class="kg-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="kg-nav-links">
+    <li><a href="https://travel.krishgrows.com">Travel</a></li>
+    <li><a href="index.html" class="active">Allotment</a></li>
+    <li><a href="https://projects.krishgrows.com">Projects</a></li>
+  </ul>
 </nav>
-<section style="padding:120px 5vw;text-align:center">
-  <div class="kg-eyebrow" style="justify-content:center">Coming Soon</div>
-  <h1 style="margin-top:12px">Work in <em>progress</em></h1>
-  <p style="margin-top:16px;font-size:15px;color:var(--ink2)">This section is being built. Check back soon.</p>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="kg-eyebrow">North Yorkshire</div>
+    <h1>Seed to <em>harvest</em></h1>
+    <p class="hero-desc">8 beds, 2 IBCs, South Asian vegetables grown in North Yorkshire. Documented cinematically from sowing to harvest — filmed on Insta360 Ace Pro 2 in 4K.</p>
+    <div class="hero-actions">
+      <a href="#growing" class="kg-btn kg-btn-primary">See What's Growing</a>
+      <a href="https://youtube.com/@krishgrows" target="_blank" class="kg-btn kg-btn-ghost">Watch on YouTube →</a>
+    </div>
+  </div>
+  <div class="beds-grid">
+    <div class="bed-card"><div class="bed-num">Bed 1</div><div class="bed-name">Karela</div><div class="bed-status"><span class="bed-dot"></span>Growing</div></div>
+    <div class="bed-card"><div class="bed-num">Bed 2</div><div class="bed-name">Tinda</div><div class="bed-status"><span class="bed-dot"></span>Growing</div></div>
+    <div class="bed-card"><div class="bed-num">Bed 3</div><div class="bed-name">Tomatoes</div><div class="bed-status"><span class="bed-dot"></span>Planted</div></div>
+    <div class="bed-card"><div class="bed-num">Bed 4</div><div class="bed-name">Chillies &amp; Peppers</div><div class="bed-status"><span class="bed-dot"></span>Under lights</div></div>
+  </div>
 </section>
+
+<div class="green-bar">
+  <div class="g-stat"><div class="g-stat-n">8</div><div class="g-stat-l">Growing Beds</div></div>
+  <div class="g-stat"><div class="g-stat-n">2</div><div class="g-stat-l">IBCs · 1800L</div></div>
+  <div class="g-stat"><div class="g-stat-n">4K</div><div class="g-stat-l">Cinematic</div></div>
+  <div class="g-stat"><div class="g-stat-n">SA</div><div class="g-stat-l">South Asian Veg</div></div>
+</div>
+
+<section class="kg-section" id="growing">
+  <div style="margin-bottom:40px">
+    <div class="kg-eyebrow">Growing This Season</div>
+    <h2>What's in <em>the Ground</em></h2>
+    <p class="kg-section-sub">South Asian vegetables grown from seed in North Yorkshire. Updated through the season.</p>
+  </div>
+  <div class="grow-grid">
+    <div class="grow-card">
+      <div class="grow-img" style="background:linear-gradient(135deg,#1a3a20,#2a5030)">🌿</div>
+      <div class="grow-body"><span class="grow-tag">Bed 1</span><div class="grow-title">Karela</div><p class="grow-desc">Bitter gourd grown from South Asian seed stock. Needs warm soil and a climbing frame — going in the ground after last frost.</p></div>
+    </div>
+    <div class="grow-card">
+      <div class="grow-img" style="background:linear-gradient(135deg,#2a3a1a,#3a5028)">🥒</div>
+      <div class="grow-body"><span class="grow-tag">Bed 2</span><div class="grow-title">Tinda</div><p class="grow-desc">Indian round gourd — compact plant, prolific fruiter. Started under the Spider Farmer shelf light in late March.</p></div>
+    </div>
+    <div class="grow-card">
+      <div class="grow-img" style="background:linear-gradient(135deg,#3a1a1a,#5a2820)">🍅</div>
+      <div class="grow-body"><span class="grow-tag">Bed 3</span><div class="grow-title">Tomatoes</div><p class="grow-desc">Mix of varieties. Hardened off and planted out. Spider Farmer shelf gave them a strong start — thick stems, deep green.</p></div>
+    </div>
+    <div class="grow-card">
+      <div class="grow-img" style="background:linear-gradient(135deg,#3a2a10,#5a4020)">🌶️</div>
+      <div class="grow-body"><span class="grow-tag">Bed 4</span><div class="grow-title">Chillies &amp; Peppers</div><p class="grow-desc">Multiple varieties including Indian finger chillies. Still under grow lights — chillies need a long season in Yorkshire.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="channel-strip">
+  <div>
+    <div class="kg-eyebrow">On YouTube</div>
+    <h2>Watch the <em>Growing</em></h2>
+    <p class="kg-section-sub">Cinematic 4K footage of the allotment — sowing, growing, harvesting. New videos every week on the KrishGrows channel.</p>
+  </div>
+  <a href="https://youtube.com/@krishgrows" target="_blank" class="yt-btn">
+    <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+    @KrishGrows
+  </a>
+</div>
+
+<footer class="kg-footer">
+  <a href="https://krishgrows.com" class="kg-footer-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="kg-footer-links">
+    <li><a href="https://travel.krishgrows.com">Travel</a></li>
+    <li><a href="index.html">Allotment</a></li>
+    <li><a href="https://projects.krishgrows.com">Projects</a></li>
+  </ul>
+  <p class="kg-footer-copy">allotment.krishgrows.com — Growing in North Yorkshire</p>
+</footer>
 </body>
 </html>

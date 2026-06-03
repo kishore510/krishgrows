@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KrishGrows — Projects</title>
+<link rel="stylesheet" href="../shared/brand.css">
+<style>
+.hero{padding:80px var(--page-pad) 60px;max-width:700px}
+.hero p{font-size:15px;font-weight:300;line-height:1.75;color:var(--ink2);margin-top:16px;max-width:500px}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;padding:0 var(--page-pad) 80px}
+.project-card{background:white;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s}
+.project-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(26,18,8,.12)}
+.project-card.private{opacity:.65}
+.project-header{height:180px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative}
+.project-badge{position:absolute;top:14px;right:14px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:20px}
+.badge-public{background:rgba(58,122,88,.15);color:var(--green);border:1px solid rgba(58,122,88,.3)}
+.badge-private{background:rgba(74,104,152,.15);color:var(--blue);border:1px solid rgba(74,104,152,.3)}
+.project-body{padding:22px}
+.project-title{font-family:var(--font-heading);font-size:26px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.project-desc{font-size:13px;color:var(--ink2);line-height:1.65;font-weight:300;margin-bottom:16px}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px}
+.project-tag{font-size:11px;font-weight:500;color:var(--ink2);background:var(--warm);padding:4px 10px;border-radius:20px}
+.project-footer{padding:16px 22px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.project-status{font-size:11px;color:var(--ink2);font-weight:300}
+.project-link{font-size:12px;font-weight:600;color:var(--copper);display:flex;align-items:center;gap:4px;text-decoration:none;transition:gap .2s}
+.project-card:hover .project-link{gap:8px}
+</style>
+</head>
+<body>
+<nav class="kg-nav">
+  <a href="https://krishgrows.com" class="kg-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="kg-nav-links">
+    <li><a href="https://travel.krishgrows.com">Travel</a></li>
+    <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
+    <li><a href="index.html" class="active">Projects</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="kg-eyebrow">Projects</div>
+  <h1>Builds &amp; <em>experiments</em></h1>
+  <p>A few things being made alongside the growing and travelling. Some public, some not.</p>
+</div>
+
+<div class="projects-grid">
+  <div class="project-card">
+    <div class="project-header" style="background:linear-gradient(135deg,#1a2a3a,#2a3a50)">
+      🤖
+      <div class="project-badge badge-public">Public</div>
+    </div>
+    <div class="project-body">
+      <div class="project-title">Rover</div>
+      <p class="project-desc">An autonomous rover project — navigating, mapping, doing things. Built from scratch and documented openly as it develops.</p>
+      <div class="project-tags">
+        <span class="project-tag">🔧 Hardware</span>
+        <span class="project-tag">🧠 Autonomous</span>
+        <span class="project-tag">📡 Navigation</span>
+      </div>
+    </div>
+    <div class="project-footer">
+      <span class="project-status">🟡 In progress</span>
+      <a href="rover/index.html" class="project-link">View project →</a>
+    </div>
+  </div>
+
+  <div class="project-card private">
+    <div class="project-header" style="background:linear-gradient(135deg,#1a1a2a,#2a2a40)">
+      📈
+      <div class="project-badge badge-private">Private</div>
+    </div>
+    <div class="project-body">
+      <div class="project-title">Stonks</div>
+      <p class="project-desc">A private project. Not much to see here.</p>
+      <div class="project-tags">
+        <span class="project-tag">🔒 Private</span>
+      </div>
+    </div>
+    <div class="project-footer">
+      <span class="project-status">🔒 Access restricted</span>
+    </div>
+  </div>
+</div>
+
+<footer class="kg-footer">
+  <a href="https://krishgrows.com" class="kg-footer-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="kg-footer-links">
+    <li><a href="https://travel.krishgrows.com">Travel</a></li>
+    <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
+    <li><a href="index.html">Projects</a></li>
+  </ul>
+  <p class="kg-footer-copy">projects.krishgrows.com — North Yorkshire</p>
+</footer>
+</body>
+</html>
