@@ -1,10 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
+/* === BRAND SYSTEM === */
+/* ============================================================
+   KrishGrows — Shared Brand System
+   krishgrows.com | travel | allotment | projects
+   All subdomains import this file.
+   ============================================================ */
+
+/* ── GOOGLE FONTS ── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
+
+/* ── DESIGN TOKENS ── */
+:root {
+  /* Colours */
+  --ink:        #1a1208;
+  --ink2:       #4a3a28;
+  --cream:      #faf8f4;
+  --warm:       #f2ede4;
+  --border:     rgba(74,58,40,.1);
+  --shadow:     0 4px 24px rgba(26,18,8,.08);
+
+  /* Brand accents */
+  --copper:     #c87830;   /* primary accent */
+  --green:      #3a7a58;   /* secondary accent */
+  --blue:       #4a6898;   /* tertiary accent */
+
+  /* Aliases (used in components) */
+  --accent:     var(--copper);
+  --accent2:    var(--green);
+  --accent3:    var(--blue);
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body:    'Outfit', sans-serif;
+
+  /* Spacing scale */
+  --space-xs:   8px;
+  --space-sm:   16px;
+  --space-md:   24px;
+  --space-lg:   48px;
+  --space-xl:   72px;
+
+  /* Layout */
+  --page-pad:   5vw;
+  --radius-sm:  4px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+}
+
+/* ── RESET ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── BASE ── */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TYPOGRAPHY ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -.5px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+h1 { font-size: clamp(48px, 6vw, 86px); letter-spacing: -1px; line-height: .98; }
+h2 { font-size: clamp(30px, 4vw, 46px); }
+h3 { font-size: clamp(20px, 2.5vw, 28px); }
+
+h1 em, h2 em, h3 em {
+  color: var(--copper);
+  font-style: italic;
+}
+
+p {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--ink2);
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
+.kg-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,248,244,.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 var(--page-pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
+}
+
+.kg-logo {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kg-logo em { color: var(--copper); font-style: italic; }
+
+.kg-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+
+.kg-nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink2);
+  letter-spacing: .3px;
+  transition: color .2s;
+}
+
+.kg-nav-links a:hover { color: var(--copper); }
+
+.kg-nav-links a.active { color: var(--copper); }
+
+.kg-nav-badge {
+  background: var(--copper);
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+/* ── SECTION STRUCTURE ── */
+.kg-section { padding: var(--space-xl) var(--page-pad); }
+
+.kg-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kg-eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--copper);
+}
+
+.kg-section-sub {
+  font-size: 14px;
+  color: var(--ink2);
+  margin-top: 10px;
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+/* ── BUTTONS ── */
+.kg-btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 13px 28px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  letter-spacing: .4px;
+  transition: background .2s, transform .1s;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+
+.kg-btn-primary {
+  background: var(--ink);
+  color: white;
+}
+
+.kg-btn-primary:hover {
+  background: var(--copper);
+  transform: translateY(-1px);
+}
+
+.kg-btn-ghost {
+  background: transparent;
+  color: var(--ink2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kg-btn-ghost:hover { color: var(--copper); }
+
+/* ── FOOTER ── */
+.kg-footer {
+  background: var(--ink);
+  padding: var(--space-lg) var(--page-pad);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.kg-footer-logo {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.kg-footer-logo em { color: var(--copper); font-style: italic; }
+
+.kg-footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.kg-footer-links a {
+  font-size: 12px;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .3px;
+  transition: color .2s;
+}
+
+.kg-footer-links a:hover { color: var(--copper); }
+
+.kg-footer-copy {
+  font-size: 11px;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .5px;
+}
+
+/* ── UTILITY ── */
+.kg-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.kg-tag-copper { background: rgba(200,120,48,.12); color: var(--copper); }
+.kg-tag-green  { background: rgba(58,122,88,.12);  color: var(--green);  }
+.kg-tag-blue   { background: rgba(74,104,152,.12); color: var(--blue);   }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  :root {
+    --page-pad: 6vw;
+  }
+
+  .kg-nav-links { gap: 16px; }
+
+  h1 { font-size: clamp(36px, 8vw, 56px); }
+  h2 { font-size: clamp(24px, 5vw, 36px); }
+}
+
+@media (max-width: 480px) {
+  :root { --page-pad: 5vw; }
+  .kg-nav-links .hide-mobile { display: none; }
+}
+
+/* === END BRAND === */
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KrishGrows — Travel</title>
-<link rel="stylesheet" href="../shared/brand.css">
+
 <style>
 
 /* ── HERO ── */
