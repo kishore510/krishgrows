@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KrishGrows — Allotment</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --ink:#1a1208;--ink2:#4a3a28;
   --cream:#faf8f4;--warm:#f2ede4;
-  --copper:#c87830;--green:#3a7a58;
+  --copper:#c87830;--green:#3a7a58;--blue:#4a6898;
   --border:rgba(74,58,40,.1);
   --shadow:0 4px 24px rgba(26,18,8,.08);
   --font-h:'Cormorant Garamond',serif;
@@ -19,67 +19,130 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
 .nav{position:sticky;top:0;z-index:100;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:3px}
 .nav-logo em{color:var(--copper);font-style:italic}
 .nav-links{display:flex;gap:4px}
 .nav-links a{font-family:var(--font-b);font-size:13px;font-weight:500;color:var(--ink2);text-decoration:none;padding:8px 12px;border-radius:8px;transition:all .2s}
 .nav-links a:hover,.nav-links a.active{color:var(--copper);background:rgba(200,120,48,.08)}
-.hero{padding:48px var(--pad) 36px}
-.eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:8px;margin-bottom:16px}
-.eyebrow::before{content:'';width:20px;height:1px;background:var(--copper)}
-.hero h1{font-family:var(--font-h);font-size:52px;font-weight:700;line-height:.96;letter-spacing:-1px;color:var(--ink);margin-bottom:20px}
-.hero h1 em{color:var(--green);font-style:italic}
-.hero-desc{font-size:16px;font-weight:300;line-height:1.7;color:var(--ink2);margin-bottom:32px}
+
+/* DARK HERO */
+.hero{
+  position:relative;
+  min-height:92vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--pad) 56px;
+  overflow:hidden;
+  background:#0e1810;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  opacity:.35;
+  transition:opacity 2s;
+}
+.hero-grain{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;opacity:.6;
+}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,24,16,.98) 0%,rgba(14,24,16,.6) 50%,rgba(14,24,16,.2) 100%)}
+.hero-content{position:relative;z-index:2;max-width:680px}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:10px;margin-bottom:20px;opacity:.9}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--copper)}
+.hero h1{font-family:var(--font-h);font-size:clamp(52px,8vw,96px);font-weight:700;line-height:.93;letter-spacing:-2px;color:white;margin-bottom:24px}
+.hero h1 em{color:var(--copper);font-style:italic}
+.hero-desc{font-size:16px;font-weight:300;line-height:1.7;color:rgba(255,255,255,.65);margin-bottom:36px;max-width:480px}
 .hero-actions{display:flex;flex-direction:column;gap:12px}
-.btn-primary{display:flex;align-items:center;justify-content:center;background:var(--green);color:white;font-family:var(--font-b);font-size:15px;font-weight:600;padding:16px 24px;border-radius:12px;text-decoration:none;-webkit-tap-highlight-color:transparent}
-.btn-yt{display:flex;align-items:center;justify-content:center;gap:10px;background:#ff0000;color:white;font-family:var(--font-b);font-size:15px;font-weight:600;padding:16px 24px;border-radius:12px;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.hero-scroll{position:absolute;bottom:24px;right:var(--pad);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.3);font-size:10px;letter-spacing:2px;text-transform:uppercase}
+.hero-scroll::after{content:'';width:1px;height:40px;background:rgba(255,255,255,.2)}
+
+/* BUTTONS */
+.btn-primary{display:flex;align-items:center;justify-content:center;background:white;color:var(--ink);font-family:var(--font-b);font-size:15px;font-weight:600;padding:16px 28px;border-radius:12px;text-decoration:none;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary:active,.btn-primary:hover{background:var(--copper);color:white}
+.btn-ghost{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-family:var(--font-b);font-size:15px;font-weight:500;padding:16px 28px;border-radius:12px;text-decoration:none;backdrop-filter:blur(4px);-webkit-tap-highlight-color:transparent}
+.btn-yt{display:flex;align-items:center;justify-content:center;gap:10px;background:#ff0000;color:white;font-family:var(--font-b);font-size:15px;font-weight:600;padding:16px 28px;border-radius:12px;text-decoration:none;-webkit-tap-highlight-color:transparent}
 .btn-yt svg{width:20px;height:20px;fill:white;flex-shrink:0}
-.beds-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 var(--pad) 36px}
+
+/* CONTENT SECTIONS */
+.section{padding:48px var(--pad)}
+.section-dark{padding:48px var(--pad);background:var(--ink)}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.eyebrow::before{content:'';width:16px;height:1px;background:var(--copper)}
+.eyebrow-green{color:var(--green)}
+.eyebrow-green::before{background:var(--green)}
+h2{font-family:var(--font-h);font-size:clamp(32px,5vw,48px);font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-.5px}
+h2 em{color:var(--copper);font-style:italic}
+h2.on-dark{color:white}
+h2.on-dark em{color:var(--copper)}
+h3{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink)}
+.section-sub{font-size:15px;font-weight:300;color:var(--ink2);line-height:1.7;margin-top:10px;max-width:540px}
+.section-sub.on-dark{color:rgba(255,255,255,.5)}
+
+/* STATS */
+.stats-bar{background:var(--ink);padding:20px var(--pad);display:grid;gap:0}
+.stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 0;border-right:1px solid rgba(255,255,255,.1)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--font-h);font-size:28px;font-weight:600;color:white;line-height:1}
+.stat-n em{color:var(--copper);font-style:italic}
+.stat-l{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
+.stats-green{background:var(--green)}
+.stats-green .stat{border-right-color:rgba(255,255,255,.2)}
+.stats-green .stat-n{color:white}
+.stats-green .stat-l{color:rgba(255,255,255,.5)}
+
+/* CARDS */
+.card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+.card-grid{display:flex;flex-direction:column;gap:16px}
+.card-img{display:flex;align-items:center;justify-content:center;font-size:48px;flex-shrink:0}
+.card-body{padding:20px}
+.card-tag{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:8px}
+.tag-copper{background:rgba(200,120,48,.1);color:var(--copper)}
+.tag-green{background:rgba(58,122,88,.1);color:var(--green)}
+.tag-blue{background:rgba(74,104,152,.1);color:var(--blue)}
+.card-title{font-family:var(--font-h);font-size:24px;font-weight:700;color:var(--ink);margin-bottom:6px;line-height:1.1}
+.card-title em{color:var(--copper);font-style:italic}
+.card-desc{font-size:14px;color:var(--ink2);line-height:1.65;font-weight:300}
+
+/* FOOTER */
+.footer{background:var(--ink);padding:48px var(--pad);text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+.footer-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:white;text-decoration:none}
+.footer-logo em{color:var(--copper);font-style:italic}
+.footer-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap;justify-content:center}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--copper)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.5px}
+
+/* DESKTOP */
+@media(min-width:768px){
+  :root{--pad:5vw}
+  .hero{min-height:95vh;padding:0 var(--pad) 80px;justify-content:flex-end}
+  .hero h1{font-size:clamp(72px,8vw,108px)}
+  .hero-actions{flex-direction:row}
+  .btn-primary,.btn-ghost,.btn-yt{width:auto}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+  .stats-bar{grid-template-columns:repeat(var(--stat-cols,4),1fr)}
+}
+
+/* Allotment specific */
+.beds-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .bed-card{background:white;border-radius:16px;padding:18px;box-shadow:var(--shadow);border-left:3px solid var(--green)}
 .bed-num{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:5px}
 .bed-name{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:5px}
 .bed-status{font-size:12px;color:var(--ink2);font-weight:300;display:flex;align-items:center;gap:5px}
 .bed-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0}
-.green-bar{background:var(--green);padding:20px var(--pad);display:grid;grid-template-columns:repeat(4,1fr)}
-.g-stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0;border-right:1px solid rgba(255,255,255,.2)}
-.g-stat:last-child{border-right:none}
-.g-stat-n{font-family:var(--font-h);font-size:26px;font-weight:600;color:white;line-height:1}
-.g-stat-l{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);text-align:center}
-.section{padding:40px var(--pad)}
-.section-head{margin-bottom:24px}
-.section-head h2{font-family:var(--font-h);font-size:36px;font-weight:700;color:var(--ink);line-height:1.05;margin-top:8px}
-.section-head h2 em{color:var(--green);font-style:italic}
-.section-head p{font-size:14px;font-weight:300;color:var(--ink2);line-height:1.6;margin-top:8px}
-.grow-grid{display:flex;flex-direction:column;gap:16px}
-.grow-card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);display:flex;gap:0;-webkit-tap-highlight-color:transparent}
-.grow-img{width:100px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:40px}
-.grow-body{padding:18px}
+.grow-card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);display:flex}
+.grow-img{width:90px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:36px}
+.grow-body{padding:16px}
 .grow-tag{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:20px;background:rgba(58,122,88,.1);color:var(--green);display:inline-block;margin-bottom:6px}
-.grow-title{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.grow-title{font-family:var(--font-h);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:4px}
 .grow-desc{font-size:13px;color:var(--ink2);line-height:1.6;font-weight:300}
-.channel-strip{background:var(--ink);margin:0 0 0 0;padding:36px var(--pad);display:flex;flex-direction:column;gap:16px}
-.channel-eyebrow{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--copper)}
-.channel-strip h2{font-family:var(--font-h);font-size:32px;font-weight:700;color:white;line-height:1.1}
-.channel-strip h2 em{color:var(--copper);font-style:italic}
-.channel-strip p{font-size:14px;color:rgba(255,255,255,.5);font-weight:300;line-height:1.6}
-.footer{background:var(--ink);padding:40px var(--pad);text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;border-top:1px solid rgba(255,255,255,.08)}
-.footer-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:white;text-decoration:none}
-.footer-logo em{color:var(--copper);font-style:italic}
-.footer-links{display:flex;gap:24px;list-style:none}
-.footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none}
-.footer-links a:hover{color:var(--copper)}
-.footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.5px}
 @media(min-width:768px){
-  :root{--pad:5vw}
-  .hero{padding:80px var(--pad) 60px;max-width:680px}
-  .hero h1{font-size:80px}
-  .hero-actions{flex-direction:row}
-  .beds-grid{grid-template-columns:repeat(4,1fr);padding:0 var(--pad) 60px}
-  .grow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+  .beds-grid{grid-template-columns:repeat(4,1fr)}
   .grow-card{flex-direction:column}
-  .grow-img{width:100%;height:160px}
-  .channel-strip{flex-direction:row;align-items:center;justify-content:space-between}
+  .grow-img{width:100%;height:140px}
 }
 </style>
 </head>
@@ -93,66 +156,59 @@ body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow
   </div>
 </nav>
 
-<section class="hero">
-  <div class="eyebrow">North Yorkshire</div>
-  <h1>Seed to <em>harvest</em></h1>
-  <p class="hero-desc">8 beds, 2 IBCs, South Asian vegetables grown in North Yorkshire. Documented cinematically from sowing to harvest — filmed on Insta360 Ace Pro 2 in 4K.</p>
-  <div class="hero-actions">
-    <a href="#growing" class="btn-primary">See What's Growing</a>
-    <a href="https://youtube.com/@krishgrows" target="_blank" class="btn-yt">
-      <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
-      Watch on YouTube
-    </a>
+<div class="hero">
+  <div class="hero-bg" style="background:linear-gradient(160deg,#081408 0%,#0e2010 40%,#162a18 70%,#081008 100%)"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-gradient" style="background:linear-gradient(to top,rgba(6,12,6,.99) 0%,rgba(6,12,6,.55) 55%,rgba(6,12,6,.1) 100%)"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">North Yorkshire</div>
+    <h1>Seed to <em style="color:#5aaa78">harvest</em></h1>
+    <p class="hero-desc">8 beds, 2 IBCs, South Asian vegetables grown in North Yorkshire. Documented cinematically from sowing to harvest — filmed on Insta360 Ace Pro 2 in 4K.</p>
+    <div class="hero-actions">
+      <a href="#growing" class="btn-primary" style="background:var(--green);color:white">See What's Growing</a>
+      <a href="https://youtube.com/@krishgrows" target="_blank" class="btn-yt">
+        <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+        Watch on YouTube
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</div>
+
+<section class="section">
+  <div class="eyebrow eyebrow-green" style="margin-bottom:20px">The Beds</div>
+  <div class="beds-grid">
+    <div class="bed-card"><div class="bed-num">Bed 1</div><div class="bed-name">Karela</div><div class="bed-status"><span class="bed-dot"></span>Growing</div></div>
+    <div class="bed-card"><div class="bed-num">Bed 2</div><div class="bed-name">Tinda</div><div class="bed-status"><span class="bed-dot"></span>Growing</div></div>
+    <div class="bed-card"><div class="bed-num">Bed 3</div><div class="bed-name">Tomatoes</div><div class="bed-status"><span class="bed-dot"></span>Planted</div></div>
+    <div class="bed-card"><div class="bed-num">Bed 4</div><div class="bed-name">Chillies &amp; Peppers</div><div class="bed-status"><span class="bed-dot"></span>Under lights</div></div>
   </div>
 </section>
 
-<div class="beds-grid">
-  <div class="bed-card"><div class="bed-num">Bed 1</div><div class="bed-name">Karela</div><div class="bed-status"><span class="bed-dot"></span>Growing</div></div>
-  <div class="bed-card"><div class="bed-num">Bed 2</div><div class="bed-name">Tinda</div><div class="bed-status"><span class="bed-dot"></span>Growing</div></div>
-  <div class="bed-card"><div class="bed-num">Bed 3</div><div class="bed-name">Tomatoes</div><div class="bed-status"><span class="bed-dot"></span>Planted</div></div>
-  <div class="bed-card"><div class="bed-num">Bed 4</div><div class="bed-name">Chillies &amp; Peppers</div><div class="bed-status"><span class="bed-dot"></span>Under lights</div></div>
-</div>
-
-<div class="green-bar">
-  <div class="g-stat"><div class="g-stat-n">8</div><div class="g-stat-l">Beds</div></div>
-  <div class="g-stat"><div class="g-stat-n">2</div><div class="g-stat-l">IBCs 1800L</div></div>
-  <div class="g-stat"><div class="g-stat-n">4K</div><div class="g-stat-l">Cinematic</div></div>
-  <div class="g-stat"><div class="g-stat-n">SA</div><div class="g-stat-l">South Asian</div></div>
+<div class="stats-bar stats-green" style="grid-template-columns:repeat(4,1fr)">
+  <div class="stat"><div class="stat-n">8</div><div class="stat-l">Beds</div></div>
+  <div class="stat"><div class="stat-n">2</div><div class="stat-l">IBCs 1800L</div></div>
+  <div class="stat"><div class="stat-n">4K</div><div class="stat-l">Cinematic</div></div>
+  <div class="stat"><div class="stat-n">SA</div><div class="stat-l">South Asian</div></div>
 </div>
 
 <section class="section" id="growing">
-  <div class="section-head">
-    <div class="eyebrow">Growing This Season</div>
-    <h2>What's in <em>the Ground</em></h2>
-    <p>South Asian vegetables grown from seed in North Yorkshire. Updated through the season.</p>
-  </div>
-  <div class="grow-grid">
-    <div class="grow-card">
-      <div class="grow-img" style="background:linear-gradient(135deg,#1a3a20,#2a5030)">🌿</div>
-      <div class="grow-body"><span class="grow-tag">Bed 1</span><div class="grow-title">Karela</div><p class="grow-desc">Bitter gourd from South Asian seed stock. Needs warm soil and a climbing frame.</p></div>
-    </div>
-    <div class="grow-card">
-      <div class="grow-img" style="background:linear-gradient(135deg,#2a3a1a,#3a5028)">🥒</div>
-      <div class="grow-body"><span class="grow-tag">Bed 2</span><div class="grow-title">Tinda</div><p class="grow-desc">Indian round gourd — compact, prolific fruiter. Started under Spider Farmer shelf light.</p></div>
-    </div>
-    <div class="grow-card">
-      <div class="grow-img" style="background:linear-gradient(135deg,#3a1a1a,#5a2820)">🍅</div>
-      <div class="grow-body"><span class="grow-tag">Bed 3</span><div class="grow-title">Tomatoes</div><p class="grow-desc">Mix of varieties. Hardened off and planted out. Strong start from the grow lights.</p></div>
-    </div>
-    <div class="grow-card">
-      <div class="grow-img" style="background:linear-gradient(135deg,#3a2a10,#5a4020)">🌶️</div>
-      <div class="grow-body"><span class="grow-tag">Bed 4</span><div class="grow-title">Chillies &amp; Peppers</div><p class="grow-desc">Indian finger chillies and more. Still under grow lights — need a long season in Yorkshire.</p></div>
-    </div>
+  <div class="eyebrow eyebrow-green">Growing This Season</div>
+  <h2 style="color:var(--ink);margin-bottom:8px">What's in <em style="color:var(--green)">the Ground</em></h2>
+  <p class="section-sub" style="margin-bottom:28px">South Asian vegetables grown from seed. Updated through the season.</p>
+  <div class="card-grid">
+    <div class="grow-card"><div class="grow-img" style="background:linear-gradient(135deg,#1a3a20,#2a5030)">🌿</div><div class="grow-body"><span class="grow-tag">Bed 1</span><div class="grow-title">Karela</div><p class="grow-desc">Bitter gourd from South Asian seed stock. Needs warm soil and a climbing frame.</p></div></div>
+    <div class="grow-card"><div class="grow-img" style="background:linear-gradient(135deg,#2a3a1a,#3a5028)">🥒</div><div class="grow-body"><span class="grow-tag">Bed 2</span><div class="grow-title">Tinda</div><p class="grow-desc">Indian round gourd — compact, prolific fruiter. Started under Spider Farmer shelf light.</p></div></div>
+    <div class="grow-card"><div class="grow-img" style="background:linear-gradient(135deg,#3a1a1a,#5a2820)">🍅</div><div class="grow-body"><span class="grow-tag">Bed 3</span><div class="grow-title">Tomatoes</div><p class="grow-desc">Mix of varieties. Hardened off and planted out. Strong start from the grow lights.</p></div></div>
+    <div class="grow-card"><div class="grow-img" style="background:linear-gradient(135deg,#3a2a10,#5a4020)">🌶️</div><div class="grow-body"><span class="grow-tag">Bed 4</span><div class="grow-title">Chillies &amp; Peppers</div><p class="grow-desc">Indian finger chillies and more. Still under grow lights — need a long season in Yorkshire.</p></div></div>
   </div>
 </section>
 
-<div class="channel-strip">
-  <div>
-    <div class="channel-eyebrow">On YouTube</div>
-    <h2>Watch the <em>Growing</em></h2>
-    <p>Cinematic 4K footage of the allotment — sowing, growing, harvesting. New videos every week.</p>
-  </div>
-  <a href="https://youtube.com/@krishgrows" target="_blank" class="btn-yt" style="margin-top:8px;width:fit-content">
+<div class="section" style="background:var(--ink);padding:48px var(--pad)">
+  <div class="eyebrow" style="margin-bottom:12px">On YouTube</div>
+  <h2 class="on-dark" style="margin-bottom:10px">Watch the <em>Growing</em></h2>
+  <p class="section-sub on-dark" style="margin-bottom:24px">Cinematic 4K footage — sowing, growing, harvesting. New videos every week.</p>
+  <a href="https://youtube.com/@krishgrows" target="_blank" class="btn-yt" style="width:fit-content">
     <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
     @KrishGrows
   </a>
@@ -163,6 +219,7 @@ body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow
   <ul class="footer-links">
     <li><a href="https://krishgrows.com">Home</a></li>
     <li><a href="https://travel.krishgrows.com">Travel</a></li>
+    <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
     <li><a href="https://projects.krishgrows.com">Projects</a></li>
   </ul>
   <p class="footer-copy">allotment.krishgrows.com — Growing in North Yorkshire</p>

@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KrishGrows</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --ink:#1a1208;--ink2:#4a3a28;
   --cream:#faf8f4;--warm:#f2ede4;
-  --copper:#c87830;--green:#3a7a58;
+  --copper:#c87830;--green:#3a7a58;--blue:#4a6898;
   --border:rgba(74,58,40,.1);
   --shadow:0 4px 24px rgba(26,18,8,.08);
   --font-h:'Cormorant Garamond',serif;
@@ -20,124 +20,135 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-/* ── NAV ── */
-.nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(250,248,244,.96);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-  padding:14px var(--pad);
-  display:flex;align-items:center;justify-content:space-between;
-}
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:3px}
 .nav-logo em{color:var(--copper);font-style:italic}
 .nav-links{display:flex;gap:4px}
 .nav-links a{font-family:var(--font-b);font-size:13px;font-weight:500;color:var(--ink2);text-decoration:none;padding:8px 12px;border-radius:8px;transition:all .2s}
 .nav-links a:hover,.nav-links a.active{color:var(--copper);background:rgba(200,120,48,.08)}
 
-/* ── HERO ── */
-.hero{padding:48px var(--pad) 36px}
-.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:8px;margin-bottom:16px}
-.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--copper)}
-.hero h1{font-family:var(--font-h);font-size:52px;font-weight:700;line-height:.96;letter-spacing:-1px;color:var(--ink);margin-bottom:20px}
+/* DARK HERO */
+.hero{
+  position:relative;
+  min-height:92vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--pad) 56px;
+  overflow:hidden;
+  background:#0e1810;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  opacity:.35;
+  transition:opacity 2s;
+}
+.hero-grain{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;opacity:.6;
+}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,24,16,.98) 0%,rgba(14,24,16,.6) 50%,rgba(14,24,16,.2) 100%)}
+.hero-content{position:relative;z-index:2;max-width:680px}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:10px;margin-bottom:20px;opacity:.9}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--copper)}
+.hero h1{font-family:var(--font-h);font-size:clamp(52px,8vw,96px);font-weight:700;line-height:.93;letter-spacing:-2px;color:white;margin-bottom:24px}
 .hero h1 em{color:var(--copper);font-style:italic}
-.hero-desc{font-size:16px;font-weight:300;line-height:1.7;color:var(--ink2);margin-bottom:32px}
-.hero-yt{
-  display:flex;align-items:center;gap:10px;
-  background:#ff0000;color:white;
-  font-family:var(--font-b);font-size:14px;font-weight:600;
-  padding:14px 20px;border-radius:12px;text-decoration:none;
-  width:fit-content;
-}
-.hero-yt svg{width:20px;height:20px;fill:white;flex-shrink:0}
+.hero-desc{font-size:16px;font-weight:300;line-height:1.7;color:rgba(255,255,255,.65);margin-bottom:36px;max-width:480px}
+.hero-actions{display:flex;flex-direction:column;gap:12px}
+.hero-scroll{position:absolute;bottom:24px;right:var(--pad);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.3);font-size:10px;letter-spacing:2px;text-transform:uppercase}
+.hero-scroll::after{content:'';width:1px;height:40px;background:rgba(255,255,255,.2)}
 
-/* ── STATS ── */
-.stats{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:12px;padding:0 var(--pad) 36px;
-}
-.stat-card{background:white;border-radius:16px;padding:20px;box-shadow:var(--shadow);text-align:center}
-.stat-n{font-family:var(--font-h);font-size:40px;font-weight:700;color:var(--ink);line-height:1}
-.stat-n em{color:var(--copper);font-style:italic}
-.stat-l{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink2);opacity:.6;margin-top:4px}
+/* BUTTONS */
+.btn-primary{display:flex;align-items:center;justify-content:center;background:white;color:var(--ink);font-family:var(--font-b);font-size:15px;font-weight:600;padding:16px 28px;border-radius:12px;text-decoration:none;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary:active,.btn-primary:hover{background:var(--copper);color:white}
+.btn-ghost{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-family:var(--font-b);font-size:15px;font-weight:500;padding:16px 28px;border-radius:12px;text-decoration:none;backdrop-filter:blur(4px);-webkit-tap-highlight-color:transparent}
+.btn-yt{display:flex;align-items:center;justify-content:center;gap:10px;background:#ff0000;color:white;font-family:var(--font-b);font-size:15px;font-weight:600;padding:16px 28px;border-radius:12px;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.btn-yt svg{width:20px;height:20px;fill:white;flex-shrink:0}
 
-/* ── SECTION HEADER ── */
-.section-head{padding:0 var(--pad) 20px}
-.eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:8px;margin-bottom:8px}
+/* CONTENT SECTIONS */
+.section{padding:48px var(--pad)}
+.section-dark{padding:48px var(--pad);background:var(--ink)}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:8px;margin-bottom:12px}
 .eyebrow::before{content:'';width:16px;height:1px;background:var(--copper)}
-.section-head h2{font-family:var(--font-h);font-size:36px;font-weight:700;color:var(--ink);line-height:1.05}
-.section-head h2 em{color:var(--copper);font-style:italic}
-.section-head p{font-size:14px;font-weight:300;color:var(--ink2);line-height:1.6;margin-top:8px}
+.eyebrow-green{color:var(--green)}
+.eyebrow-green::before{background:var(--green)}
+h2{font-family:var(--font-h);font-size:clamp(32px,5vw,48px);font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-.5px}
+h2 em{color:var(--copper);font-style:italic}
+h2.on-dark{color:white}
+h2.on-dark em{color:var(--copper)}
+h3{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink)}
+.section-sub{font-size:15px;font-weight:300;color:var(--ink2);line-height:1.7;margin-top:10px;max-width:540px}
+.section-sub.on-dark{color:rgba(255,255,255,.5)}
 
-/* ── DOMAIN CARDS ── */
-.domains{display:flex;flex-direction:column;gap:14px;padding:0 var(--pad) 48px}
-.domain-card{
-  background:white;border-radius:20px;padding:24px;
-  box-shadow:var(--shadow);text-decoration:none;color:inherit;
-  display:flex;align-items:center;gap:20px;
-  border:1.5px solid transparent;
-  transition:all .2s;
-  -webkit-tap-highlight-color:transparent;
-}
-.domain-card:active{transform:scale(.98);border-color:var(--copper)}
-.domain-icon{font-size:40px;flex-shrink:0;width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center}
-.icon-travel{background:linear-gradient(135deg,#e8f0f8,#d0e0f0)}
-.icon-allotment{background:linear-gradient(135deg,#e8f4ec,#d0ead8)}
-.icon-projects{background:linear-gradient(135deg,#f4ece8,#ead8d0)}
-.domain-text{flex:1}
-.domain-url{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:4px}
-.domain-title{font-family:var(--font-h);font-size:24px;font-weight:700;color:var(--ink);margin-bottom:4px}
-.domain-desc{font-size:13px;color:var(--ink2);font-weight:300;line-height:1.5}
-.domain-arrow{font-size:18px;color:var(--ink2);flex-shrink:0;transition:all .2s}
-.domain-card:active .domain-arrow{color:var(--copper)}
+/* STATS */
+.stats-bar{background:var(--ink);padding:20px var(--pad);display:grid;gap:0}
+.stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 0;border-right:1px solid rgba(255,255,255,.1)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--font-h);font-size:28px;font-weight:600;color:white;line-height:1}
+.stat-n em{color:var(--copper);font-style:italic}
+.stat-l{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
+.stats-green{background:var(--green)}
+.stats-green .stat{border-right-color:rgba(255,255,255,.2)}
+.stats-green .stat-n{color:white}
+.stats-green .stat-l{color:rgba(255,255,255,.5)}
 
-/* ── CHANNEL STRIP ── */
-.channel{
-  background:var(--ink);
-  margin:0 var(--pad) 48px;
-  border-radius:20px;
-  padding:28px;
-  display:flex;flex-direction:column;gap:16px;
-}
-.channel-eyebrow{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--copper)}
-.channel h2{font-family:var(--font-h);font-size:30px;font-weight:700;color:white;line-height:1.1}
-.channel h2 em{color:var(--copper);font-style:italic}
-.channel p{font-size:14px;color:rgba(255,255,255,.5);font-weight:300;line-height:1.6}
-.yt-btn{
-  display:flex;align-items:center;gap:10px;
-  background:#ff0000;color:white;
-  font-family:var(--font-b);font-size:14px;font-weight:600;
-  padding:14px 20px;border-radius:12px;text-decoration:none;
-  width:fit-content;margin-top:4px;
-}
-.yt-btn svg{width:20px;height:20px;fill:white}
+/* CARDS */
+.card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+.card-grid{display:flex;flex-direction:column;gap:16px}
+.card-img{display:flex;align-items:center;justify-content:center;font-size:48px;flex-shrink:0}
+.card-body{padding:20px}
+.card-tag{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:8px}
+.tag-copper{background:rgba(200,120,48,.1);color:var(--copper)}
+.tag-green{background:rgba(58,122,88,.1);color:var(--green)}
+.tag-blue{background:rgba(74,104,152,.1);color:var(--blue)}
+.card-title{font-family:var(--font-h);font-size:24px;font-weight:700;color:var(--ink);margin-bottom:6px;line-height:1.1}
+.card-title em{color:var(--copper);font-style:italic}
+.card-desc{font-size:14px;color:var(--ink2);line-height:1.65;font-weight:300}
 
-/* ── FOOTER ── */
-.footer{background:var(--ink);padding:40px var(--pad);text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+/* FOOTER */
+.footer{background:var(--ink);padding:48px var(--pad);text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
 .footer-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:white;text-decoration:none}
 .footer-logo em{color:var(--copper);font-style:italic}
-.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap;justify-content:center}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
 .footer-links a:hover{color:var(--copper)}
 .footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.5px}
 
-/* ── DESKTOP ── */
+/* DESKTOP */
 @media(min-width:768px){
   :root{--pad:5vw}
-  .hero{padding:80px var(--pad) 60px;max-width:680px}
-  .hero h1{font-size:80px}
-  .stats{grid-template-columns:repeat(4,1fr);padding:0 var(--pad) 60px}
-  .domains{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;padding:0 var(--pad) 60px}
-  .domain-card{flex-direction:column;align-items:flex-start;gap:16px;padding:28px}
-  .domain-icon{width:56px;height:56px}
+  .hero{min-height:95vh;padding:0 var(--pad) 80px;justify-content:flex-end}
+  .hero h1{font-size:clamp(72px,8vw,108px)}
+  .hero-actions{flex-direction:row}
+  .btn-primary,.btn-ghost,.btn-yt{width:auto}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+  .stats-bar{grid-template-columns:repeat(var(--stat-cols,4),1fr)}
+}
+
+/* Hub specific */
+.domains{display:flex;flex-direction:column;gap:14px}
+.domain-card{background:white;border-radius:20px;padding:24px;box-shadow:var(--shadow);text-decoration:none;color:inherit;display:flex;align-items:center;gap:20px;border:1.5px solid transparent;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.domain-card:active,.domain-card:hover{border-color:var(--copper);transform:translateY(-2px)}
+.domain-icon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0}
+.domain-text{flex:1}
+.domain-url{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:4px}
+.domain-title{font-family:var(--font-h);font-size:24px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.domain-desc{font-size:13px;color:var(--ink2);font-weight:300;line-height:1.5}
+.domain-arrow{font-size:22px;color:rgba(200,120,48,.4);flex-shrink:0}
+.channel-card{background:var(--ink);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:16px}
+.channel-card h3{font-family:var(--font-h);font-size:28px;font-weight:700;color:white}
+.channel-card h3 em{color:var(--copper);font-style:italic}
+.channel-card p{font-size:14px;color:rgba(255,255,255,.5);font-weight:300;line-height:1.65}
+@media(min-width:768px){
+  .domains{display:grid;grid-template-columns:repeat(3,1fr)}
+  .domain-card{flex-direction:column;align-items:flex-start;gap:16px}
   .domain-arrow{display:none}
-  .channel{flex-direction:row;align-items:center;justify-content:space-between;margin:0 var(--pad) 60px;padding:40px}
-  .channel-left{flex:1}
+  .channel-card{flex-direction:row;align-items:center;justify-content:space-between;padding:40px}
 }
 </style>
 </head>
 <body>
-
 <nav class="nav">
   <a href="https://krishgrows.com" class="nav-logo">🌿 Krish<em>Grows</em></a>
   <div class="nav-links">
@@ -147,80 +158,88 @@ body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-eyebrow">North Yorkshire</div>
-  <h1>Growing things,<br><em>going places</em></h1>
-  <p class="hero-desc">A personal journal from North Yorkshire — allotment growing, cinematic travel and the occasional project. Filmed on Insta360 Ace Pro 2 in 4K.</p>
-  <a href="https://youtube.com/@krishgrows" target="_blank" class="hero-yt">
-    <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
-    Watch on YouTube
-  </a>
+<div class="hero">
+  <div class="hero-bg" style="background:linear-gradient(160deg,#0e2818 0%,#1a3a20 40%,#2a4a30 70%,#0a1a10 100%)"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-gradient" style="background:linear-gradient(to top,rgba(10,18,8,.99) 0%,rgba(10,18,8,.55) 55%,rgba(10,18,8,.1) 100%)"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">North Yorkshire</div>
+    <h1>Growing things,<br><em>going places</em></h1>
+    <p class="hero-desc">A personal journal from North Yorkshire — allotment growing, cinematic travel and the occasional project. Filmed on Insta360 Ace Pro 2 in 4K.</p>
+    <div class="hero-actions">
+      <a href="https://travel.krishgrows.com" class="btn-primary">Explore the Site</a>
+      <a href="https://youtube.com/@krishgrows" target="_blank" class="btn-yt">
+        <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+        Watch on YouTube
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</div>
+
+<div class="stats-bar" style="--stat-cols:4;grid-template-columns:repeat(4,1fr)">
+  <div class="stat"><div class="stat-n">1<em>✓</em></div><div class="stat-l">Trip Report</div></div>
+  <div class="stat"><div class="stat-n">8</div><div class="stat-l">Allotment Beds</div></div>
+  <div class="stat"><div class="stat-n">4<em>K</em></div><div class="stat-l">All Footage</div></div>
+  <div class="stat"><div class="stat-n">1</div><div class="stat-l">Active Project</div></div>
+</div>
+
+<section class="section">
+  <div class="eyebrow" style="margin-bottom:24px">Explore</div>
+  <div class="domains">
+    <a href="https://travel.krishgrows.com" class="domain-card">
+      <div class="domain-icon" style="background:linear-gradient(135deg,#1a2a3a,#2a4a6a)">✈️</div>
+      <div class="domain-text">
+        <div class="domain-url">travel.krishgrows.com</div>
+        <div class="domain-title">Travel</div>
+        <p class="domain-desc">Road trips from Yorkshire. Plans before we go, honest reports after.</p>
+      </div>
+      <div class="domain-arrow">›</div>
+    </a>
+    <a href="https://allotment.krishgrows.com" class="domain-card">
+      <div class="domain-icon" style="background:linear-gradient(135deg,#1a3a20,#2a5a30)">🌱</div>
+      <div class="domain-text">
+        <div class="domain-url">allotment.krishgrows.com</div>
+        <div class="domain-title">Allotment</div>
+        <p class="domain-desc">8 beds, South Asian veg, seed to harvest in 4K.</p>
+      </div>
+      <div class="domain-arrow">›</div>
+    </a>
+    <a href="https://projects.krishgrows.com" class="domain-card">
+      <div class="domain-icon" style="background:linear-gradient(135deg,#2a1a10,#4a3020)">🔧</div>
+      <div class="domain-text">
+        <div class="domain-url">projects.krishgrows.com</div>
+        <div class="domain-title">Projects</div>
+        <p class="domain-desc">Rover and other builds, documented openly.</p>
+      </div>
+      <div class="domain-arrow">›</div>
+    </a>
+  </div>
 </section>
 
-<div class="stats">
-  <div class="stat-card"><div class="stat-n">1<em>✓</em></div><div class="stat-l">Trip Report</div></div>
-  <div class="stat-card"><div class="stat-n">8</div><div class="stat-l">Allotment Beds</div></div>
-  <div class="stat-card"><div class="stat-n">4<em>K</em></div><div class="stat-l">All Footage</div></div>
-  <div class="stat-card"><div class="stat-n">1</div><div class="stat-l">Active Project</div></div>
-</div>
-
-<div class="section-head">
-  <div class="eyebrow">Explore</div>
-  <h2>What's on <em>the site</em></h2>
-  <p>Three sections — travel, growing and projects.</p>
-</div>
-
-<div class="domains">
-  <a href="https://travel.krishgrows.com" class="domain-card">
-    <div class="domain-icon icon-travel">✈️</div>
-    <div class="domain-text">
-      <div class="domain-url">travel.krishgrows.com</div>
-      <div class="domain-title">Travel</div>
-      <p class="domain-desc">Road trips from Yorkshire. Plans before we go, honest reports after.</p>
+<section class="section" style="padding-top:0">
+  <div class="channel-card">
+    <div>
+      <div class="eyebrow" style="margin-bottom:12px">YouTube</div>
+      <h3>Krish<em>Grows</em> on YouTube</h3>
+      <p style="margin-top:10px">Allotment life and cinematic travel from North Yorkshire. 4K · New videos every week.</p>
     </div>
-    <div class="domain-arrow">›</div>
-  </a>
-  <a href="https://allotment.krishgrows.com" class="domain-card">
-    <div class="domain-icon icon-allotment">🌱</div>
-    <div class="domain-text">
-      <div class="domain-url">allotment.krishgrows.com</div>
-      <div class="domain-title">Allotment</div>
-      <p class="domain-desc">8 beds, South Asian veg, seed to harvest in 4K.</p>
-    </div>
-    <div class="domain-arrow">›</div>
-  </a>
-  <a href="https://projects.krishgrows.com" class="domain-card">
-    <div class="domain-icon icon-projects">🔧</div>
-    <div class="domain-text">
-      <div class="domain-url">projects.krishgrows.com</div>
-      <div class="domain-title">Projects</div>
-      <p class="domain-desc">Rover and other builds, documented openly.</p>
-    </div>
-    <div class="domain-arrow">›</div>
-  </a>
-</div>
-
-<div class="channel">
-  <div class="channel-left">
-    <div class="channel-eyebrow">YouTube</div>
-    <h2>Krish<em>Grows</em><br>on YouTube</h2>
-    <p>Allotment life and cinematic travel from North Yorkshire. 4K · New videos every week.</p>
-    <a href="https://youtube.com/@krishgrows" target="_blank" class="yt-btn">
+    <a href="https://youtube.com/@krishgrows" target="_blank" class="btn-yt" style="flex-shrink:0;margin-top:8px">
       <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
       @KrishGrows
     </a>
   </div>
-</div>
+</section>
 
 <footer class="footer">
   <a href="https://krishgrows.com" class="footer-logo">🌿 Krish<em>Grows</em></a>
   <ul class="footer-links">
+    <li><a href="https://krishgrows.com">Home</a></li>
     <li><a href="https://travel.krishgrows.com">Travel</a></li>
     <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
     <li><a href="https://projects.krishgrows.com">Projects</a></li>
   </ul>
   <p class="footer-copy">krishgrows.com — North Yorkshire</p>
 </footer>
-
 </body>
 </html>

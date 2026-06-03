@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KrishGrows — Projects</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --ink:#1a1208;--ink2:#4a3a28;
@@ -19,47 +19,129 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
 .nav{position:sticky;top:0;z-index:100;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:3px}
 .nav-logo em{color:var(--copper);font-style:italic}
 .nav-links{display:flex;gap:4px}
 .nav-links a{font-family:var(--font-b);font-size:13px;font-weight:500;color:var(--ink2);text-decoration:none;padding:8px 12px;border-radius:8px;transition:all .2s}
 .nav-links a:hover,.nav-links a.active{color:var(--copper);background:rgba(200,120,48,.08)}
-.hero{padding:48px var(--pad) 40px}
-.eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:8px;margin-bottom:16px}
-.eyebrow::before{content:'';width:20px;height:1px;background:var(--copper)}
-.hero h1{font-family:var(--font-h);font-size:52px;font-weight:700;line-height:.96;letter-spacing:-1px;color:var(--ink);margin-bottom:16px}
+
+/* DARK HERO */
+.hero{
+  position:relative;
+  min-height:92vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--pad) 56px;
+  overflow:hidden;
+  background:#0e1810;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  opacity:.35;
+  transition:opacity 2s;
+}
+.hero-grain{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;opacity:.6;
+}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,24,16,.98) 0%,rgba(14,24,16,.6) 50%,rgba(14,24,16,.2) 100%)}
+.hero-content{position:relative;z-index:2;max-width:680px}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:10px;margin-bottom:20px;opacity:.9}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--copper)}
+.hero h1{font-family:var(--font-h);font-size:clamp(52px,8vw,96px);font-weight:700;line-height:.93;letter-spacing:-2px;color:white;margin-bottom:24px}
 .hero h1 em{color:var(--copper);font-style:italic}
-.hero p{font-size:16px;font-weight:300;line-height:1.7;color:var(--ink2)}
-.projects-list{display:flex;flex-direction:column;gap:16px;padding:0 var(--pad) 48px}
-.project-card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);text-decoration:none;color:inherit;display:block;-webkit-tap-highlight-color:transparent;transition:transform .2s}
-.project-card:active{transform:scale(.99)}
-.project-card.private{opacity:.65}
-.project-header{height:160px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative}
+.hero-desc{font-size:16px;font-weight:300;line-height:1.7;color:rgba(255,255,255,.65);margin-bottom:36px;max-width:480px}
+.hero-actions{display:flex;flex-direction:column;gap:12px}
+.hero-scroll{position:absolute;bottom:24px;right:var(--pad);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.3);font-size:10px;letter-spacing:2px;text-transform:uppercase}
+.hero-scroll::after{content:'';width:1px;height:40px;background:rgba(255,255,255,.2)}
+
+/* BUTTONS */
+.btn-primary{display:flex;align-items:center;justify-content:center;background:white;color:var(--ink);font-family:var(--font-b);font-size:15px;font-weight:600;padding:16px 28px;border-radius:12px;text-decoration:none;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary:active,.btn-primary:hover{background:var(--copper);color:white}
+.btn-ghost{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-family:var(--font-b);font-size:15px;font-weight:500;padding:16px 28px;border-radius:12px;text-decoration:none;backdrop-filter:blur(4px);-webkit-tap-highlight-color:transparent}
+.btn-yt{display:flex;align-items:center;justify-content:center;gap:10px;background:#ff0000;color:white;font-family:var(--font-b);font-size:15px;font-weight:600;padding:16px 28px;border-radius:12px;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.btn-yt svg{width:20px;height:20px;fill:white;flex-shrink:0}
+
+/* CONTENT SECTIONS */
+.section{padding:48px var(--pad)}
+.section-dark{padding:48px var(--pad);background:var(--ink)}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.eyebrow::before{content:'';width:16px;height:1px;background:var(--copper)}
+.eyebrow-green{color:var(--green)}
+.eyebrow-green::before{background:var(--green)}
+h2{font-family:var(--font-h);font-size:clamp(32px,5vw,48px);font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-.5px}
+h2 em{color:var(--copper);font-style:italic}
+h2.on-dark{color:white}
+h2.on-dark em{color:var(--copper)}
+h3{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink)}
+.section-sub{font-size:15px;font-weight:300;color:var(--ink2);line-height:1.7;margin-top:10px;max-width:540px}
+.section-sub.on-dark{color:rgba(255,255,255,.5)}
+
+/* STATS */
+.stats-bar{background:var(--ink);padding:20px var(--pad);display:grid;gap:0}
+.stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 0;border-right:1px solid rgba(255,255,255,.1)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--font-h);font-size:28px;font-weight:600;color:white;line-height:1}
+.stat-n em{color:var(--copper);font-style:italic}
+.stat-l{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
+.stats-green{background:var(--green)}
+.stats-green .stat{border-right-color:rgba(255,255,255,.2)}
+.stats-green .stat-n{color:white}
+.stats-green .stat-l{color:rgba(255,255,255,.5)}
+
+/* CARDS */
+.card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+.card-grid{display:flex;flex-direction:column;gap:16px}
+.card-img{display:flex;align-items:center;justify-content:center;font-size:48px;flex-shrink:0}
+.card-body{padding:20px}
+.card-tag{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:8px}
+.tag-copper{background:rgba(200,120,48,.1);color:var(--copper)}
+.tag-green{background:rgba(58,122,88,.1);color:var(--green)}
+.tag-blue{background:rgba(74,104,152,.1);color:var(--blue)}
+.card-title{font-family:var(--font-h);font-size:24px;font-weight:700;color:var(--ink);margin-bottom:6px;line-height:1.1}
+.card-title em{color:var(--copper);font-style:italic}
+.card-desc{font-size:14px;color:var(--ink2);line-height:1.65;font-weight:300}
+
+/* FOOTER */
+.footer{background:var(--ink);padding:48px var(--pad);text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+.footer-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:white;text-decoration:none}
+.footer-logo em{color:var(--copper);font-style:italic}
+.footer-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap;justify-content:center}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--copper)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.5px}
+
+/* DESKTOP */
+@media(min-width:768px){
+  :root{--pad:5vw}
+  .hero{min-height:95vh;padding:0 var(--pad) 80px;justify-content:flex-end}
+  .hero h1{font-size:clamp(72px,8vw,108px)}
+  .hero-actions{flex-direction:row}
+  .btn-primary,.btn-ghost,.btn-yt{width:auto}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+  .stats-bar{grid-template-columns:repeat(var(--stat-cols,4),1fr)}
+}
+
+/* Projects specific */
+.project-card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);display:block;text-decoration:none;color:inherit;transition:transform .2s;-webkit-tap-highlight-color:transparent}
+.project-card:hover{transform:translateY(-3px)}
+.project-card.private{opacity:.6;pointer-events:none}
+.project-header{height:180px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative}
 .project-badge{position:absolute;top:14px;right:14px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:20px}
 .badge-public{background:rgba(58,122,88,.2);color:#5aaa78;border:1px solid rgba(58,122,88,.3)}
 .badge-private{background:rgba(74,104,152,.2);color:#7a9ac8;border:1px solid rgba(74,104,152,.3)}
 .project-body{padding:22px}
 .project-title{font-family:var(--font-h);font-size:28px;font-weight:700;color:var(--ink);margin-bottom:8px}
 .project-desc{font-size:14px;color:var(--ink2);line-height:1.65;font-weight:300;margin-bottom:16px}
-.project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .project-tag{font-size:12px;font-weight:500;color:var(--ink2);background:var(--warm);padding:5px 12px;border-radius:20px}
 .project-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border)}
 .project-status{font-size:12px;color:var(--ink2);font-weight:300}
-.project-link{font-size:13px;font-weight:600;color:var(--copper)}
-.footer{background:var(--ink);padding:40px var(--pad);text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
-.footer-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:white;text-decoration:none}
-.footer-logo em{color:var(--copper);font-style:italic}
-.footer-links{display:flex;gap:24px;list-style:none}
-.footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none}
-.footer-links a:hover{color:var(--copper)}
-.footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.5px}
-@media(min-width:768px){
-  :root{--pad:5vw}
-  .hero{padding:80px var(--pad) 60px;max-width:680px}
-  .hero h1{font-size:80px}
-  .projects-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));padding:0 var(--pad) 60px}
-}
+.project-cta{font-size:13px;font-weight:600;color:var(--copper)}
 </style>
 </head>
 <body>
@@ -72,50 +154,44 @@ body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow
   </div>
 </nav>
 
-<section class="hero">
-  <div class="eyebrow">Projects</div>
-  <h1>Builds &amp; <em>experiments</em></h1>
-  <p>A few things being made alongside the growing and travelling. Some public, some not.</p>
-</section>
+<div class="hero">
+  <div class="hero-bg" style="background:linear-gradient(160deg,#100a08 0%,#201410 40%,#2a1a10 70%,#100808 100%)"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-gradient" style="background:linear-gradient(to top,rgba(12,8,6,.99) 0%,rgba(12,8,6,.55) 55%,rgba(12,8,6,.1) 100%)"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Projects</div>
+    <h1>Builds &amp;<br><em>experiments</em></h1>
+    <p class="hero-desc">A few things being made alongside the growing and travelling. Some public, some not.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">See Projects</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</div>
 
-<div class="projects-list">
-  <a href="rover/index.html" class="project-card">
-    <div class="project-header" style="background:linear-gradient(135deg,#1a2a3a,#2a3a50)">
-      🤖
-      <div class="project-badge badge-public">Public</div>
-    </div>
-    <div class="project-body">
-      <div class="project-title">Rover</div>
-      <p class="project-desc">An autonomous rover project — navigating, mapping, doing things. Built from scratch and documented openly as it develops.</p>
-      <div class="project-tags">
-        <span class="project-tag">🔧 Hardware</span>
-        <span class="project-tag">🧠 Autonomous</span>
-        <span class="project-tag">📡 Navigation</span>
+<section class="section" id="projects">
+  <div class="eyebrow" style="margin-bottom:24px">Current Work</div>
+  <div class="card-grid">
+    <a href="rover/index.html" class="project-card">
+      <div class="project-header" style="background:linear-gradient(135deg,#1a2a3a,#2a3a50)">🤖<div class="project-badge badge-public">Public</div></div>
+      <div class="project-body">
+        <div class="project-title">Rover</div>
+        <p class="project-desc">An autonomous rover project — navigating, mapping, doing things. Built from scratch and documented openly as it develops.</p>
+        <div class="project-tags"><span class="project-tag">🔧 Hardware</span><span class="project-tag">🧠 Autonomous</span><span class="project-tag">📡 Navigation</span></div>
+        <div class="project-footer"><span class="project-status">🟡 In progress</span><span class="project-cta">View project →</span></div>
       </div>
-      <div class="project-footer">
-        <span class="project-status">🟡 In progress</span>
-        <span class="project-link">View project →</span>
-      </div>
-    </div>
-  </a>
-
-  <div class="project-card private">
-    <div class="project-header" style="background:linear-gradient(135deg,#1a1a2a,#2a2a40)">
-      📈
-      <div class="project-badge badge-private">Private</div>
-    </div>
-    <div class="project-body">
-      <div class="project-title">Stonks</div>
-      <p class="project-desc">A private project. Not much to see here.</p>
-      <div class="project-tags">
-        <span class="project-tag">🔒 Private</span>
-      </div>
-      <div class="project-footer">
-        <span class="project-status">🔒 Access restricted</span>
+    </a>
+    <div class="project-card private">
+      <div class="project-header" style="background:linear-gradient(135deg,#1a1a2a,#2a2a40)">📈<div class="project-badge badge-private">Private</div></div>
+      <div class="project-body">
+        <div class="project-title">Stonks</div>
+        <p class="project-desc">A private project. Not much to see here.</p>
+        <div class="project-tags"><span class="project-tag">🔒 Private</span></div>
+        <div class="project-footer"><span class="project-status">🔒 Access restricted</span></div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <footer class="footer">
   <a href="https://krishgrows.com" class="footer-logo">🌿 Krish<em>Grows</em></a>
@@ -123,6 +199,7 @@ body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow
     <li><a href="https://krishgrows.com">Home</a></li>
     <li><a href="https://travel.krishgrows.com">Travel</a></li>
     <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
+    <li><a href="https://projects.krishgrows.com">Projects</a></li>
   </ul>
   <p class="footer-copy">projects.krishgrows.com — North Yorkshire</p>
 </footer>
