@@ -1,0 +1,28 @@
+{
+  "stats": [
+    { "value": "1", "suffix": "✓", "label": "Trip Report" },
+    { "value": "3",  "suffix": "",  "label": "Waterfalls" },
+    { "value": "512","suffix": "",  "label": "Miles Driven" },
+    { "value": "All","suffix": "",  "label": "Accessible" }
+  ],
+  "trips": [
+    {
+      "id": "wales-may-2026",
+      "title": "Waterfalls, Castles",
+      "titleEm": "& Coast",
+      "region": "North Wales",
+      "country": "Wales, UK",
+      "date": "May 2026",
+      "duration": "3 days · 2 nights",
+      "status": "plan",
+      "statusLabel": "Trip Plan",
+      "featured": true,
+      "emoji": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+      "gradient": "linear-gradient(135deg,#1a3a20,#2a5030,#3a6040)",
+      "description": "Church Fenton to Llanrwst via Pistyll Rhaeadr — the tallest waterfall in England or Wales. Bala Lake Railway, Beaumaris Castle, the Llyn Peninsula, Swallow Falls, Aber Falls and Penrhyn Castle. Elderly-friendly throughout, all accessible. 512 miles in 3 days.",
+      "pills": ["💧 3 Waterfalls", "🚂 Steam Train", "🏰 2 Castles", "🌊 Llyn Peninsula", "♿ Accessible"],
+      "url": "trips/wales-may-2026.html"
+    }
+  ],
+  "moreNote": "More trips added as they're planned."
+}

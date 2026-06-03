@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KrishGrows — Travel</title>
+<link rel="stylesheet" href="../shared/brand.css">
+<style>
+
+/* ── HERO ── */
+.hero {
+  min-height: 88vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 60px var(--page-pad);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 50%, rgba(200,120,48,.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(58,122,88,.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-text { position: relative; z-index: 2; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--copper); margin-bottom: 20px;
+}
+.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--copper); }
+.hero-desc { font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--ink2); max-width: 420px; margin-bottom: 36px; }
+.hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+.hero-mosaic {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 200px 160px;
+  gap: 10px;
+  padding-left: 40px;
+}
+.mosaic-cell { border-radius: var(--radius-md); overflow: hidden; position: relative; background: var(--warm); }
+.mosaic-cell:nth-child(1) { grid-row: 1/3; background: linear-gradient(135deg,#2d4a30,#1a3020); }
+.mosaic-cell:nth-child(2) { background: linear-gradient(135deg,#3a5a7a,#1a3050); }
+.mosaic-cell:nth-child(3) { background: linear-gradient(135deg,#5a4030,#3a2018); }
+.mosaic-label {
+  position: absolute; bottom: 12px; left: 14px; right: 14px;
+  color: white; font-size: 11px; font-weight: 500;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.mosaic-tag {
+  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.2);
+  border-radius: 20px; padding: 3px 10px; font-size: 10px; font-weight: 600;
+  color: white; backdrop-filter: blur(4px);
+}
+.mosaic-icon { font-size: 32px; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-60%); opacity: .4; }
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--ink);
+  padding: 22px var(--page-pad);
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+}
+.stat { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 0 36px; border-right: 1px solid rgba(255,255,255,.1); }
+.stat:last-child { border-right: none; }
+.stat-n { font-family: var(--font-heading); font-size: 32px; font-weight: 600; color: white; line-height: 1; }
+.stat-n span { color: var(--copper); font-style: italic; }
+.stat-l { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.4); }
+
+/* ── TRIPS ── */
+.trips-section { padding: var(--space-xl) var(--page-pad); }
+.section-header { margin-bottom: 48px; }
+.trips-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(320px,1fr)); gap: 28px; }
+
+.trip-card {
+  background: white; border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow); display: flex; flex-direction: column;
+  text-decoration: none; color: inherit;
+  transition: transform .25s, box-shadow .25s;
+}
+.trip-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(26,18,8,.13); }
+.trip-card.featured { grid-column: 1/-1; }
+.trip-card.featured .tc-image { height: 380px; }
+.trip-card.featured .tc-body { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 28px; }
+.trip-card.featured .tc-title { font-size: clamp(22px,3vw,36px); }
+
+.tc-image { position: relative; height: 220px; overflow: hidden; background: var(--warm); flex-shrink: 0; }
+.tc-image-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 60px; transition: transform .4s; }
+.trip-card:hover .tc-image-inner { transform: scale(1.05); }
+.tc-status {
+  position: absolute; top: 14px; left: 14px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 20px;
+}
+.status-plan { background: rgba(200,120,48,.15); color: var(--copper); border: 1px solid rgba(200,120,48,.3); }
+.status-report { background: rgba(58,122,88,.15); color: var(--green); border: 1px solid rgba(58,122,88,.3); }
+.tc-country {
+  position: absolute; top: 14px; right: 14px;
+  font-size: 11px; color: white;
+  background: rgba(0,0,0,.35); backdrop-filter: blur(4px);
+  padding: 4px 10px; border-radius: 20px;
+}
+.tc-body { padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.tc-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.tc-tag { font-size: 10px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; background: rgba(200,120,48,.1); color: var(--copper); }
+.tc-date { font-size: 12px; color: var(--ink2); font-weight: 300; }
+.tc-title { font-family: var(--font-heading); font-size: clamp(18px,2.5vw,26px); font-weight: 700; line-height: 1.1; color: var(--ink); margin-bottom: 10px; }
+.tc-title em { color: var(--copper); font-style: italic; }
+.tc-desc { font-size: 13px; color: var(--ink2); line-height: 1.65; font-weight: 300; flex: 1; }
+.tc-footer { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 16px; }
+.tc-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.tc-pill { font-size: 11px; font-weight: 500; color: var(--ink2); background: var(--warm); padding: 4px 10px; border-radius: 20px; }
+.tc-arrow { width: 36px; height: 36px; border-radius: 50%; background: var(--ink); color: white; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-left: 12px; transition: background .2s; }
+.trip-card:hover .tc-arrow { background: var(--copper); }
+
+.more-note { margin-top: 32px; font-size: 13px; color: var(--ink2); font-weight: 300; font-style: italic; opacity: .7; }
+
+/* ── HOW IT WORKS ── */
+.how-wrap { background: var(--warm); padding: var(--space-xl) var(--page-pad); }
+.how-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 32px; margin-top: 40px; }
+.how-step { position: relative; padding-top: 16px; }
+.how-step::before { content: attr(data-n); font-family: var(--font-heading); font-size: 72px; font-weight: 700; color: rgba(200,120,48,.1); line-height: 1; position: absolute; top: -10px; left: -8px; }
+.how-icon { font-size: 28px; margin-bottom: 12px; position: relative; z-index: 1; }
+.how-title { font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 8px; position: relative; z-index: 1; }
+.how-desc { font-size: 13px; color: var(--ink2); line-height: 1.7; font-weight: 300; position: relative; z-index: 1; }
+
+/* ── ABOUT ── */
+.about-strip { padding: var(--space-xl) var(--page-pad); display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.about-body { display: flex; flex-direction: column; gap: 14px; margin: 20px 0; }
+.about-body p { font-size: 14px; }
+.about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.about-tag { font-size: 12px; font-weight: 500; color: var(--ink2); background: var(--warm); border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px; }
+.about-visual { display: flex; flex-direction: column; gap: 10px; }
+.map-dot { font-size: 13px; color: var(--ink2); font-weight: 400; padding: 10px 16px; background: var(--warm); border-radius: 8px; border: 1px solid var(--border); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; padding: 40px var(--page-pad); }
+  .hero-mosaic { display: none; }
+  .trip-card.featured .tc-body { grid-template-columns: 1fr; }
+  .about-strip { grid-template-columns: 1fr; gap: 32px; }
+  .stat { padding: 0 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="kg-nav">
+  <a href="../hub/index.html" class="kg-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="kg-nav-links">
+    <li><a href="index.html" class="active">Travel</a></li>
+    <li><a href="../allotment/index.html">Allotment</a></li>
+    <li><a href="../projects/index.html">Projects</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Travel from Yorkshire</div>
+    <h1>Real trips,<br><em>honest notes</em></h1>
+    <p class="hero-desc">Plans before we go, full reports when we're back — with real photos and video. No itinerary fluff, just what you'd actually want to know.</p>
+    <div class="hero-actions">
+      <a href="#trips" class="kg-btn kg-btn-primary">See Trips</a>
+      <a href="#how" class="kg-btn kg-btn-ghost">How this works →</a>
+    </div>
+  </div>
+  <div class="hero-mosaic">
+    <div class="mosaic-cell">
+      <span class="mosaic-icon">🏴󠁧󠁢󠁷󠁬󠁳󠁿</span>
+      <div class="mosaic-label"><span>North Wales</span><span class="mosaic-tag">May 2026</span></div>
+    </div>
+    <div class="mosaic-cell">
+      <span class="mosaic-icon">🚗</span>
+      <div class="mosaic-label"><span>Road Trips</span><span class="mosaic-tag">UK</span></div>
+    </div>
+    <div class="mosaic-cell">
+      <span class="mosaic-icon">♿</span>
+      <div class="mosaic-label"><span>Accessible</span><span class="mosaic-tag">Always</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar" id="statsBar"></div>
+
+<section class="trips-section" id="trips">
+  <div class="section-header">
+    <div class="kg-eyebrow">Destinations</div>
+    <h2>Trips &amp; <em>Travel Plans</em></h2>
+    <p class="kg-section-sub">Plans before we go, full reports when we're back — with real photos and video.</p>
+  </div>
+  <div class="trips-grid" id="tripsGrid"></div>
+  <p class="more-note" id="moreNote"></p>
+</section>
+
+<section class="how-wrap" id="how">
+  <div class="section-header">
+    <div class="kg-eyebrow">How This Works</div>
+    <h2>Plan, Go, <em>Report</em></h2>
+    <p class="kg-section-sub">Every trip starts as a detailed plan. After we go, it becomes a full report with real photos and video.</p>
+  </div>
+  <div class="how-grid">
+    <div class="how-step" data-n="01">
+      <div class="how-icon">📋</div>
+      <div class="how-title">The Trip Plan</div>
+      <p class="how-desc">Before we leave, a full plan goes up: driving routes, distances, accessibility notes, booking tips, costs. Everything you'd want to know before your own trip.</p>
+    </div>
+    <div class="how-step" data-n="02">
+      <div class="how-icon">🚗</div>
+      <div class="how-title">We Go & Document</div>
+      <p class="how-desc">Photos, notes, video along the way. What matched the plan, what didn't, what we'd do differently. Honest, not promotional.</p>
+    </div>
+    <div class="how-step" data-n="03">
+      <div class="how-icon">📸</div>
+      <div class="how-title">The Trip Report</div>
+      <p class="how-desc">The plan gets upgraded with real photos and YouTube clips. Status changes from Plan to Report. You get the full story.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about-strip" id="about">
+  <div>
+    <div class="kg-eyebrow">The Writer</div>
+    <h2>About <em>KrishGrows</em></h2>
+    <div class="about-body">
+      <p>A personal travel blog documenting trips from Yorkshire — mostly UK destinations, always driving, always looking for the waterfalls and castles that most people walk straight past.</p>
+      <p>Based in Church Fenton, North Yorkshire. Trips designed to be manageable for all ages and abilities. Real notes, real costs, real opinions.</p>
+    </div>
+    <div class="about-tags">
+      <span class="about-tag">📍 Church Fenton, Yorkshire</span>
+      <span class="about-tag">🚗 Road Trips</span>
+      <span class="about-tag">♿ Accessible Travel</span>
+    </div>
+  </div>
+  <div class="about-visual" id="destinationsList"></div>
+</section>
+
+<footer class="kg-footer">
+  <a href="../hub/index.html" class="kg-footer-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="kg-footer-links">
+    <li><a href="index.html">Travel</a></li>
+    <li><a href="../allotment/index.html">Allotment</a></li>
+    <li><a href="../projects/index.html">Projects</a></li>
+  </ul>
+  <p class="kg-footer-copy">krishgrows.com — Personal travel writing from Church Fenton, Yorkshire</p>
+</footer>
+
+<script>
+fetch('content/trips.json')
+  .then(r => r.json())
+  .then(data => {
+    renderStats(data.stats);
+    renderTrips(data.trips);
+    document.getElementById('moreNote').textContent = data.moreNote;
+    renderDestinations(data.trips);
+  })
+  .catch(() => {
+    document.getElementById('tripsGrid').innerHTML =
+      '<p style="color:var(--ink2);font-size:13px;font-style:italic">Serve via Cloudflare or a local server to load trips.</p>';
+  });
+
+function renderStats(stats) {
+  document.getElementById('statsBar').innerHTML = stats.map(s => `
+    <div class="stat">
+      <span class="stat-n">${s.value}<span>${s.suffix}</span></span>
+      <span class="stat-l">${s.label}</span>
+    </div>`).join('');
+}
+
+function renderTrips(trips) {
+  document.getElementById('tripsGrid').innerHTML = trips.map(t => `
+    <a href="${t.url}" class="trip-card${t.featured ? ' featured' : ''}">
+      <div class="tc-image" style="background:${t.gradient}">
+        <div class="tc-image-inner">${t.emoji}</div>
+        <div class="tc-status status-${t.status}">${t.status === 'plan' ? '📋' : '📸'} ${t.statusLabel}</div>
+        <div class="tc-country">📍 ${t.country}</div>
+      </div>
+      <div class="tc-body">
+        <div>
+          <div class="tc-meta">
+            <span class="tc-tag">${t.region}</span>
+            <span class="tc-date">${t.date} · ${t.duration}</span>
+          </div>
+          <div class="tc-title">${t.title} <em>${t.titleEm}</em></div>
+          <p class="tc-desc">${t.description}</p>
+        </div>
+        <div class="tc-footer">
+          <div class="tc-pills">${t.pills.map(p => `<span class="tc-pill">${p}</span>`).join('')}</div>
+          <div class="tc-arrow">→</div>
+        </div>
+      </div>
+    </a>`).join('');
+}
+
+function renderDestinations(trips) {
+  document.getElementById('destinationsList').innerHTML = trips.map(t =>
+    `<div class="map-dot">${t.emoji} ${t.region} — ${t.date} ${t.status === 'report' ? '✓' : '→'}</div>`
+  ).join('');
+}
+</script>
+</body>
+</html>

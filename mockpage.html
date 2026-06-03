@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KrishGrows — Mock Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#1a1208;--ink2:#4a3a28;
+  --cream:#faf8f4;--warm:#f2ede4;
+  --copper:#c87830;--green:#3a7a58;--blue:#4a6898;
+  --border:rgba(74,58,40,.1);
+  --shadow:0 4px 24px rgba(26,18,8,.08);
+  --font-h:'Cormorant Garamond',serif;
+  --font-b:'Outfit',sans-serif;
+  --pad:5vw;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow-x:hidden}
+
+/* ── MOCK BANNER ── */
+.mock-banner{
+  background:var(--ink);color:rgba(255,255,255,.6);
+  font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  text-align:center;padding:8px;
+  position:sticky;top:0;z-index:200;
+}
+.mock-banner span{color:var(--copper)}
+
+/* ── NAV ── */
+.kg-nav{
+  position:sticky;top:33px;z-index:100;
+  background:rgba(250,248,244,.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 var(--pad);
+  display:flex;align-items:center;justify-content:space-between;
+  height:62px;
+}
+.kg-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:4px;cursor:pointer;white-space:nowrap;line-height:1}
+.kg-logo em{color:var(--copper);font-style:italic}
+.kg-nav-links{display:flex;align-items:center;gap:6px;list-style:none}
+.kg-nav-links button{
+  font-family:var(--font-b);font-size:13px;font-weight:500;color:var(--ink2);
+  background:none;border:none;cursor:pointer;padding:6px 14px;border-radius:4px;
+  letter-spacing:.3px;transition:all .2s;
+}
+.kg-nav-links button:hover{color:var(--copper);background:rgba(200,120,48,.06)}
+.kg-nav-links button.active{color:var(--copper);background:rgba(200,120,48,.08)}
+@media(max-width:600px){
+  .kg-nav{flex-direction:column;justify-content:center;align-items:flex-start;height:auto;padding:12px var(--pad) 8px;gap:4px}
+  .kg-logo{font-size:20px}
+  .kg-nav-links{gap:0;margin-left:-8px}
+  .kg-nav-links button{font-size:12px;padding:5px 10px}
+}
+
+/* ── PAGES ── */
+.page{display:none;animation:fadeIn .3s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SHARED ── */
+.kg-eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--copper);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.kg-eyebrow::before{content:'';width:20px;height:1px;background:var(--copper)}
+h1{font-family:var(--font-h);font-size:clamp(48px,6vw,86px);font-weight:700;line-height:.98;letter-spacing:-1px;color:var(--ink)}
+h1 em,h2 em{color:var(--copper);font-style:italic}
+h2{font-family:var(--font-h);font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.5px;color:var(--ink)}
+h3{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink)}
+.sub{font-size:14px;font-weight:300;line-height:1.7;color:var(--ink2);max-width:520px;margin-top:10px}
+.section{padding:72px var(--pad)}
+.kg-btn{font-family:var(--font-b);font-size:13px;font-weight:600;padding:13px 28px;border-radius:4px;text-decoration:none;letter-spacing:.4px;transition:all .2s;display:inline-block;cursor:pointer;border:none}
+.kg-btn-primary{background:var(--ink);color:white}
+.kg-btn-primary:hover{background:var(--copper);transform:translateY(-1px)}
+.kg-btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--border)}
+.kg-btn-outline:hover{border-color:var(--copper);color:var(--copper)}
+.kg-footer{background:var(--ink);padding:48px var(--pad);display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.kg-footer-logo{font-family:var(--font-h);font-size:20px;font-weight:700;color:white;cursor:pointer}
+.kg-footer-logo em{color:var(--copper);font-style:italic}
+.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links button{font-family:var(--font-b);font-size:12px;color:rgba(255,255,255,.4);background:none;border:none;cursor:pointer;letter-spacing:.3px;transition:color .2s}
+.footer-links button:hover{color:var(--copper)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.5px}
+
+/* ══════════════════════════════════
+   HUB PAGE
+══════════════════════════════════ */
+.hub-hero{
+  min-height:90vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px var(--pad);
+  position:relative;overflow:hidden;
+}
+.hub-hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 70% at 90% 40%,rgba(200,120,48,.07) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 60% at 5% 90%,rgba(58,122,88,.06) 0%,transparent 50%);
+}
+.hub-hero-inner{position:relative;z-index:2;max-width:720px}
+.hub-tagline{font-size:13px;font-weight:300;color:var(--ink2);line-height:1.8;max-width:480px;margin:20px 0 40px}
+.hub-domains{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:64px}
+.domain-card{
+  background:white;border-radius:16px;padding:28px;
+  box-shadow:var(--shadow);cursor:pointer;
+  border:1.5px solid transparent;
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.domain-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .25s}
+.domain-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(26,18,8,.12);border-color:var(--copper)}
+.domain-card-icon{font-size:32px;margin-bottom:16px}
+.domain-card-url{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:8px}
+.domain-card h3{font-size:20px;margin-bottom:8px}
+.domain-card p{font-size:13px;color:var(--ink2);font-weight:300;line-height:1.6}
+.domain-card-arrow{
+  position:absolute;bottom:24px;right:24px;
+  width:32px;height:32px;border-radius:50%;
+  background:var(--warm);color:var(--ink2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;transition:all .2s;
+}
+.domain-card:hover .domain-card-arrow{background:var(--copper);color:white}
+
+.hub-channel{
+  background:var(--ink);
+  padding:48px var(--pad);
+  display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;
+}
+.hub-channel-text .kg-eyebrow{color:var(--copper)}
+.hub-channel-text h2{color:white;font-size:clamp(24px,3vw,36px)}
+.hub-channel-text p{color:rgba(255,255,255,.5);font-size:14px;font-weight:300;margin-top:8px;max-width:480px;line-height:1.7}
+.yt-btn{
+  display:flex;align-items:center;gap:12px;
+  background:#ff0000;color:white;
+  font-family:var(--font-b);font-size:13px;font-weight:600;
+  padding:14px 24px;border-radius:8px;text-decoration:none;
+  white-space:nowrap;transition:all .2s;
+}
+.yt-btn:hover{background:#cc0000;transform:translateY(-1px)}
+.yt-btn svg{width:20px;height:20px;fill:white;flex-shrink:0}
+.hub-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--warm);
+}
+.hub-stat{padding:32px;border-right:1px solid var(--border);text-align:center}
+.hub-stat:last-child{border-right:none}
+.hub-stat-n{font-family:var(--font-h);font-size:40px;font-weight:700;color:var(--ink);line-height:1}
+.hub-stat-n em{color:var(--copper);font-style:italic}
+.hub-stat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--ink2);opacity:.6;margin-top:4px}
+
+/* ══════════════════════════════════
+   TRAVEL PAGE
+══════════════════════════════════ */
+.travel-hero{
+  min-height:80vh;display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;padding:60px var(--pad);
+  position:relative;overflow:hidden;
+}
+.travel-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 50%,rgba(200,120,48,.06) 0%,transparent 70%);pointer-events:none}
+.travel-hero-text{position:relative;z-index:2}
+.travel-hero-desc{font-size:15px;font-weight:300;line-height:1.75;color:var(--ink2);max-width:400px;margin:20px 0 36px}
+.travel-actions{display:flex;gap:16px;align-items:center}
+.travel-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:200px 160px;gap:10px;padding-left:40px}
+.mosaic-cell{border-radius:12px;overflow:hidden;position:relative}
+.mosaic-cell:nth-child(1){grid-row:1/3;background:linear-gradient(135deg,#2d4a30,#1a3020)}
+.mosaic-cell:nth-child(2){background:linear-gradient(135deg,#3a5a7a,#1a3050)}
+.mosaic-cell:nth-child(3){background:linear-gradient(135deg,#5a4030,#3a2018)}
+.mosaic-icon{font-size:32px;position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);opacity:.4}
+.mosaic-label{position:absolute;bottom:12px;left:14px;right:14px;color:white;font-size:11px;display:flex;align-items:center;justify-content:space-between}
+.mosaic-tag{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:600;color:white}
+
+.stats-bar{background:var(--ink);padding:22px var(--pad);display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:0 36px;border-right:1px solid rgba(255,255,255,.1)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--font-h);font-size:32px;font-weight:600;color:white;line-height:1}
+.stat-n em{color:var(--copper);font-style:italic}
+.stat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+.trip-card{
+  background:white;border-radius:16px;overflow:hidden;
+  box-shadow:var(--shadow);cursor:pointer;
+  transition:transform .25s,box-shadow .25s;
+  grid-column:1/-1;
+}
+.trip-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(26,18,8,.13)}
+.tc-image{height:340px;background:linear-gradient(135deg,#1a3a20,#2a5030,#3a6040);position:relative;display:flex;align-items:center;justify-content:center;font-size:80px}
+.tc-status{position:absolute;top:16px;left:16px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:20px;background:rgba(200,120,48,.15);color:var(--copper);border:1px solid rgba(200,120,48,.3)}
+.tc-country{position:absolute;top:16px;right:16px;font-size:11px;color:white;background:rgba(0,0,0,.35);backdrop-filter:blur(4px);padding:4px 10px;border-radius:20px}
+.tc-body{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:28px}
+.tc-tag{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(200,120,48,.1);color:var(--copper)}
+.tc-date{font-size:12px;color:var(--ink2);font-weight:300}
+.tc-meta{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.tc-title{font-family:var(--font-h);font-size:clamp(22px,3vw,36px);font-weight:700;line-height:1.1;color:var(--ink);margin-bottom:10px}
+.tc-title em{color:var(--copper);font-style:italic}
+.tc-desc{font-size:13px;color:var(--ink2);line-height:1.65;font-weight:300}
+.tc-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.tc-pill{font-size:11px;font-weight:500;color:var(--ink2);background:var(--warm);padding:4px 10px;border-radius:20px}
+.tc-arrow{width:36px;height:36px;border-radius:50%;background:var(--ink);color:white;display:flex;align-items:center;justify-content:center;font-size:14px;margin-top:16px;transition:background .2s}
+.trip-card:hover .tc-arrow{background:var(--copper)}
+.more-note{margin-top:28px;font-size:13px;color:var(--ink2);font-weight:300;font-style:italic;opacity:.6}
+
+/* ══════════════════════════════════
+   ALLOTMENT PAGE
+══════════════════════════════════ */
+.allotment-hero{
+  min-height:80vh;display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;padding:60px var(--pad);
+  position:relative;overflow:hidden;
+}
+.allotment-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 15% 50%,rgba(58,122,88,.07) 0%,transparent 60%);pointer-events:none}
+.allotment-hero-text{position:relative;z-index:2}
+.allotment-hero-desc{font-size:15px;font-weight:300;line-height:1.75;color:var(--ink2);max-width:400px;margin:20px 0 36px}
+
+.allotment-visual{padding-left:40px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bed-card{background:white;border-radius:12px;padding:16px;box-shadow:var(--shadow);border-left:3px solid var(--green)}
+.bed-num{font-family:var(--font-h);font-size:11px;font-weight:600;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.bed-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:4px}
+.bed-status{font-size:11px;color:var(--ink2);font-weight:300}
+.bed-dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-right:5px}
+
+.allotment-stats{background:var(--green);padding:22px var(--pad);display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
+.allotment-stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:0 36px;border-right:1px solid rgba(255,255,255,.15)}
+.allotment-stat:last-child{border-right:none}
+.allotment-stat-n{font-family:var(--font-h);font-size:32px;font-weight:600;color:white;line-height:1}
+.allotment-stat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5)}
+
+.grow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.grow-card{background:white;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform .25s}
+.grow-card:hover{transform:translateY(-3px)}
+.grow-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative}
+.grow-body{padding:16px}
+.grow-tag{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:20px;background:rgba(58,122,88,.1);color:var(--green);display:inline-block;margin-bottom:8px}
+.grow-title{font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.grow-desc{font-size:12px;color:var(--ink2);line-height:1.6;font-weight:300}
+
+.channel-strip{
+  background:var(--warm);padding:48px var(--pad);
+  display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px;
+  border-top:1px solid var(--border);
+}
+.channel-strip h2{font-size:clamp(22px,3vw,32px)}
+
+/* ══════════════════════════════════
+   PROJECTS PAGE
+══════════════════════════════════ */
+.projects-hero{
+  padding:80px var(--pad) 60px;
+  max-width:680px;
+}
+.projects-hero h1{margin:16px 0}
+.projects-hero p{font-size:15px;font-weight:300;line-height:1.75;color:var(--ink2);margin-top:16px}
+
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;padding:0 var(--pad) 72px}
+.project-card{background:white;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s}
+.project-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(26,18,8,.12)}
+.project-header{height:180px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative}
+.project-badge{position:absolute;top:14px;right:14px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:20px}
+.badge-public{background:rgba(58,122,88,.15);color:var(--green);border:1px solid rgba(58,122,88,.3)}
+.badge-private{background:rgba(74,104,152,.15);color:var(--blue);border:1px solid rgba(74,104,152,.3)}
+.project-body{padding:20px}
+.project-title{font-family:var(--font-h);font-size:24px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.project-desc{font-size:13px;color:var(--ink2);line-height:1.65;font-weight:300;margin-bottom:16px}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px}
+.project-tag{font-size:11px;font-weight:500;color:var(--ink2);background:var(--warm);padding:4px 10px;border-radius:20px}
+.project-footer{padding:16px 20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.project-status{font-size:11px;color:var(--ink2);font-weight:300}
+.project-link{font-size:12px;font-weight:600;color:var(--copper);display:flex;align-items:center;gap:4px;transition:gap .2s}
+.project-card:hover .project-link{gap:8px}
+
+@media(max-width:768px){
+  .hub-domains{grid-template-columns:1fr}
+  .travel-hero,.allotment-hero{grid-template-columns:1fr}
+  .travel-mosaic,.allotment-visual{display:none}
+  .hub-channel{grid-template-columns:1fr}
+  .hub-stats{grid-template-columns:1fr 1fr}
+  .tc-body{grid-template-columns:1fr}
+  .channel-strip{grid-template-columns:1fr}
+  .stat{padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<div class="mock-banner">Mock Preview — <span>krishgrows.com</span> · Click nav to switch between subdomains</div>
+
+<nav class="kg-nav">
+  <div class="kg-logo" onclick="showPage('hub')">🌿 Krish<em>Grows</em></div>
+  <ul class="kg-nav-links">
+    <li><button onclick="showPage('hub')" id="nav-hub">Home</button></li>
+    <li><button onclick="showPage('travel')" id="nav-travel">Travel</button></li>
+    <li><button onclick="showPage('allotment')" id="nav-allotment">Allotment</button></li>
+    <li><button onclick="showPage('projects')" id="nav-projects">Projects</button></li>
+  </ul>
+</nav>
+
+<!-- ══ HUB ══ -->
+<div class="page active" id="page-hub">
+
+  <div class="hub-hero">
+    <div class="hub-hero-inner">
+      <div class="kg-eyebrow">North Yorkshire</div>
+      <h1>Growing things,<br><em>going places</em></h1>
+      <p class="hub-tagline">A personal journal from North Yorkshire — allotment growing, cinematic travel and the occasional project. Filmed on Insta360 Ace Pro 2 in 4K.</p>
+      <a href="https://youtube.com/@krishgrows" target="_blank" class="kg-btn kg-btn-primary">Watch on YouTube</a>
+    </div>
+
+    <div class="hub-domains">
+      <div class="domain-card" onclick="showPage('travel')">
+        <div class="domain-card-icon">✈️</div>
+        <div class="domain-card-url">travel.krishgrows.com</div>
+        <h3>Travel</h3>
+        <p>Road trips from Yorkshire — UK destinations, waterfalls, castles. Plans before we go, honest reports after.</p>
+        <div class="domain-card-arrow">→</div>
+      </div>
+      <div class="domain-card" onclick="showPage('allotment')">
+        <div class="domain-card-icon">🌱</div>
+        <div class="domain-card-url">allotment.krishgrows.com</div>
+        <h3>Allotment</h3>
+        <p>8 beds, 2 IBCs, South Asian vegetables. Seed to harvest in North Yorkshire — filmed cinematically in 4K.</p>
+        <div class="domain-card-arrow">→</div>
+      </div>
+      <div class="domain-card" onclick="showPage('projects')">
+        <div class="domain-card-icon">🔧</div>
+        <div class="domain-card-url">projects.krishgrows.com</div>
+        <h3>Projects</h3>
+        <p>Rover and other builds — public projects documented openly, private experiments tucked away.</p>
+        <div class="domain-card-arrow">→</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hub-stats">
+    <div class="hub-stat"><div class="hub-stat-n">1<em>✓</em></div><div class="hub-stat-l">Trip Report</div></div>
+    <div class="hub-stat"><div class="hub-stat-n">8</div><div class="hub-stat-l">Allotment Beds</div></div>
+    <div class="hub-stat"><div class="hub-stat-n">4<em>K</em></div><div class="hub-stat-l">All Footage</div></div>
+    <div class="hub-stat"><div class="hub-stat-n">1</div><div class="hub-stat-l">Active Project</div></div>
+  </div>
+
+  <div class="hub-channel">
+    <div class="hub-channel-text">
+      <div class="kg-eyebrow" style="color:var(--copper)">YouTube</div>
+      <h2 style="color:white">Krish<em style="color:var(--copper)">Grows</em> on YouTube</h2>
+      <p>Allotment life in North Yorkshire and cinematic travel across Britain and Europe. Filmed on Insta360 Ace Pro 2 · 4K · New videos every week.</p>
+    </div>
+    <a href="https://youtube.com/@krishgrows" target="_blank" class="yt-btn">
+      <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+      @KrishGrows
+    </a>
+  </div>
+
+  <footer class="kg-footer">
+    <div class="kg-footer-logo" onclick="showPage('hub')">🌿 Krish<em>Grows</em></div>
+    <ul class="footer-links">
+      <li><button onclick="showPage('travel')">Travel</button></li>
+      <li><button onclick="showPage('allotment')">Allotment</button></li>
+      <li><button onclick="showPage('projects')">Projects</button></li>
+    </ul>
+    <p class="footer-copy">krishgrows.com — North Yorkshire</p>
+  </footer>
+</div>
+
+<!-- ══ TRAVEL ══ -->
+<div class="page" id="page-travel">
+
+  <section class="travel-hero">
+    <div class="travel-hero-text">
+      <div class="kg-eyebrow">Travel from Yorkshire</div>
+      <h1>Real trips,<br><em>honest notes</em></h1>
+      <p class="travel-hero-desc">Plans before we go, full reports when we're back — with real photos and video. No itinerary fluff, just what you'd actually want to know.</p>
+      <div class="travel-actions">
+        <button class="kg-btn kg-btn-primary" onclick="document.getElementById('trips-section').scrollIntoView({behavior:'smooth'})">See Trips</button>
+        <a href="https://youtube.com/@krishgrows" target="_blank" class="kg-btn kg-btn-outline">Watch on YouTube</a>
+      </div>
+    </div>
+    <div class="travel-mosaic">
+      <div class="mosaic-cell"><span class="mosaic-icon">🏴󠁧󠁢󠁷󠁬󠁳󠁿</span><div class="mosaic-label"><span>North Wales</span><span class="mosaic-tag">May 2026</span></div></div>
+      <div class="mosaic-cell"><span class="mosaic-icon">🚗</span><div class="mosaic-label"><span>Road Trips</span><span class="mosaic-tag">UK</span></div></div>
+      <div class="mosaic-cell"><span class="mosaic-icon">♿</span><div class="mosaic-label"><span>Accessible</span><span class="mosaic-tag">Always</span></div></div>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-n">1<em>✓</em></span><span class="stat-l">Trip Report</span></div>
+    <div class="stat"><span class="stat-n">3</span><span class="stat-l">Waterfalls</span></div>
+    <div class="stat"><span class="stat-n">512</span><span class="stat-l">Miles Driven</span></div>
+    <div class="stat"><span class="stat-n">All</span><span class="stat-l">Accessible</span></div>
+  </div>
+
+  <section class="section" id="trips-section">
+    <div style="margin-bottom:40px">
+      <div class="kg-eyebrow">Destinations</div>
+      <h2>Trips &amp; <em>Travel Plans</em></h2>
+      <p class="sub">Plans before we go, full reports when we're back — with real photos and video.</p>
+    </div>
+    <div style="display:grid">
+      <div class="trip-card">
+        <div class="tc-image">
+          🏴󠁧󠁢󠁷󠁬󠁳󠁿
+          <div class="tc-status">📋 Trip Plan</div>
+          <div class="tc-country">📍 Wales, UK</div>
+        </div>
+        <div class="tc-body">
+          <div>
+            <div class="tc-meta"><span class="tc-tag">North Wales</span><span class="tc-date">May 2026 · 3 days · 2 nights</span></div>
+            <div class="tc-title">Waterfalls, Castles <em>&amp; Coast</em></div>
+            <p class="tc-desc">North Yorkshire to Llanrwst via Pistyll Rhaeadr — the tallest waterfall in England or Wales. Bala Lake Railway, Beaumaris Castle, the Llyn Peninsula, Swallow Falls, Aber Falls and Penrhyn Castle. Elderly-friendly throughout, all accessible. 512 miles in 3 days.</p>
+            <div class="tc-pills">
+              <span class="tc-pill">💧 3 Waterfalls</span>
+              <span class="tc-pill">🚂 Steam Train</span>
+              <span class="tc-pill">🏰 2 Castles</span>
+              <span class="tc-pill">🌊 Llyn Peninsula</span>
+              <span class="tc-pill">♿ Accessible</span>
+            </div>
+          </div>
+          <div>
+            <div class="tc-arrow">→</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="more-note">More trips added as they're planned.</p>
+  </section>
+
+  <footer class="kg-footer">
+    <div class="kg-footer-logo" onclick="showPage('hub')">🌿 Krish<em>Grows</em></div>
+    <ul class="footer-links">
+      <li><button onclick="showPage('hub')">Home</button></li>
+      <li><button onclick="showPage('allotment')">Allotment</button></li>
+      <li><button onclick="showPage('projects')">Projects</button></li>
+    </ul>
+    <p class="footer-copy">travel.krishgrows.com — Road trips from North Yorkshire</p>
+  </footer>
+</div>
+
+<!-- ══ ALLOTMENT ══ -->
+<div class="page" id="page-allotment">
+
+  <section class="allotment-hero">
+    <div class="allotment-hero-text">
+      <div class="kg-eyebrow">North Yorkshire</div>
+      <h1>Seed to <em>harvest</em></h1>
+      <p class="allotment-hero-desc">8 beds, 2 IBCs, South Asian vegetables grown in North Yorkshire. Documented cinematically from sowing to harvest — filmed on Insta360 Ace Pro 2 in 4K.</p>
+      <div class="travel-actions">
+        <button class="kg-btn kg-btn-primary" onclick="document.getElementById('grow-section').scrollIntoView({behavior:'smooth'})">See the Allotment</button>
+        <a href="https://youtube.com/@krishgrows" target="_blank" class="kg-btn kg-btn-outline">Watch on YouTube</a>
+      </div>
+    </div>
+    <div class="allotment-visual">
+      <div class="bed-card"><div class="bed-num">Bed 1</div><div class="bed-name">Karela / Bitter Gourd</div><div class="bed-status"><span class="bed-dot"></span>Growing</div></div>
+      <div class="bed-card"><div class="bed-num">Bed 2</div><div class="bed-name">Tinda / Indian Round Gourd</div><div class="bed-status"><span class="bed-dot"></span>Growing</div></div>
+      <div class="bed-card"><div class="bed-num">Bed 3</div><div class="bed-name">Tomatoes</div><div class="bed-status"><span class="bed-dot"></span>Planted</div></div>
+      <div class="bed-card"><div class="bed-num">Bed 4</div><div class="bed-name">Chillies &amp; Peppers</div><div class="bed-status"><span class="bed-dot"></span>Under lights</div></div>
+    </div>
+  </section>
+
+  <div class="allotment-stats">
+    <div class="allotment-stat"><div class="allotment-stat-n">8</div><div class="allotment-stat-l">Growing Beds</div></div>
+    <div class="allotment-stat"><div class="allotment-stat-n">2</div><div class="allotment-stat-l">IBCs · 1800L</div></div>
+    <div class="allotment-stat"><div class="allotment-stat-n">4K</div><div class="allotment-stat-l">Cinematic Footage</div></div>
+    <div class="allotment-stat"><div class="allotment-stat-n">SA</div><div class="allotment-stat-l">South Asian Veg</div></div>
+  </div>
+
+  <section class="section" id="grow-section">
+    <div style="margin-bottom:40px">
+      <div class="kg-eyebrow">Growing This Season</div>
+      <h2>What's in <em>the Ground</em></h2>
+      <p class="sub">South Asian vegetables grown from seed in North Yorkshire. Updated through the season.</p>
+    </div>
+    <div class="grow-grid">
+      <div class="grow-card">
+        <div class="grow-img" style="background:linear-gradient(135deg,#1a3a20,#2a5030)">🌿</div>
+        <div class="grow-body"><span class="grow-tag">Bed 1</span><div class="grow-title">Karela</div><p class="grow-desc">Bitter gourd grown from South Asian seed stock. Needs warm soil and a climbing frame — going in the ground after last frost.</p></div>
+      </div>
+      <div class="grow-card">
+        <div class="grow-img" style="background:linear-gradient(135deg,#2a3a1a,#3a5028)">🥒</div>
+        <div class="grow-body"><span class="grow-tag">Bed 2</span><div class="grow-title">Tinda</div><p class="grow-desc">Indian round gourd — compact plant, prolific fruiter. Started under the Spider Farmer shelf light in late March.</p></div>
+      </div>
+      <div class="grow-card">
+        <div class="grow-img" style="background:linear-gradient(135deg,#3a1a1a,#5a2820)">🍅</div>
+        <div class="grow-body"><span class="grow-tag">Bed 3</span><div class="grow-title">Tomatoes</div><p class="grow-desc">Mix of varieties. Hardened off and planted out. Spider Farmer shelf gave them a strong start — thick stems, deep green.</p></div>
+      </div>
+      <div class="grow-card">
+        <div class="grow-img" style="background:linear-gradient(135deg,#3a2a10,#5a4020)">🌶️</div>
+        <div class="grow-body"><span class="grow-tag">Bed 4</span><div class="grow-title">Chillies &amp; Peppers</div><p class="grow-desc">Multiple varieties including Indian finger chillies. Still under grow lights — chillies need a long season in Yorkshire.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="channel-strip">
+    <div>
+      <div class="kg-eyebrow">On YouTube</div>
+      <h2>Watch the <em>Growing</em></h2>
+      <p class="sub">Cinematic 4K footage of the allotment — sowing, growing, harvesting. New videos every week on the KrishGrows channel.</p>
+    </div>
+    <a href="https://youtube.com/@krishgrows" target="_blank" class="yt-btn">
+      <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:white;flex-shrink:0"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+      @KrishGrows
+    </a>
+  </div>
+
+  <footer class="kg-footer">
+    <div class="kg-footer-logo" onclick="showPage('hub')">🌿 Krish<em>Grows</em></div>
+    <ul class="footer-links">
+      <li><button onclick="showPage('hub')">Home</button></li>
+      <li><button onclick="showPage('travel')">Travel</button></li>
+      <li><button onclick="showPage('projects')">Projects</button></li>
+    </ul>
+    <p class="footer-copy">allotment.krishgrows.com — Growing in North Yorkshire</p>
+  </footer>
+</div>
+
+<!-- ══ PROJECTS ══ -->
+<div class="page" id="page-projects">
+
+  <div class="projects-hero">
+    <div class="kg-eyebrow">Projects</div>
+    <h1>Builds &amp; <em>experiments</em></h1>
+    <p>A few things being made alongside the growing and travelling. Some public, some not.</p>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-header" style="background:linear-gradient(135deg,#1a2a3a,#2a3a50)">
+        🤖
+        <div class="project-badge badge-public">Public</div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Rover</div>
+        <p class="project-desc">An autonomous rover project — navigating, mapping, doing things. Built from scratch, documented openly as it develops.</p>
+        <div class="project-tags">
+          <span class="project-tag">🔧 Hardware</span>
+          <span class="project-tag">🧠 Autonomous</span>
+          <span class="project-tag">📡 Navigation</span>
+        </div>
+      </div>
+      <div class="project-footer">
+        <span class="project-status">🟡 In progress</span>
+        <span class="project-link">View project →</span>
+      </div>
+    </div>
+
+    <div class="project-card" style="opacity:.6">
+      <div class="project-header" style="background:linear-gradient(135deg,#1a1a2a,#2a2a40)">
+        📈
+        <div class="project-badge badge-private">Private</div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Stonks</div>
+        <p class="project-desc">A private project. Not much to see here.</p>
+        <div class="project-tags">
+          <span class="project-tag">🔒 Private</span>
+        </div>
+      </div>
+      <div class="project-footer">
+        <span class="project-status">🔒 Access restricted</span>
+        <span class="project-link" style="color:var(--ink2)">Private →</span>
+      </div>
+    </div>
+  </div>
+
+  <footer class="kg-footer">
+    <div class="kg-footer-logo" onclick="showPage('hub')">🌿 Krish<em>Grows</em></div>
+    <ul class="footer-links">
+      <li><button onclick="showPage('hub')">Home</button></li>
+      <li><button onclick="showPage('travel')">Travel</button></li>
+      <li><button onclick="showPage('allotment')">Allotment</button></li>
+    </ul>
+    <p class="footer-copy">projects.krishgrows.com — Builds from North Yorkshire</p>
+  </footer>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.kg-nav-links button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+// Set initial active nav
+document.getElementById('nav-hub').classList.add('active');
+</script>
+</body>
+</html>
