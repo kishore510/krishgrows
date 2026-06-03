@@ -1,346 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-/* === BRAND SYSTEM === */
-/* ============================================================
-   KrishGrows — Shared Brand System
-   krishgrows.com | travel | allotment | projects
-   All subdomains import this file.
-   ============================================================ */
-
-/* ── GOOGLE FONTS ── */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
-
-/* ── DESIGN TOKENS ── */
-:root {
-  /* Colours */
-  --ink:        #1a1208;
-  --ink2:       #4a3a28;
-  --cream:      #faf8f4;
-  --warm:       #f2ede4;
-  --border:     rgba(74,58,40,.1);
-  --shadow:     0 4px 24px rgba(26,18,8,.08);
-
-  /* Brand accents */
-  --copper:     #c87830;   /* primary accent */
-  --green:      #3a7a58;   /* secondary accent */
-  --blue:       #4a6898;   /* tertiary accent */
-
-  /* Aliases (used in components) */
-  --accent:     var(--copper);
-  --accent2:    var(--green);
-  --accent3:    var(--blue);
-
-  /* Typography */
-  --font-heading: 'Cormorant Garamond', serif;
-  --font-body:    'Outfit', sans-serif;
-
-  /* Spacing scale */
-  --space-xs:   8px;
-  --space-sm:   16px;
-  --space-md:   24px;
-  --space-lg:   48px;
-  --space-xl:   72px;
-
-  /* Layout */
-  --page-pad:   5vw;
-  --radius-sm:  4px;
-  --radius-md:  12px;
-  --radius-lg:  16px;
-}
-
-/* ── RESET ── */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* ── BASE ── */
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font-body);
-  background: var(--cream);
-  color: var(--ink);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ── TYPOGRAPHY ── */
-h1, h2, h3, h4 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  letter-spacing: -.5px;
-  line-height: 1.1;
-  color: var(--ink);
-}
-
-h1 { font-size: clamp(48px, 6vw, 86px); letter-spacing: -1px; line-height: .98; }
-h2 { font-size: clamp(30px, 4vw, 46px); }
-h3 { font-size: clamp(20px, 2.5vw, 28px); }
-
-h1 em, h2 em, h3 em {
-  color: var(--copper);
-  font-style: italic;
-}
-
-p {
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--ink2);
-}
-
-a { color: inherit; text-decoration: none; }
-
-/* ── NAV ── */
-.kg-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(250,248,244,.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 var(--page-pad);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 62px;
-}
-
-.kg-logo {
-  font-family: var(--font-heading);
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -.3px;
-  color: var(--ink);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.kg-logo em { color: var(--copper); font-style: italic; }
-
-.kg-nav-links {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  list-style: none;
-}
-
-.kg-nav-links a {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink2);
-  letter-spacing: .3px;
-  transition: color .2s;
-}
-
-.kg-nav-links a:hover { color: var(--copper); }
-
-.kg-nav-links a.active { color: var(--copper); }
-
-.kg-nav-badge {
-  background: var(--copper);
-  color: white;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 20px;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-}
-
-/* ── SECTION STRUCTURE ── */
-.kg-section { padding: var(--space-xl) var(--page-pad); }
-
-.kg-eyebrow {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--copper);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.kg-eyebrow::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-  background: var(--copper);
-}
-
-.kg-section-sub {
-  font-size: 14px;
-  color: var(--ink2);
-  margin-top: 10px;
-  font-weight: 300;
-  line-height: 1.6;
-  max-width: 520px;
-}
-
-/* ── BUTTONS ── */
-.kg-btn {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  padding: 13px 28px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  letter-spacing: .4px;
-  transition: background .2s, transform .1s;
-  display: inline-block;
-  cursor: pointer;
-  border: none;
-}
-
-.kg-btn-primary {
-  background: var(--ink);
-  color: white;
-}
-
-.kg-btn-primary:hover {
-  background: var(--copper);
-  transform: translateY(-1px);
-}
-
-.kg-btn-ghost {
-  background: transparent;
-  color: var(--ink2);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.kg-btn-ghost:hover { color: var(--copper); }
-
-/* ── FOOTER ── */
-.kg-footer {
-  background: var(--ink);
-  padding: var(--space-lg) var(--page-pad);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-sm);
-  text-align: center;
-}
-
-.kg-footer-logo {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  font-weight: 700;
-  color: white;
-  text-decoration: none;
-}
-
-.kg-footer-logo em { color: var(--copper); font-style: italic; }
-
-.kg-footer-links {
-  display: flex;
-  gap: 24px;
-  list-style: none;
-}
-
-.kg-footer-links a {
-  font-size: 12px;
-  color: rgba(255,255,255,.45);
-  letter-spacing: .3px;
-  transition: color .2s;
-}
-
-.kg-footer-links a:hover { color: var(--copper); }
-
-.kg-footer-copy {
-  font-size: 11px;
-  color: rgba(255,255,255,.25);
-  letter-spacing: .5px;
-}
-
-/* ── UTILITY ── */
-.kg-tag {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 20px;
-}
-
-.kg-tag-copper { background: rgba(200,120,48,.12); color: var(--copper); }
-.kg-tag-green  { background: rgba(58,122,88,.12);  color: var(--green);  }
-.kg-tag-blue   { background: rgba(74,104,152,.12); color: var(--blue);   }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  :root {
-    --page-pad: 6vw;
-  }
-
-  .kg-nav-links { gap: 16px; }
-
-  h1 { font-size: clamp(36px, 8vw, 56px); }
-  h2 { font-size: clamp(24px, 5vw, 36px); }
-}
-
-@media (max-width: 480px) {
-  :root { --page-pad: 5vw; }
-  .kg-nav-links .hide-mobile { display: none; }
-}
-
-/* === END BRAND === */
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KrishGrows — Projects</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-.hero{padding:80px var(--page-pad) 60px;max-width:700px}
-.hero p{font-size:15px;font-weight:300;line-height:1.75;color:var(--ink2);margin-top:16px;max-width:500px}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;padding:0 var(--page-pad) 80px}
-.project-card{background:white;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s}
-.project-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(26,18,8,.12)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#1a1208;--ink2:#4a3a28;
+  --cream:#faf8f4;--warm:#f2ede4;
+  --copper:#c87830;--green:#3a7a58;--blue:#4a6898;
+  --border:rgba(74,58,40,.1);
+  --shadow:0 4px 24px rgba(26,18,8,.08);
+  --font-h:'Cormorant Garamond',serif;
+  --font-b:'Outfit',sans-serif;
+  --pad:20px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:3px}
+.nav-logo em{color:var(--copper);font-style:italic}
+.nav-links{display:flex;gap:4px}
+.nav-links a{font-family:var(--font-b);font-size:13px;font-weight:500;color:var(--ink2);text-decoration:none;padding:8px 12px;border-radius:8px;transition:all .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--copper);background:rgba(200,120,48,.08)}
+.hero{padding:48px var(--pad) 40px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--copper)}
+.hero h1{font-family:var(--font-h);font-size:52px;font-weight:700;line-height:.96;letter-spacing:-1px;color:var(--ink);margin-bottom:16px}
+.hero h1 em{color:var(--copper);font-style:italic}
+.hero p{font-size:16px;font-weight:300;line-height:1.7;color:var(--ink2)}
+.projects-list{display:flex;flex-direction:column;gap:16px;padding:0 var(--pad) 48px}
+.project-card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);text-decoration:none;color:inherit;display:block;-webkit-tap-highlight-color:transparent;transition:transform .2s}
+.project-card:active{transform:scale(.99)}
 .project-card.private{opacity:.65}
-.project-header{height:180px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative}
-.project-badge{position:absolute;top:14px;right:14px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:20px}
-.badge-public{background:rgba(58,122,88,.15);color:var(--green);border:1px solid rgba(58,122,88,.3)}
-.badge-private{background:rgba(74,104,152,.15);color:var(--blue);border:1px solid rgba(74,104,152,.3)}
+.project-header{height:160px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative}
+.project-badge{position:absolute;top:14px;right:14px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:20px}
+.badge-public{background:rgba(58,122,88,.2);color:#5aaa78;border:1px solid rgba(58,122,88,.3)}
+.badge-private{background:rgba(74,104,152,.2);color:#7a9ac8;border:1px solid rgba(74,104,152,.3)}
 .project-body{padding:22px}
-.project-title{font-family:var(--font-heading);font-size:26px;font-weight:700;color:var(--ink);margin-bottom:8px}
-.project-desc{font-size:13px;color:var(--ink2);line-height:1.65;font-weight:300;margin-bottom:16px}
-.project-tags{display:flex;flex-wrap:wrap;gap:6px}
-.project-tag{font-size:11px;font-weight:500;color:var(--ink2);background:var(--warm);padding:4px 10px;border-radius:20px}
-.project-footer{padding:16px 22px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.project-status{font-size:11px;color:var(--ink2);font-weight:300}
-.project-link{font-size:12px;font-weight:600;color:var(--copper);display:flex;align-items:center;gap:4px;text-decoration:none;transition:gap .2s}
-.project-card:hover .project-link{gap:8px}
+.project-title{font-family:var(--font-h);font-size:28px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.project-desc{font-size:14px;color:var(--ink2);line-height:1.65;font-weight:300;margin-bottom:16px}
+.project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.project-tag{font-size:12px;font-weight:500;color:var(--ink2);background:var(--warm);padding:5px 12px;border-radius:20px}
+.project-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border)}
+.project-status{font-size:12px;color:var(--ink2);font-weight:300}
+.project-link{font-size:13px;font-weight:600;color:var(--copper)}
+.footer{background:var(--ink);padding:40px var(--pad);text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+.footer-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:white;text-decoration:none}
+.footer-logo em{color:var(--copper);font-style:italic}
+.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none}
+.footer-links a:hover{color:var(--copper)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.5px}
+@media(min-width:768px){
+  :root{--pad:5vw}
+  .hero{padding:80px var(--pad) 60px;max-width:680px}
+  .hero h1{font-size:80px}
+  .projects-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));padding:0 var(--pad) 60px}
+}
 </style>
 </head>
 <body>
-<nav class="kg-nav">
-  <a href="https://krishgrows.com" class="kg-logo">🌿 Krish<em>Grows</em></a>
-  <ul class="kg-nav-links">
-    <li><a href="https://travel.krishgrows.com">Travel</a></li>
-    <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
-    <li><a href="index.html" class="active">Projects</a></li>
-  </ul>
+<nav class="nav">
+  <a href="https://krishgrows.com" class="nav-logo">🌿 Krish<em>Grows</em></a>
+  <div class="nav-links">
+    <a href="https://travel.krishgrows.com">Travel</a>
+    <a href="https://allotment.krishgrows.com">Allotment</a>
+    <a href="https://projects.krishgrows.com" class="active">Projects</a>
+  </div>
 </nav>
 
-<div class="hero">
-  <div class="kg-eyebrow">Projects</div>
+<section class="hero">
+  <div class="eyebrow">Projects</div>
   <h1>Builds &amp; <em>experiments</em></h1>
   <p>A few things being made alongside the growing and travelling. Some public, some not.</p>
-</div>
+</section>
 
-<div class="projects-grid">
-  <div class="project-card">
+<div class="projects-list">
+  <a href="rover/index.html" class="project-card">
     <div class="project-header" style="background:linear-gradient(135deg,#1a2a3a,#2a3a50)">
       🤖
       <div class="project-badge badge-public">Public</div>
@@ -353,12 +92,12 @@ a { color: inherit; text-decoration: none; }
         <span class="project-tag">🧠 Autonomous</span>
         <span class="project-tag">📡 Navigation</span>
       </div>
+      <div class="project-footer">
+        <span class="project-status">🟡 In progress</span>
+        <span class="project-link">View project →</span>
+      </div>
     </div>
-    <div class="project-footer">
-      <span class="project-status">🟡 In progress</span>
-      <a href="rover/index.html" class="project-link">View project →</a>
-    </div>
-  </div>
+  </a>
 
   <div class="project-card private">
     <div class="project-header" style="background:linear-gradient(135deg,#1a1a2a,#2a2a40)">
@@ -371,21 +110,21 @@ a { color: inherit; text-decoration: none; }
       <div class="project-tags">
         <span class="project-tag">🔒 Private</span>
       </div>
-    </div>
-    <div class="project-footer">
-      <span class="project-status">🔒 Access restricted</span>
+      <div class="project-footer">
+        <span class="project-status">🔒 Access restricted</span>
+      </div>
     </div>
   </div>
 </div>
 
-<footer class="kg-footer">
-  <a href="https://krishgrows.com" class="kg-footer-logo">🌿 Krish<em>Grows</em></a>
-  <ul class="kg-footer-links">
+<footer class="footer">
+  <a href="https://krishgrows.com" class="footer-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="footer-links">
+    <li><a href="https://krishgrows.com">Home</a></li>
     <li><a href="https://travel.krishgrows.com">Travel</a></li>
     <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
-    <li><a href="index.html">Projects</a></li>
   </ul>
-  <p class="kg-footer-copy">projects.krishgrows.com — North Yorkshire</p>
+  <p class="footer-copy">projects.krishgrows.com — North Yorkshire</p>
 </footer>
 </body>
 </html>

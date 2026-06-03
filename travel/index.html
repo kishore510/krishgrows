@@ -1,601 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-/* === BRAND SYSTEM === */
-/* ============================================================
-   KrishGrows — Shared Brand System
-   krishgrows.com | travel | allotment | projects
-   All subdomains import this file.
-   ============================================================ */
-
-/* ── GOOGLE FONTS ── */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
-
-/* ── DESIGN TOKENS ── */
-:root {
-  /* Colours */
-  --ink:        #1a1208;
-  --ink2:       #4a3a28;
-  --cream:      #faf8f4;
-  --warm:       #f2ede4;
-  --border:     rgba(74,58,40,.1);
-  --shadow:     0 4px 24px rgba(26,18,8,.08);
-
-  /* Brand accents */
-  --copper:     #c87830;   /* primary accent */
-  --green:      #3a7a58;   /* secondary accent */
-  --blue:       #4a6898;   /* tertiary accent */
-
-  /* Aliases (used in components) */
-  --accent:     var(--copper);
-  --accent2:    var(--green);
-  --accent3:    var(--blue);
-
-  /* Typography */
-  --font-heading: 'Cormorant Garamond', serif;
-  --font-body:    'Outfit', sans-serif;
-
-  /* Spacing scale */
-  --space-xs:   8px;
-  --space-sm:   16px;
-  --space-md:   24px;
-  --space-lg:   48px;
-  --space-xl:   72px;
-
-  /* Layout */
-  --page-pad:   5vw;
-  --radius-sm:  4px;
-  --radius-md:  12px;
-  --radius-lg:  16px;
-}
-
-/* ── RESET ── */
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* ── BASE ── */
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font-body);
-  background: var(--cream);
-  color: var(--ink);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ── TYPOGRAPHY ── */
-h1, h2, h3, h4 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  letter-spacing: -.5px;
-  line-height: 1.1;
-  color: var(--ink);
-}
-
-h1 { font-size: clamp(48px, 6vw, 86px); letter-spacing: -1px; line-height: .98; }
-h2 { font-size: clamp(30px, 4vw, 46px); }
-h3 { font-size: clamp(20px, 2.5vw, 28px); }
-
-h1 em, h2 em, h3 em {
-  color: var(--copper);
-  font-style: italic;
-}
-
-p {
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--ink2);
-}
-
-a { color: inherit; text-decoration: none; }
-
-/* ── NAV ── */
-.kg-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(250,248,244,.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 var(--page-pad);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 62px;
-}
-
-.kg-logo {
-  font-family: var(--font-heading);
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -.3px;
-  color: var(--ink);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.kg-logo em { color: var(--copper); font-style: italic; }
-
-.kg-nav-links {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  list-style: none;
-}
-
-.kg-nav-links a {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink2);
-  letter-spacing: .3px;
-  transition: color .2s;
-}
-
-.kg-nav-links a:hover { color: var(--copper); }
-
-.kg-nav-links a.active { color: var(--copper); }
-
-.kg-nav-badge {
-  background: var(--copper);
-  color: white;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 20px;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-}
-
-/* ── SECTION STRUCTURE ── */
-.kg-section { padding: var(--space-xl) var(--page-pad); }
-
-.kg-eyebrow {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--copper);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.kg-eyebrow::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-  background: var(--copper);
-}
-
-.kg-section-sub {
-  font-size: 14px;
-  color: var(--ink2);
-  margin-top: 10px;
-  font-weight: 300;
-  line-height: 1.6;
-  max-width: 520px;
-}
-
-/* ── BUTTONS ── */
-.kg-btn {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  padding: 13px 28px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  letter-spacing: .4px;
-  transition: background .2s, transform .1s;
-  display: inline-block;
-  cursor: pointer;
-  border: none;
-}
-
-.kg-btn-primary {
-  background: var(--ink);
-  color: white;
-}
-
-.kg-btn-primary:hover {
-  background: var(--copper);
-  transform: translateY(-1px);
-}
-
-.kg-btn-ghost {
-  background: transparent;
-  color: var(--ink2);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.kg-btn-ghost:hover { color: var(--copper); }
-
-/* ── FOOTER ── */
-.kg-footer {
-  background: var(--ink);
-  padding: var(--space-lg) var(--page-pad);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-sm);
-  text-align: center;
-}
-
-.kg-footer-logo {
-  font-family: var(--font-heading);
-  font-size: 20px;
-  font-weight: 700;
-  color: white;
-  text-decoration: none;
-}
-
-.kg-footer-logo em { color: var(--copper); font-style: italic; }
-
-.kg-footer-links {
-  display: flex;
-  gap: 24px;
-  list-style: none;
-}
-
-.kg-footer-links a {
-  font-size: 12px;
-  color: rgba(255,255,255,.45);
-  letter-spacing: .3px;
-  transition: color .2s;
-}
-
-.kg-footer-links a:hover { color: var(--copper); }
-
-.kg-footer-copy {
-  font-size: 11px;
-  color: rgba(255,255,255,.25);
-  letter-spacing: .5px;
-}
-
-/* ── UTILITY ── */
-.kg-tag {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 20px;
-}
-
-.kg-tag-copper { background: rgba(200,120,48,.12); color: var(--copper); }
-.kg-tag-green  { background: rgba(58,122,88,.12);  color: var(--green);  }
-.kg-tag-blue   { background: rgba(74,104,152,.12); color: var(--blue);   }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  :root {
-    --page-pad: 6vw;
-  }
-
-  .kg-nav-links { gap: 16px; }
-
-  h1 { font-size: clamp(36px, 8vw, 56px); }
-  h2 { font-size: clamp(24px, 5vw, 36px); }
-}
-
-@media (max-width: 480px) {
-  :root { --page-pad: 5vw; }
-  .kg-nav-links .hide-mobile { display: none; }
-}
-
-/* === END BRAND === */
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KrishGrows — Travel</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-
-/* ── HERO ── */
-.hero {
-  min-height: 88vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  padding: 60px var(--page-pad);
-  position: relative;
-  overflow: hidden;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#1a1208;--ink2:#4a3a28;
+  --cream:#faf8f4;--warm:#f2ede4;
+  --copper:#c87830;--green:#3a7a58;
+  --border:rgba(74,58,40,.1);
+  --shadow:0 4px 24px rgba(26,18,8,.08);
+  --font-h:'Cormorant Garamond',serif;
+  --font-b:'Outfit',sans-serif;
+  --pad:20px;
 }
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 70% 60% at 80% 50%, rgba(200,120,48,.06) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(58,122,88,.05) 0%, transparent 60%);
-  pointer-events: none;
-}
-.hero-text { position: relative; z-index: 2; }
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
-  color: var(--copper); margin-bottom: 20px;
-}
-.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--copper); }
-.hero-desc { font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--ink2); max-width: 420px; margin-bottom: 36px; }
-.hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-
-.hero-mosaic {
-  position: relative; z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 200px 160px;
-  gap: 10px;
-  padding-left: 40px;
-}
-.mosaic-cell { border-radius: var(--radius-md); overflow: hidden; position: relative; background: var(--warm); }
-.mosaic-cell:nth-child(1) { grid-row: 1/3; background: linear-gradient(135deg,#2d4a30,#1a3020); }
-.mosaic-cell:nth-child(2) { background: linear-gradient(135deg,#3a5a7a,#1a3050); }
-.mosaic-cell:nth-child(3) { background: linear-gradient(135deg,#5a4030,#3a2018); }
-.mosaic-label {
-  position: absolute; bottom: 12px; left: 14px; right: 14px;
-  color: white; font-size: 11px; font-weight: 500;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.mosaic-tag {
-  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.2);
-  border-radius: 20px; padding: 3px 10px; font-size: 10px; font-weight: 600;
-  color: white; backdrop-filter: blur(4px);
-}
-.mosaic-icon { font-size: 32px; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-60%); opacity: .4; }
-
-/* ── STATS BAR ── */
-.stats-bar {
-  background: var(--ink);
-  padding: 22px var(--page-pad);
-  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
-}
-.stat { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 0 36px; border-right: 1px solid rgba(255,255,255,.1); }
-.stat:last-child { border-right: none; }
-.stat-n { font-family: var(--font-heading); font-size: 32px; font-weight: 600; color: white; line-height: 1; }
-.stat-n span { color: var(--copper); font-style: italic; }
-.stat-l { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.4); }
-
-/* ── TRIPS ── */
-.trips-section { padding: var(--space-xl) var(--page-pad); }
-.section-header { margin-bottom: 48px; }
-.trips-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(320px,1fr)); gap: 28px; }
-
-.trip-card {
-  background: white; border-radius: var(--radius-lg); overflow: hidden;
-  box-shadow: var(--shadow); display: flex; flex-direction: column;
-  text-decoration: none; color: inherit;
-  transition: transform .25s, box-shadow .25s;
-}
-.trip-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(26,18,8,.13); }
-.trip-card.featured { grid-column: 1/-1; }
-.trip-card.featured .tc-image { height: 380px; }
-.trip-card.featured .tc-body { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 28px; }
-.trip-card.featured .tc-title { font-size: clamp(22px,3vw,36px); }
-
-.tc-image { position: relative; height: 220px; overflow: hidden; background: var(--warm); flex-shrink: 0; }
-.tc-image-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 60px; transition: transform .4s; }
-.trip-card:hover .tc-image-inner { transform: scale(1.05); }
-.tc-status {
-  position: absolute; top: 14px; left: 14px;
-  font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-  padding: 5px 12px; border-radius: 20px;
-}
-.status-plan { background: rgba(200,120,48,.15); color: var(--copper); border: 1px solid rgba(200,120,48,.3); }
-.status-report { background: rgba(58,122,88,.15); color: var(--green); border: 1px solid rgba(58,122,88,.3); }
-.tc-country {
-  position: absolute; top: 14px; right: 14px;
-  font-size: 11px; color: white;
-  background: rgba(0,0,0,.35); backdrop-filter: blur(4px);
-  padding: 4px 10px; border-radius: 20px;
-}
-.tc-body { padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-.tc-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
-.tc-tag { font-size: 10px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; background: rgba(200,120,48,.1); color: var(--copper); }
-.tc-date { font-size: 12px; color: var(--ink2); font-weight: 300; }
-.tc-title { font-family: var(--font-heading); font-size: clamp(18px,2.5vw,26px); font-weight: 700; line-height: 1.1; color: var(--ink); margin-bottom: 10px; }
-.tc-title em { color: var(--copper); font-style: italic; }
-.tc-desc { font-size: 13px; color: var(--ink2); line-height: 1.65; font-weight: 300; flex: 1; }
-.tc-footer { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 16px; }
-.tc-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-.tc-pill { font-size: 11px; font-weight: 500; color: var(--ink2); background: var(--warm); padding: 4px 10px; border-radius: 20px; }
-.tc-arrow { width: 36px; height: 36px; border-radius: 50%; background: var(--ink); color: white; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-left: 12px; transition: background .2s; }
-.trip-card:hover .tc-arrow { background: var(--copper); }
-
-.more-note { margin-top: 32px; font-size: 13px; color: var(--ink2); font-weight: 300; font-style: italic; opacity: .7; }
-
-/* ── HOW IT WORKS ── */
-.how-wrap { background: var(--warm); padding: var(--space-xl) var(--page-pad); }
-.how-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 32px; margin-top: 40px; }
-.how-step { position: relative; padding-top: 16px; }
-.how-step::before { content: attr(data-n); font-family: var(--font-heading); font-size: 72px; font-weight: 700; color: rgba(200,120,48,.1); line-height: 1; position: absolute; top: -10px; left: -8px; }
-.how-icon { font-size: 28px; margin-bottom: 12px; position: relative; z-index: 1; }
-.how-title { font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 8px; position: relative; z-index: 1; }
-.how-desc { font-size: 13px; color: var(--ink2); line-height: 1.7; font-weight: 300; position: relative; z-index: 1; }
-
-/* ── ABOUT ── */
-.about-strip { padding: var(--space-xl) var(--page-pad); display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-.about-body { display: flex; flex-direction: column; gap: 14px; margin: 20px 0; }
-.about-body p { font-size: 14px; }
-.about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-.about-tag { font-size: 12px; font-weight: 500; color: var(--ink2); background: var(--warm); border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px; }
-.about-visual { display: flex; flex-direction: column; gap: 10px; }
-.map-dot { font-size: 13px; color: var(--ink2); font-weight: 400; padding: 10px 16px; background: var(--warm); border-radius: 8px; border: 1px solid var(--border); }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  .hero { grid-template-columns: 1fr; min-height: auto; padding: 40px var(--page-pad); }
-  .hero-mosaic { display: none; }
-  .trip-card.featured .tc-body { grid-template-columns: 1fr; }
-  .about-strip { grid-template-columns: 1fr; gap: 32px; }
-  .stat { padding: 0 20px; }
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:3px}
+.nav-logo em{color:var(--copper);font-style:italic}
+.nav-links{display:flex;gap:4px}
+.nav-links a{font-family:var(--font-b);font-size:13px;font-weight:500;color:var(--ink2);text-decoration:none;padding:8px 12px;border-radius:8px;transition:all .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--copper);background:rgba(200,120,48,.08)}
+.hero{padding:48px var(--pad) 36px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--copper)}
+.hero h1{font-family:var(--font-h);font-size:52px;font-weight:700;line-height:.96;letter-spacing:-1px;color:var(--ink);margin-bottom:20px}
+.hero h1 em{color:var(--copper);font-style:italic}
+.hero-desc{font-size:16px;font-weight:300;line-height:1.7;color:var(--ink2);margin-bottom:32px}
+.hero-actions{display:flex;flex-direction:column;gap:12px}
+.btn-primary{display:flex;align-items:center;justify-content:center;background:var(--ink);color:white;font-family:var(--font-b);font-size:15px;font-weight:600;padding:16px 24px;border-radius:12px;text-decoration:none;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary:active{background:var(--copper)}
+.btn-yt{display:flex;align-items:center;justify-content:center;gap:10px;background:#ff0000;color:white;font-family:var(--font-b);font-size:15px;font-weight:600;padding:16px 24px;border-radius:12px;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.btn-yt svg{width:20px;height:20px;fill:white;flex-shrink:0}
+.stats-bar{background:var(--ink);padding:20px var(--pad);display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0;border-right:1px solid rgba(255,255,255,.1)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--font-h);font-size:26px;font-weight:600;color:white;line-height:1}
+.stat-n em{color:var(--copper);font-style:italic}
+.stat-l{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
+.section{padding:40px var(--pad)}
+.section-head{margin-bottom:24px}
+.section-head h2{font-family:var(--font-h);font-size:36px;font-weight:700;color:var(--ink);line-height:1.05;margin-top:8px}
+.section-head h2 em{color:var(--copper);font-style:italic}
+.section-head p{font-size:14px;font-weight:300;color:var(--ink2);line-height:1.6;margin-top:8px}
+.trip-card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);text-decoration:none;color:inherit;display:block;-webkit-tap-highlight-color:transparent}
+.trip-card:active{transform:scale(.99)}
+.trip-img{height:220px;background:linear-gradient(135deg,#1a3a20,#2a5030,#3a6040);display:flex;align-items:center;justify-content:center;font-size:72px;position:relative}
+.trip-badge{position:absolute;top:14px;left:14px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;border-radius:20px;background:rgba(200,120,48,.2);color:#f4b06a;border:1px solid rgba(200,120,48,.4)}
+.trip-country{position:absolute;top:14px;right:14px;font-size:11px;color:white;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);padding:5px 12px;border-radius:20px}
+.trip-body{padding:22px}
+.trip-meta{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.trip-tag{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:rgba(200,120,48,.1);color:var(--copper)}
+.trip-date{font-size:12px;color:var(--ink2);font-weight:300}
+.trip-title{font-family:var(--font-h);font-size:28px;font-weight:700;line-height:1.1;color:var(--ink);margin-bottom:10px}
+.trip-title em{color:var(--copper);font-style:italic}
+.trip-desc{font-size:14px;color:var(--ink2);line-height:1.65;font-weight:300;margin-bottom:16px}
+.trip-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.trip-pill{font-size:12px;font-weight:500;color:var(--ink2);background:var(--warm);padding:6px 12px;border-radius:20px}
+.trip-cta{display:flex;align-items:center;justify-content:center;background:var(--ink);color:white;font-family:var(--font-b);font-size:14px;font-weight:600;padding:14px;border-radius:12px;text-decoration:none;transition:background .2s}
+.more-note{font-size:14px;color:var(--ink2);font-weight:300;font-style:italic;opacity:.6;text-align:center;padding:20px 0 0}
+.how-section{background:var(--warm);padding:40px var(--pad)}
+.how-steps{display:flex;flex-direction:column;gap:24px;margin-top:24px}
+.how-step{background:white;border-radius:16px;padding:22px;display:flex;gap:16px;align-items:flex-start}
+.how-num{font-family:var(--font-h);font-size:48px;font-weight:700;color:rgba(200,120,48,.15);line-height:1;flex-shrink:0;width:44px}
+.how-icon{font-size:28px;margin-bottom:8px}
+.how-title{font-family:var(--font-h);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.how-desc{font-size:13px;color:var(--ink2);line-height:1.65;font-weight:300}
+.footer{background:var(--ink);padding:40px var(--pad);text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+.footer-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:white;text-decoration:none}
+.footer-logo em{color:var(--copper);font-style:italic}
+.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none}
+.footer-links a:hover{color:var(--copper)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.5px}
+.trips-empty{font-size:14px;color:var(--ink2);font-style:italic;opacity:.7;text-align:center;padding:20px 0}
+@media(min-width:768px){
+  :root{--pad:5vw}
+  .hero{padding:80px var(--pad) 60px;max-width:680px}
+  .hero h1{font-size:80px}
+  .hero-actions{flex-direction:row}
+  .btn-primary,.btn-yt{width:auto}
+  .trips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+  .trip-img{height:260px}
 }
 </style>
 </head>
 <body>
-
-<nav class="kg-nav">
-  <a href="../hub/index.html" class="kg-logo">🌿 Krish<em>Grows</em></a>
-  <ul class="kg-nav-links">
-    <li><a href="index.html" class="active">Travel</a></li>
-    <li><a href="../allotment/index.html">Allotment</a></li>
-    <li><a href="../projects/index.html">Projects</a></li>
-  </ul>
+<nav class="nav">
+  <a href="https://krishgrows.com" class="nav-logo">🌿 Krish<em>Grows</em></a>
+  <div class="nav-links">
+    <a href="https://travel.krishgrows.com" class="active">Travel</a>
+    <a href="https://allotment.krishgrows.com">Allotment</a>
+    <a href="https://projects.krishgrows.com">Projects</a>
+  </div>
 </nav>
 
 <section class="hero">
-  <div class="hero-text">
-    <div class="hero-eyebrow">Travel from Yorkshire</div>
-    <h1>Real trips,<br><em>honest notes</em></h1>
-    <p class="hero-desc">Plans before we go, full reports when we're back — with real photos and video. No itinerary fluff, just what you'd actually want to know.</p>
-    <div class="hero-actions">
-      <a href="#trips" class="kg-btn kg-btn-primary">See Trips</a>
-      <a href="#how" class="kg-btn kg-btn-ghost">How this works →</a>
-    </div>
-  </div>
-  <div class="hero-mosaic">
-    <div class="mosaic-cell">
-      <span class="mosaic-icon">🏴󠁧󠁢󠁷󠁬󠁳󠁿</span>
-      <div class="mosaic-label"><span>North Wales</span><span class="mosaic-tag">May 2026</span></div>
-    </div>
-    <div class="mosaic-cell">
-      <span class="mosaic-icon">🚗</span>
-      <div class="mosaic-label"><span>Road Trips</span><span class="mosaic-tag">UK</span></div>
-    </div>
-    <div class="mosaic-cell">
-      <span class="mosaic-icon">♿</span>
-      <div class="mosaic-label"><span>Accessible</span><span class="mosaic-tag">Always</span></div>
-    </div>
+  <div class="eyebrow">Travel from Yorkshire</div>
+  <h1>Real trips,<br><em>honest notes</em></h1>
+  <p class="hero-desc">Plans before we go, full reports when we're back — with real photos and video. No itinerary fluff, just what you'd actually want to know.</p>
+  <div class="hero-actions">
+    <a href="#trips" class="btn-primary">See Trips</a>
+    <a href="https://youtube.com/@krishgrows" target="_blank" class="btn-yt">
+      <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+      Watch on YouTube
+    </a>
   </div>
 </section>
 
-<div class="stats-bar" id="statsBar"></div>
+<div class="stats-bar">
+  <div class="stat"><div class="stat-n">1<em>✓</em></div><div class="stat-l">Trip Report</div></div>
+  <div class="stat"><div class="stat-n">3</div><div class="stat-l">Waterfalls</div></div>
+  <div class="stat"><div class="stat-n">512</div><div class="stat-l">Miles</div></div>
+  <div class="stat"><div class="stat-n">All</div><div class="stat-l">Accessible</div></div>
+</div>
 
-<section class="trips-section" id="trips">
-  <div class="section-header">
-    <div class="kg-eyebrow">Destinations</div>
+<section class="section" id="trips">
+  <div class="section-head">
+    <div class="eyebrow">Destinations</div>
     <h2>Trips &amp; <em>Travel Plans</em></h2>
-    <p class="kg-section-sub">Plans before we go, full reports when we're back — with real photos and video.</p>
+    <p>Plans before we go, full reports when we're back.</p>
   </div>
-  <div class="trips-grid" id="tripsGrid"></div>
+  <div class="trips-grid" id="tripsGrid">
+    <div class="trips-empty">Loading trips...</div>
+  </div>
   <p class="more-note" id="moreNote"></p>
 </section>
 
-<section class="how-wrap" id="how">
-  <div class="section-header">
-    <div class="kg-eyebrow">How This Works</div>
+<section class="how-section">
+  <div class="section-head">
+    <div class="eyebrow">How This Works</div>
     <h2>Plan, Go, <em>Report</em></h2>
-    <p class="kg-section-sub">Every trip starts as a detailed plan. After we go, it becomes a full report with real photos and video.</p>
   </div>
-  <div class="how-grid">
-    <div class="how-step" data-n="01">
-      <div class="how-icon">📋</div>
-      <div class="how-title">The Trip Plan</div>
-      <p class="how-desc">Before we leave, a full plan goes up: driving routes, distances, accessibility notes, booking tips, costs. Everything you'd want to know before your own trip.</p>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="how-num">01</div>
+      <div>
+        <div class="how-icon">📋</div>
+        <div class="how-title">The Trip Plan</div>
+        <p class="how-desc">Before we leave, a full plan goes up — routes, distances, accessibility notes, booking tips, costs.</p>
+      </div>
     </div>
-    <div class="how-step" data-n="02">
-      <div class="how-icon">🚗</div>
-      <div class="how-title">We Go & Document</div>
-      <p class="how-desc">Photos, notes, video along the way. What matched the plan, what didn't, what we'd do differently. Honest, not promotional.</p>
+    <div class="how-step">
+      <div class="how-num">02</div>
+      <div>
+        <div class="how-icon">🚗</div>
+        <div class="how-title">We Go &amp; Document</div>
+        <p class="how-desc">Photos, notes, video along the way. What matched the plan, what didn't, what we'd do differently.</p>
+      </div>
     </div>
-    <div class="how-step" data-n="03">
-      <div class="how-icon">📸</div>
-      <div class="how-title">The Trip Report</div>
-      <p class="how-desc">The plan gets upgraded with real photos and YouTube clips. Status changes from Plan to Report. You get the full story.</p>
+    <div class="how-step">
+      <div class="how-num">03</div>
+      <div>
+        <div class="how-icon">📸</div>
+        <div class="how-title">The Trip Report</div>
+        <p class="how-desc">The plan gets upgraded with real photos and YouTube clips. Status changes from Plan to Report.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="about-strip" id="about">
-  <div>
-    <div class="kg-eyebrow">The Writer</div>
-    <h2>About <em>KrishGrows</em></h2>
-    <div class="about-body">
-      <p>A personal travel blog documenting trips from Yorkshire — mostly UK destinations, always driving, always looking for the waterfalls and castles that most people walk straight past.</p>
-      <p>Based in Church Fenton, North Yorkshire. Trips designed to be manageable for all ages and abilities. Real notes, real costs, real opinions.</p>
-    </div>
-    <div class="about-tags">
-      <span class="about-tag">📍 Church Fenton, Yorkshire</span>
-      <span class="about-tag">🚗 Road Trips</span>
-      <span class="about-tag">♿ Accessible Travel</span>
-    </div>
-  </div>
-  <div class="about-visual" id="destinationsList"></div>
-</section>
-
-<footer class="kg-footer">
-  <a href="../hub/index.html" class="kg-footer-logo">🌿 Krish<em>Grows</em></a>
-  <ul class="kg-footer-links">
-    <li><a href="index.html">Travel</a></li>
-    <li><a href="../allotment/index.html">Allotment</a></li>
-    <li><a href="../projects/index.html">Projects</a></li>
+<footer class="footer">
+  <a href="https://krishgrows.com" class="footer-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="footer-links">
+    <li><a href="https://krishgrows.com">Home</a></li>
+    <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
+    <li><a href="https://projects.krishgrows.com">Projects</a></li>
   </ul>
-  <p class="kg-footer-copy">krishgrows.com — Personal travel writing from Church Fenton, Yorkshire</p>
+  <p class="footer-copy">travel.krishgrows.com — Road trips from North Yorkshire</p>
 </footer>
 
 <script>
 fetch('content/trips.json')
   .then(r => r.json())
   .then(data => {
-    renderStats(data.stats);
-    renderTrips(data.trips);
+    const grid = document.getElementById('tripsGrid');
+    grid.innerHTML = data.trips.map(t => `
+      <a href="${t.url}" class="trip-card">
+        <div class="trip-img" style="background:${t.gradient}">
+          <span style="font-size:72px">${t.emoji}</span>
+          <div class="trip-badge">${t.status === 'plan' ? '📋 Trip Plan' : '📸 Report'}</div>
+          <div class="trip-country">📍 ${t.country}</div>
+        </div>
+        <div class="trip-body">
+          <div class="trip-meta">
+            <span class="trip-tag">${t.region}</span>
+            <span class="trip-date">${t.date} · ${t.duration}</span>
+          </div>
+          <div class="trip-title">${t.title} <em>${t.titleEm}</em></div>
+          <p class="trip-desc">${t.description}</p>
+          <div class="trip-pills">${t.pills.map(p => `<span class="trip-pill">${p}</span>`).join('')}</div>
+          <div class="trip-cta">Read the trip plan →</div>
+        </div>
+      </a>`).join('');
     document.getElementById('moreNote').textContent = data.moreNote;
-    renderDestinations(data.trips);
   })
   .catch(() => {
-    document.getElementById('tripsGrid').innerHTML =
-      '<p style="color:var(--ink2);font-size:13px;font-style:italic">Serve via Cloudflare or a local server to load trips.</p>';
+    document.getElementById('tripsGrid').innerHTML = '<p class="trips-empty">Could not load trips.</p>';
   });
-
-function renderStats(stats) {
-  document.getElementById('statsBar').innerHTML = stats.map(s => `
-    <div class="stat">
-      <span class="stat-n">${s.value}<span>${s.suffix}</span></span>
-      <span class="stat-l">${s.label}</span>
-    </div>`).join('');
-}
-
-function renderTrips(trips) {
-  document.getElementById('tripsGrid').innerHTML = trips.map(t => `
-    <a href="${t.url}" class="trip-card${t.featured ? ' featured' : ''}">
-      <div class="tc-image" style="background:${t.gradient}">
-        <div class="tc-image-inner">${t.emoji}</div>
-        <div class="tc-status status-${t.status}">${t.status === 'plan' ? '📋' : '📸'} ${t.statusLabel}</div>
-        <div class="tc-country">📍 ${t.country}</div>
-      </div>
-      <div class="tc-body">
-        <div>
-          <div class="tc-meta">
-            <span class="tc-tag">${t.region}</span>
-            <span class="tc-date">${t.date} · ${t.duration}</span>
-          </div>
-          <div class="tc-title">${t.title} <em>${t.titleEm}</em></div>
-          <p class="tc-desc">${t.description}</p>
-        </div>
-        <div class="tc-footer">
-          <div class="tc-pills">${t.pills.map(p => `<span class="tc-pill">${p}</span>`).join('')}</div>
-          <div class="tc-arrow">→</div>
-        </div>
-      </div>
-    </a>`).join('');
-}
-
-function renderDestinations(trips) {
-  document.getElementById('destinationsList').innerHTML = trips.map(t =>
-    `<div class="map-dot">${t.emoji} ${t.region} — ${t.date} ${t.status === 'report' ? '✓' : '→'}</div>`
-  ).join('');
-}
 </script>
 </body>
 </html>
