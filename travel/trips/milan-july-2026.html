@@ -85,11 +85,31 @@ h2 em{color:var(--copper);font-style:italic}
 }
 .day-header.d1{border-color:#5a9448}
 .day-header.d2{border-color:#3d88b0}
+.day-header.d3{border-color:#7b5ea7}
+.day-header.d4{border-color:#c87830}
 .day-num{font-family:var(--font-h);font-size:52px;font-weight:700;color:rgba(200,120,48,.15);line-height:1;flex-shrink:0}
 .day-num.d1{color:rgba(90,148,72,.2)}
 .day-num.d2{color:rgba(61,136,176,.2)}
+.day-num.d3{color:rgba(123,94,167,.2)}
+.day-num.d4{color:rgba(200,120,48,.2)}
 .day-title{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:4px}
 .day-meta{font-size:12px;color:var(--ink2);font-weight:300}
+
+/* DAY NAV */
+.day-nav{display:flex;gap:8px;padding:14px var(--pad);background:var(--warm);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.day-nav a{flex-shrink:0;font-size:12px;font-weight:600;color:var(--ink2);background:white;padding:8px 14px;border-radius:20px;text-decoration:none;box-shadow:var(--shadow);white-space:nowrap}
+
+/* TRANSIT LEGS */
+.leg-list{display:flex;flex-direction:column;gap:8px;margin:0 var(--pad) 20px}
+.leg-row{background:white;border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;box-shadow:var(--shadow)}
+.leg-from,.leg-to{font-size:12px;font-weight:500;color:var(--ink)}
+.leg-to{text-align:right}
+.leg-mid{display:flex;flex-direction:column;align-items:center;gap:2px}
+.leg-mode{font-family:var(--font-h);font-size:14px;font-weight:700;color:var(--copper)}
+.leg-time{font-size:10px;color:var(--ink2);font-weight:300}
+.leg-price{font-size:10px;color:var(--ink2);text-align:center}
+.day-total{margin:0 var(--pad) 20px;padding:12px 16px;background:var(--ink);border-radius:12px;color:rgba(255,255,255,.8);font-size:12px;text-align:center;font-weight:500}
+.day-total em{color:var(--copper);font-style:italic}
 
 /* STOP CARD */
 .stop-card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);margin:0 var(--pad) 16px}
@@ -158,6 +178,8 @@ h2 em{color:var(--copper);font-style:italic}
   .stay-card{margin:0 var(--pad)}
   .tips-grid{display:grid;grid-template-columns:1fr 1fr}
   .route-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .leg-list{padding:0 var(--pad)}
+  .day-total{margin:0 var(--pad) 20px}
 }
 </style>
 </head>
@@ -179,15 +201,16 @@ h2 em{color:var(--copper);font-style:italic}
   <div class="hero-grain"></div>
   <div class="hero-gradient"></div>
   <div class="hero-content">
-    <div class="hero-badge">🇮🇹 Milan · 2 Days · Thu–Fri, 23–24 July 2026</div>
-    <h1>Duomo,<br><em>Castello</em><br>&amp; Brera</h1>
-    <p class="hero-sub">Malpensa touchdown → Loreto base · nationwide transport strike Thu 9pm–Fri 9pm · every leg kept walkable as backup</p>
+    <div class="hero-badge">🇮🇹 Milan · 4 Days · Thu–Sun, 23–26 July 2026</div>
+    <h1>Duomo, Como<br><em>&amp; Bergamo</em></h1>
+    <p class="hero-sub">Malpensa touchdown → strike-day Milan → Lake Como → Bergamo → evening flight home · every leg kept walkable or ticketed in advance</p>
     <div class="hero-pills">
       <span class="hero-pill">🏰 Duomo Fast-Track</span>
-      <span class="hero-pill">🎭 Teatro alla Scala</span>
-      <span class="hero-pill">🏯 Castello Sforzesco</span>
+      <span class="hero-pill">🚤 Lake Como</span>
+      <span class="hero-pill">🚡 Bergamo Città Alta</span>
       <span class="hero-pill">🎨 Brera District</span>
       <span class="hero-pill">⚠️ Strike Day Fri</span>
+      <span class="hero-pill">✈️ Evening Flight Sun</span>
     </div>
     <div class="hero-actions">
       <a href="#day1" class="btn-primary">Start Day 1 →</a>
@@ -196,11 +219,19 @@ h2 em{color:var(--copper);font-style:italic}
   </div>
 </div>
 
+<!-- DAY NAV -->
+<div class="day-nav">
+  <a href="#day1">Day 1 · Thu · Milan</a>
+  <a href="#day2">Day 2 · Fri · Strike Day</a>
+  <a href="#day3">Day 3 · Sat · Lake Como</a>
+  <a href="#day4">Day 4 · Sun · Bergamo</a>
+</div>
+
 <!-- STATS -->
 <div class="stats">
-  <div class="stat"><div class="stat-n">2</div><div class="stat-l">Days</div></div>
-  <div class="stat"><div class="stat-n">12</div><div class="stat-l">Stops</div></div>
-  <div class="stat"><div class="stat-n">€2.20</div><div class="stat-l">Metro Fare</div></div>
+  <div class="stat"><div class="stat-n">4</div><div class="stat-l">Days</div></div>
+  <div class="stat"><div class="stat-n">20<em>+</em></div><div class="stat-l">Stops</div></div>
+  <div class="stat"><div class="stat-n">2</div><div class="stat-l">Day Trips</div></div>
   <div class="stat"><div class="stat-n">1</div><div class="stat-l">Strike Day</div></div>
 </div>
 
@@ -318,7 +349,7 @@ h2 em{color:var(--copper);font-style:italic}
     <div class="stay-card-icon">🏠</div>
     <div style="flex:1">
       <div class="stay-card-title">Hotel Base — Loreto</div>
-      <p class="stay-card-desc">Right on the Loreto interchange (M1 red / M2 green). Base for both days of this leg.</p>
+      <p class="stay-card-desc">Right on the Loreto interchange (M1 red / M2 green). Base for the Milan nights, with day trips out to Como and Bergamo before the Sunday evening flight.</p>
       <a href="https://maps.google.com/?q=Loreto,Milan" target="_blank" class="stay-maps-btn">📍 Loreto, Milan</a>
     </div>
   </div>
@@ -458,6 +489,254 @@ h2 em{color:var(--copper);font-style:italic}
   </div>
 </div>
 
+<!-- DAY 3 -->
+<div id="day3">
+  <div class="day-header d3">
+    <div class="day-num d3">3</div>
+    <div>
+      <div class="day-title">Lake Como Day Trip</div>
+      <div class="day-meta">Milano Centrale → Varenna → Bellagio → Como → Milano Centrale · trains + ferry + hydrofoil</div>
+    </div>
+  </div>
+
+  <div class="leg-list">
+    <div class="leg-row">
+      <div class="leg-from">🚉 Milano Centrale</div>
+      <div class="leg-mid"><span class="leg-mode">Train</span><span class="leg-time">~1h</span><span class="leg-price">€7.40pp</span></div>
+      <div class="leg-to">🏞️ Varenna-Esino</div>
+    </div>
+    <div class="leg-row">
+      <div class="leg-from">🏞️ Varenna</div>
+      <div class="leg-mid"><span class="leg-mode">Ferry</span><span class="leg-time">~15-20m</span><span class="leg-price">€5.50pp</span></div>
+      <div class="leg-to">🚤 Bellagio</div>
+    </div>
+    <div class="leg-row">
+      <div class="leg-from">🚤 Bellagio</div>
+      <div class="leg-mid"><span class="leg-mode">Hydrofoil</span><span class="leg-time">~45-60m</span><span class="leg-price">€18.80pp</span></div>
+      <div class="leg-to">⛪ Como</div>
+    </div>
+    <div class="leg-row">
+      <div class="leg-from">⛪ Como San Giovanni</div>
+      <div class="leg-mid"><span class="leg-mode">Train</span><span class="leg-time">~40-60m</span><span class="leg-price">€5.20pp</span></div>
+      <div class="leg-to">🚉 Milano Centrale</div>
+    </div>
+  </div>
+
+  <div class="stops-grid">
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#16242e,#0a1218)">
+        🥐
+        <div class="stop-type">🥐 Breakfast &amp; Villas</div>
+        <div class="stop-time">8:35–11:00am</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Varenna — Breakfast &amp; Villa Gardens</div>
+        <p class="stop-desc">Lakeside breakfast near Villa Monastero, fresh pastries before the crowds. Then the combined Villa Monastero + Villa Cipressi garden ticket — buy in person at either ticket office, can't be pre-booked online. Skip the Monastero house museum unless curious, interior reviews are mixed.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">€19-25pp gardens</span>
+          <span class="stop-tag tag-access">♿ Garden paths</span>
+          <span class="stop-tag tag-rating">⭐ 4.6</span>
+        </div>
+        <a href="https://maps.google.com/?q=Villa+Monastero,Varenna" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#0e2230,#081420)">
+        🚶
+        <div class="stop-type">🚶 Lakeside Walk</div>
+        <div class="stop-time">11:00–11:30am</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Varenna Town &amp; Passeggiata</div>
+        <p class="stop-desc">Varenna town and the Passeggiata degli Innamorati lakeside walk before the ferry to Bellagio.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ Flat promenade</span>
+          <span class="stop-tag tag-cost">Free</span>
+          <span class="stop-tag tag-rating">⭐ 4.7</span>
+        </div>
+        <a href="https://maps.google.com/?q=Varenna,Italy" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#1a2e18,#0c180c)">
+        🌸
+        <div class="stop-type">🌸 Villa &amp; Town</div>
+        <div class="stop-time">12:00–2:15pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Villa Melzi &amp; Bellagio Town</div>
+        <p class="stop-desc">Villa Melzi gardens — €10pp, buy on arrival, no pre-booking needed. Then Bellagio's harbour, steep lanes and lakefront promenade for lunch.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">€10pp gardens</span>
+          <span class="stop-tag tag-rating">⭐ 4.7</span>
+        </div>
+        <a href="https://maps.google.com/?q=Villa+Melzi,Bellagio" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#241c30,#100c18)">
+        ⛪
+        <div class="stop-type">⛪ Old Town</div>
+        <div class="stop-time">3:30–4:45pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Como Old Town &amp; Duomo</div>
+        <p class="stop-desc">Old town, Duomo and lakefront — the closing sequence for the day before the direct train back to Milano Centrale.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">Free</span>
+          <span class="stop-tag tag-rating">⭐ 4.6</span>
+        </div>
+        <a href="https://maps.google.com/?q=Como+Duomo" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-total">Total per person: <em>~€66-77</em> · For two adults: <em>~€130-155</em> · book hydrofoil tickets ahead, can't be bought onboard</div>
+</div>
+
+<!-- DAY 4 -->
+<div id="day4">
+  <div class="day-header d4">
+    <div class="day-num d4">4</div>
+    <div>
+      <div class="day-title">Bergamo — Light Day Before the Flight</div>
+      <div class="day-meta">Milano Centrale → Bergamo → Milano Centrale → Malpensa (MXP) · flight 22:30 · kept deliberately light</div>
+    </div>
+  </div>
+
+  <div class="leg-list">
+    <div class="leg-row">
+      <div class="leg-from">🚉 Milano Centrale</div>
+      <div class="leg-mid"><span class="leg-mode">Train</span><span class="leg-time">~48m</span><span class="leg-price">€6.00pp</span></div>
+      <div class="leg-to">🏰 Bergamo</div>
+    </div>
+    <div class="leg-row">
+      <div class="leg-from">🚉 Bergamo Station</div>
+      <div class="leg-mid"><span class="leg-mode">Funicular</span><span class="leg-time">~7m</span><span class="leg-price">€1.70pp</span></div>
+      <div class="leg-to">🏰 Città Alta</div>
+    </div>
+    <div class="leg-row">
+      <div class="leg-from">🏰 Bergamo</div>
+      <div class="leg-mid"><span class="leg-mode">Train</span><span class="leg-time">~48m</span><span class="leg-price">€6.00pp</span></div>
+      <div class="leg-to">🚉 Milano Centrale</div>
+    </div>
+    <div class="leg-row">
+      <div class="leg-from">🚉 Milano Centrale</div>
+      <div class="leg-mid"><span class="leg-mode">Malpensa Express</span><span class="leg-time">~51m</span><span class="leg-price">€15.00pp</span></div>
+      <div class="leg-to">✈️ Malpensa (MXP)</div>
+    </div>
+  </div>
+
+  <div class="stops-grid">
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#2a2416,#160f08)">
+        🏛️
+        <div class="stop-type">🏛️ Piazza</div>
+        <div class="stop-time">10:15–11:00am</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Piazza Vecchia Cluster</div>
+        <p class="stop-desc">Contarini Fountain, Palazzo della Ragione and the Civic Tower exterior — the historic heart of Città Alta, reached by funicular (vintage cable cars running since 1887).</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">Free</span>
+          <span class="stop-tag tag-access">♿ Funicular + flat piazza</span>
+          <span class="stop-tag tag-rating">⭐ 4.7</span>
+        </div>
+        <a href="https://maps.google.com/?q=Piazza+Vecchia,Bergamo" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#241e30,#100c18)">
+        ⛪
+        <div class="stop-type">⛪ Basilica</div>
+        <div class="stop-time">11:00am–12:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Basilica &amp; Colleoni Chapel</div>
+        <p class="stop-desc">Basilica di Santa Maria Maggiore — rich frescoes, tapestries, ornate Baroque interior (€5pp). Next door, the Colleoni Chapel is free entry (donation welcomed); no photography allowed inside.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">€5pp basilica / free chapel</span>
+          <span class="stop-tag tag-rating">⭐ 4.8</span>
+        </div>
+        <a href="https://maps.google.com/?q=Colleoni+Chapel,Bergamo" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#2e1a12,#160c07)">
+        🍕
+        <div class="stop-type">🍕 Lunch</div>
+        <div class="stop-time">12:00–1:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Lunch on Via Colleoni</div>
+        <p class="stop-desc">Il Fornaio for a quick pizza slice, or Il Circolino for a sit-down Bergamasque meal.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">€8-20</span>
+          <span class="stop-tag tag-rating">⭐ 4.5</span>
+        </div>
+        <a href="https://maps.google.com/?q=Via+Colleoni,Bergamo" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#16241a,#0a140c)">
+        🌇
+        <div class="stop-type">🌇 Walls</div>
+        <div class="stop-time">1:00–2:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Venetian Walls Walk</div>
+        <p class="stop-desc">Free panoramic views over the lower city, walking the Venetian Walls to Porta San Giacomo.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">Free</span>
+          <span class="stop-tag tag-access">♿ Flat walk</span>
+          <span class="stop-tag tag-rating">⭐ 4.8</span>
+        </div>
+        <a href="https://maps.google.com/?q=Porta+San+Giacomo,Bergamo" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#241a2e,#120c18)">
+        🚡
+        <div class="stop-type">🚡 Wind Down</div>
+        <div class="stop-time">2:00–2:45pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Funicular Back Down</div>
+        <p class="stop-desc">Wander back via Salita della Scaletta, or ride the funicular down. Kept deliberately light — no Civic Tower or San Vigilio funicular today, given the evening flight.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">Free-€1.70</span>
+        </div>
+        <a href="https://maps.google.com/?q=Bergamo+Funicular" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#1a2a3a,#0e1826)">
+        ✈️
+        <div class="stop-type">✈️ Airport Transfer</div>
+        <div class="stop-time">5:30–7:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Malpensa Express to MXP</div>
+        <p class="stop-desc">Depart Milano Centrale on the Malpensa Express (~51 min, €15pp, every 15 min) with a wide margin ahead of the 22:30 flight. Check-in, security, relaxed wait before boarding.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">€15pp</span>
+        </div>
+        <a href="https://maps.google.com/?q=Malpensa+Airport+MXP" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-total">Total per person (excl. airport transfer): <em>~€19</em> · plus Malpensa Express: <em>€15pp</em></div>
+</div>
+
 <!-- TRANSPORT & STRIKE PLAN -->
 <div class="transport-section" id="transport">
   <div class="eyebrow">Transport Reference</div>
@@ -508,6 +787,10 @@ h2 em{color:var(--copper);font-style:italic}
     <div class="tip"><div class="tip-icon">🚶</div><div><div class="tip-title">Friday Is One Flowing Walk</div><p class="tip-desc">Duomo → Castello → Park → Brera, deliberately routed so no leg fully depends on public transport.</p></div></div>
     <div class="tip"><div class="tip-icon">💶</div><div><div class="tip-title">Carry Small Change</div><p class="tip-desc">Panzerotti, church donations and short taxi hops are easier with coins and small notes on hand.</p></div></div>
     <div class="tip"><div class="tip-icon">🌐</div><div><div class="tip-title">Check atm.it</div><p class="tip-desc">A few days before, for a definitive answer on whether Milan's own metro/tram network is affected.</p></div></div>
+    <div class="tip"><div class="tip-icon">🎫</div><div><div class="tip-title">Como Villa Tickets</div><p class="tip-desc">The combined Villa Monastero + Cipressi ticket must be bought in person — it can't be pre-booked online.</p></div></div>
+    <div class="tip"><div class="tip-icon">⛴️</div><div><div class="tip-title">Book the Hydrofoil Ahead</div><p class="tip-desc">Bellagio → Como hydrofoil tickets can't be bought onboard. Buy online or at the terminal — it runs only 4-6 times daily.</p></div></div>
+    <div class="tip"><div class="tip-icon">🕰️</div><div><div class="tip-title">Check Trenord &amp; Navigazione Laghi</div><p class="tip-desc">A few days before either day trip, for any last-minute train or ferry disruption.</p></div></div>
+    <div class="tip"><div class="tip-icon">🧳</div><div><div class="tip-title">Bergamo Needs No Booking</div><p class="tip-desc">Every site on the Bergamo day is walk-up — no advance tickets required anywhere.</p></div></div>
   </div>
 </div>
 
@@ -520,7 +803,7 @@ h2 em{color:var(--copper);font-style:italic}
     <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
     <li><a href="https://projects.krishgrows.com">Projects</a></li>
   </ul>
-  <p class="footer-copy">Lombardy, Italy · 2 Days · Thu–Fri, 23–24 July 2026</p>
+  <p class="footer-copy">Lombardy, Italy · 4 Days · Thu–Sun, 23–26 July 2026</p>
 </footer>
 
 </body>
