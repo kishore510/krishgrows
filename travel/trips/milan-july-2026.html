@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milan July 2026 — KrishGrows Travel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#1a1208;--ink2:#4a3a28;
+  --cream:#faf8f4;--warm:#f2ede4;
+  --copper:#c87830;--green:#3a7a58;--blue:#4a6898;
+  --border:rgba(74,58,40,.1);
+  --shadow:0 4px 24px rgba(26,18,8,.08);
+  --font-h:'Cormorant Garamond',serif;
+  --font-b:'Outfit',sans-serif;
+  --pad:20px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:3px}
+.nav-logo em{color:var(--copper);font-style:italic}
+.nav-links{display:flex;gap:4px}
+.nav-links a{font-family:var(--font-b);font-size:13px;font-weight:500;color:var(--ink2);text-decoration:none;padding:8px 12px;border-radius:8px;transition:all .2s}
+.nav-links a.active{color:var(--copper);background:rgba(200,120,48,.08)}
+
+/* HERO */
+.hero{
+  position:relative;min-height:80vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--pad) 48px;overflow:hidden;
+  background:#160f08;
+}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#1c130a,#2e2013,#140c07);opacity:1}
+.hero-grain{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");pointer-events:none}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,10,6,.98) 0%,rgba(14,10,6,.4) 60%,transparent 100%)}
+.hero-content{position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,120,48,.15);border:1px solid rgba(200,120,48,.3);color:#f4b06a;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-family:var(--font-h);font-size:clamp(44px,8vw,80px);font-weight:700;line-height:.93;letter-spacing:-1.5px;color:white;margin-bottom:16px}
+.hero h1 em{color:var(--copper);font-style:italic}
+.hero-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);margin-bottom:24px;line-height:1.6}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.hero-pill{font-size:12px;font-weight:500;color:rgba(255,255,255,.7);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:20px;backdrop-filter:blur(4px)}
+.hero-actions{display:flex;flex-direction:column;gap:12px}
+.btn-primary{display:flex;align-items:center;justify-content:center;background:white;color:var(--ink);font-family:var(--font-b);font-size:15px;font-weight:600;padding:16px 24px;border-radius:12px;text-decoration:none}
+.btn-ghost{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-family:var(--font-b);font-size:15px;font-weight:500;padding:16px 24px;border-radius:12px;text-decoration:none}
+
+/* STATS */
+.stats{background:var(--ink);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:16px 8px;border-right:1px solid rgba(255,255,255,.1)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--font-h);font-size:24px;font-weight:700;color:white;line-height:1}
+.stat-n em{color:var(--copper);font-style:italic}
+.stat-l{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
+
+/* STAY BANNER */
+.stay{background:var(--green);padding:20px var(--pad);display:flex;gap:16px;align-items:flex-start}
+.stay-icon{font-size:28px;flex-shrink:0}
+.stay-title{font-family:var(--font-h);font-size:20px;font-weight:700;color:white;margin-bottom:4px}
+.stay-desc{font-size:13px;color:rgba(255,255,255,.7);font-weight:300;line-height:1.5}
+
+/* WARNING BANNER */
+.warn{background:linear-gradient(135deg,#8a4a1a,#5a3010);padding:20px var(--pad);display:flex;gap:16px;align-items:flex-start}
+.warn-icon{font-size:28px;flex-shrink:0}
+.warn-title{font-family:var(--font-h);font-size:20px;font-weight:700;color:white;margin-bottom:4px}
+.warn-desc{font-size:13px;color:rgba(255,255,255,.75);font-weight:300;line-height:1.55}
+
+/* SECTION */
+.section{padding:36px var(--pad)}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.eyebrow::before{content:'';width:16px;height:1px;background:var(--copper)}
+h2{font-family:var(--font-h);font-size:clamp(28px,5vw,40px);font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-.5px;margin-bottom:24px}
+h2 em{color:var(--copper);font-style:italic}
+
+/* DAY HEADER */
+.day-header{
+  display:flex;align-items:center;gap:16px;
+  padding:20px var(--pad);
+  border-left:4px solid var(--copper);
+  margin:0 0 4px;
+}
+.day-header.d1{border-color:#5a9448}
+.day-header.d2{border-color:#3d88b0}
+.day-num{font-family:var(--font-h);font-size:52px;font-weight:700;color:rgba(200,120,48,.15);line-height:1;flex-shrink:0}
+.day-num.d1{color:rgba(90,148,72,.2)}
+.day-num.d2{color:rgba(61,136,176,.2)}
+.day-title{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:4px}
+.day-meta{font-size:12px;color:var(--ink2);font-weight:300}
+
+/* STOP CARD */
+.stop-card{background:white;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);margin:0 var(--pad) 16px}
+.stop-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative}
+.stop-type{position:absolute;bottom:12px;left:12px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:rgba(0,0,0,.4);color:white;backdrop-filter:blur(4px)}
+.stop-time{position:absolute;bottom:12px;right:12px;font-size:11px;color:white;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);padding:4px 10px;border-radius:20px}
+.stop-body{padding:20px}
+.stop-name{font-family:var(--font-h);font-size:24px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.1}
+.stop-desc{font-size:14px;color:var(--ink2);line-height:1.65;font-weight:300;margin-bottom:14px}
+.stop-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.stop-tag{font-size:12px;font-weight:500;padding:5px 12px;border-radius:20px}
+.tag-access{background:rgba(58,122,88,.1);color:var(--green)}
+.tag-cost{background:rgba(200,120,48,.1);color:var(--copper)}
+.tag-rating{background:rgba(26,18,8,.06);color:var(--ink2)}
+.maps-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:white;font-family:var(--font-b);font-size:13px;font-weight:600;padding:12px;border-radius:10px;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.maps-btn:active{background:var(--copper)}
+
+/* STAY CARD */
+.stay-card{background:linear-gradient(135deg,#1a3a20,#0e2010);border-radius:20px;padding:22px;margin:0 var(--pad) 16px;display:flex;gap:16px;align-items:flex-start}
+.stay-card-icon{font-size:32px;flex-shrink:0}
+.stay-card-title{font-family:var(--font-h);font-size:20px;font-weight:700;color:white;margin-bottom:6px}
+.stay-card-desc{font-size:13px;color:rgba(255,255,255,.6);font-weight:300;line-height:1.55;margin-bottom:12px}
+.stay-maps-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-family:var(--font-b);font-size:13px;font-weight:600;padding:10px;border-radius:10px;text-decoration:none}
+
+/* TRANSPORT SECTION */
+.transport-section{padding:36px var(--pad);background:var(--warm)}
+.route-grid{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.route-card{background:white;border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.route-dest{font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.route-row{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink2);font-weight:300;line-height:1.5;margin-bottom:8px}
+.route-row:last-child{margin-bottom:0}
+.route-label{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 9px;border-radius:12px;margin-top:1px;white-space:nowrap}
+.route-label.normal{background:rgba(58,122,88,.1);color:var(--green)}
+.route-label.fallback{background:rgba(200,120,48,.1);color:var(--copper)}
+.trip-total{display:grid;grid-template-columns:repeat(4,1fr);background:var(--ink);border-radius:16px;overflow:hidden;margin-top:20px}
+.total-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:18px 8px;border-right:1px solid rgba(255,255,255,.1)}
+.total-item:last-child{border-right:none}
+.total-num{font-family:var(--font-h);font-size:20px;font-weight:700;color:white;line-height:1}
+.total-label{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
+
+/* TIPS */
+.tips-section{padding:36px var(--pad)}
+.tips-grid{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.tip{background:white;border-radius:16px;padding:18px;display:flex;gap:14px;align-items:flex-start;box-shadow:var(--shadow)}
+.tip-icon{font-size:28px;flex-shrink:0}
+.tip-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.tip-desc{font-size:13px;color:var(--ink2);font-weight:300;line-height:1.6}
+
+/* FOOTER */
+.footer{background:var(--ink);padding:40px var(--pad);text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+.footer-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:white;text-decoration:none}
+.footer-logo em{color:var(--copper);font-style:italic}
+.footer-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap;justify-content:center}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.5px}
+
+/* DESKTOP */
+@media(min-width:768px){
+  :root{--pad:5vw}
+  .hero{min-height:85vh;padding:0 var(--pad) 80px}
+  .hero h1{font-size:clamp(64px,7vw,96px)}
+  .hero-actions{flex-direction:row}
+  .btn-primary,.btn-ghost{width:auto}
+  .stops-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:0 var(--pad)}
+  .stop-card{margin:0}
+  .stay-card{margin:0 var(--pad)}
+  .tips-grid{display:grid;grid-template-columns:1fr 1fr}
+  .route-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="https://travel.krishgrows.com" class="nav-logo">🌿 Krish<em>Grows</em></a>
+  <div class="nav-links">
+    <a href="https://travel.krishgrows.com" class="active">Travel</a>
+    <a href="https://allotment.krishgrows.com">Allotment</a>
+    <a href="https://projects.krishgrows.com">Projects</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🇮🇹 Milan · 2 Days · Thu–Fri, 23–24 July 2026</div>
+    <h1>Duomo,<br><em>Castello</em><br>&amp; Brera</h1>
+    <p class="hero-sub">Malpensa touchdown → Loreto base · nationwide transport strike Thu 9pm–Fri 9pm · every leg kept walkable as backup</p>
+    <div class="hero-pills">
+      <span class="hero-pill">🏰 Duomo Fast-Track</span>
+      <span class="hero-pill">🎭 Teatro alla Scala</span>
+      <span class="hero-pill">🏯 Castello Sforzesco</span>
+      <span class="hero-pill">🎨 Brera District</span>
+      <span class="hero-pill">⚠️ Strike Day Fri</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#day1" class="btn-primary">Start Day 1 →</a>
+      <a href="#transport" class="btn-ghost">Strike plan &amp; transport</a>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-n">2</div><div class="stat-l">Days</div></div>
+  <div class="stat"><div class="stat-n">12</div><div class="stat-l">Stops</div></div>
+  <div class="stat"><div class="stat-n">€2.20</div><div class="stat-l">Metro Fare</div></div>
+  <div class="stat"><div class="stat-n">1</div><div class="stat-l">Strike Day</div></div>
+</div>
+
+<!-- STAY BANNER -->
+<div class="stay">
+  <div class="stay-icon">🏠</div>
+  <div>
+    <div class="stay-title">Base: Palazzo Loreto Hotel, Viale Monza 7</div>
+    <div class="stay-desc">Right on Loreto — the M1 red / M2 green interchange · 2-5 min walk from the metro</div>
+  </div>
+</div>
+
+<!-- DAY 1 -->
+<div id="day1">
+  <div class="day-header d1">
+    <div class="day-num d1">1</div>
+    <div>
+      <div class="day-title">Arrival &amp; the Duomo/Galleria Cluster</div>
+      <div class="day-meta">Land MXP 12:00pm · Malpensa Express + Metro M1 to Loreto · Check in Palazzo Loreto Hotel</div>
+    </div>
+  </div>
+  <div class="stops-grid">
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#1a2a3a,#0e1826)">
+        🚆
+        <div class="stop-type">🚆 Arrival Transfer</div>
+        <div class="stop-time">12:00–2:30pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Malpensa → Loreto</div>
+        <p class="stop-desc">Land at Malpensa (MXP), clear immigration and baggage — no need to rush, trains run every 15 min. Board the Malpensa Express to Milano Centrale (~51 min, €15pp), then Metro M1 red direct to Loreto (~4 stops, ~10 min, €2.20pp, no changes). Check in, drop bags, freshen up.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">~€17.20pp total</span>
+          <span class="stop-tag tag-access">♿ One change, no rush</span>
+          <span class="stop-tag tag-rating">🕐 ~2h30 door to door</span>
+        </div>
+        <a href="https://maps.google.com/?q=Malpensa+Airport+MXP" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#2a2416,#160f08)">
+        🏛️
+        <div class="stop-type">🏛️ Landmark</div>
+        <div class="stop-time">3:15–4:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Galleria Vittorio Emanuele II</div>
+        <p class="stop-desc">The glass-domed 19th-century arcade linking Duomo and La Scala. Walk straight through — no tickets needed, just take it in.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ Flat, no tickets</span>
+          <span class="stop-tag tag-cost">Free to walk through</span>
+          <span class="stop-tag tag-rating">⭐ 4.7</span>
+        </div>
+        <a href="https://maps.google.com/?q=Galleria+Vittorio+Emanuele+II,Milan" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#2a1a10,#160c06)">
+        ☕
+        <div class="stop-type">☕ Coffee Stop</div>
+        <div class="stop-time">4:00–5:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Cafe Prada &amp; Starbucks Reserve Roastery</div>
+        <p class="stop-desc">Cafe Prada inside the Galleria, then a few minutes on to the Starbucks Reserve Roastery — a converted 1920s post office. The building is the real draw, not just the coffee. Optional: Luini for a panzerotti on the way, from €4.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">€4-8 coffee</span>
+          <span class="stop-tag tag-access">🚶 5 min walk apart</span>
+          <span class="stop-tag tag-rating">⭐ 4.5</span>
+        </div>
+        <a href="https://maps.google.com/?q=Starbucks+Reserve+Roastery,Milan" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#241a2e,#120c18)">
+        🎭
+        <div class="stop-type">🎭 Landmark</div>
+        <div class="stop-time">5:30–6:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Piazza della Scala</div>
+        <p class="stop-desc">Two minutes from the Galleria — the Teatro alla Scala exterior and the Leonardo da Vinci statue in the piazza.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ 2 min walk</span>
+          <span class="stop-tag tag-cost">Free (exterior)</span>
+          <span class="stop-tag tag-rating">⭐ 4.6</span>
+        </div>
+        <a href="https://maps.google.com/?q=Piazza+della+Scala,Milan" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#2e2010,#160e05)">
+        🌇
+        <div class="stop-type">🌇 Free Wander</div>
+        <div class="stop-time">6:00–7:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Duomo Square at Golden Hour</div>
+        <p class="stop-desc">Free wander back through Duomo square as the evening light hits the marble facade — a good closing shot after a travel day. No tickets needed today, that's tomorrow.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ Flat piazza</span>
+          <span class="stop-tag tag-cost">Free</span>
+          <span class="stop-tag tag-rating">⭐ 4.8</span>
+        </div>
+        <a href="https://maps.google.com/?q=Piazza+del+Duomo,Milan" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay-card">
+    <div class="stay-card-icon">🏠</div>
+    <div style="flex:1">
+      <div class="stay-card-title">Palazzo Loreto Hotel</div>
+      <p class="stay-card-desc">Viale Monza 7 — right on the Loreto interchange (M1 red / M2 green). Base for both days of this leg.</p>
+      <a href="https://maps.google.com/?q=Viale+Monza+7,Milan" target="_blank" class="stay-maps-btn">📍 Viale Monza 7, Milan</a>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 2 -->
+<div id="day2">
+  <div class="day-header d2">
+    <div class="day-num d2">2</div>
+    <div>
+      <div class="day-title">Full Day — Nationwide Strike</div>
+      <div class="day-meta">Strike 21:00 Thu–20:59 Fri · rail/regional confirmed, ATM metro/tram unconfirmed · route kept fully walkable as precaution</div>
+    </div>
+  </div>
+  <div class="stops-grid">
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#2a2416,#160f08)">
+        🏰
+        <div class="stop-type">🏰 Skip-the-Line</div>
+        <div class="stop-time">9:30–11:30am</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Duomo Fast-Track Pass</div>
+        <p class="stop-desc">Rooftop terraces, Duomo interior, Duomo Museum, Archaeological Area and the Crypt of St Charles on one ticket. Book the rooftop timeslot in advance — it sells out, especially in July. Crypt open Fri 11am-5:30pm.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">€32 full / €16 reduced</span>
+          <span class="stop-tag tag-access">♿ Skip-the-line lift</span>
+          <span class="stop-tag tag-rating">⭐ 4.8</span>
+        </div>
+        <a href="https://maps.google.com/?q=Duomo+di+Milano" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#2e1a12,#160c07)">
+        🍕
+        <div class="stop-type">🍕 Lunch</div>
+        <div class="stop-time">12:00–1:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Luini or Osteria da Fortunata</div>
+        <p class="stop-desc">Luini for a quick panzerotti (from €4) right by the Galleria, or Osteria da Fortunata for a sit-down (€15-20, expect a queue).</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">€4-20</span>
+          <span class="stop-tag tag-rating">⭐ 4.5</span>
+        </div>
+        <a href="https://maps.google.com/?q=Luini+Panzerotti,Milan" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#241820,#100a12)">
+        🏯
+        <div class="stop-type">🏯 Castle</div>
+        <div class="stop-time">1:15–2:15pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Castello Sforzesco</div>
+        <p class="stop-desc">Renaissance brick fortress — courtyards and museums. Normally trams 1, 2, 4, 12, 14 from the centre; a flat 15-minute walk from Duomo if trams are down.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ Flat courtyards</span>
+          <span class="stop-tag tag-cost">Free courtyard / museums extra</span>
+          <span class="stop-tag tag-rating">⭐ 4.6</span>
+        </div>
+        <a href="https://maps.google.com/?q=Castello+Sforzesco,Milan" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#16241a,#0a140c)">
+        🌳
+        <div class="stop-type">🌳 Park</div>
+        <div class="stop-time">2:15–3:30pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Parco Sempione &amp; Arco della Pace</div>
+        <p class="stop-desc">Walk through the park behind the castle to the Arco della Pace at the far end — Milan's own small arc de triomphe.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ Flat paths</span>
+          <span class="stop-tag tag-cost">Free</span>
+          <span class="stop-tag tag-rating">⭐ 4.6</span>
+        </div>
+        <a href="https://maps.google.com/?q=Arco+della+Pace,Milan" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#2a1622,#150a10)">
+        🎨
+        <div class="stop-type">🎨 Arts District</div>
+        <div class="stop-time">3:30–5:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Brera District &amp; Pinacoteca</div>
+        <p class="stop-desc">Boutique streets and cafés; the Pinacoteca di Brera (optional, €15) for the art. ~15-20 min walk from the park.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">Free wander / €15 gallery</span>
+          <span class="stop-tag tag-rating">⭐ 4.7</span>
+        </div>
+        <a href="https://maps.google.com/?q=Brera,Milan" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#221e2e,#100e18)">
+        ⛪
+        <div class="stop-type">⛪ Hidden Churches</div>
+        <div class="stop-time">5:00–5:40pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">San Maurizio &amp; San Bernardino alle Ossa</div>
+        <p class="stop-desc">Monastero di San Maurizio — free, frescoed, quick — then the atmospheric ossuary at San Bernardino alle Ossa. Both free entry, both close to Brera.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">Free</span>
+          <span class="stop-tag tag-rating">⭐ 4.7</span>
+        </div>
+        <a href="https://maps.google.com/?q=San+Bernardino+alle+Ossa,Milan" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#2e1810,#160c06)">
+        🍽️
+        <div class="stop-type">🍽️ Dinner</div>
+        <div class="stop-time">6:30–8:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Crazy Pizza or Aroma Napoletano</div>
+        <p class="stop-desc">Crazy Pizza (from €20) or Aroma Napoletano for stuffed croissants (from €6). Walk back to the hotel or a short taxi/Uber Black if tired — unaffected by any strike, ~€14-15 regardless.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">€6-20+</span>
+          <span class="stop-tag tag-rating">⭐ 4.5</span>
+        </div>
+        <a href="https://maps.google.com/?q=Crazy+Pizza,Milan" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRANSPORT & STRIKE PLAN -->
+<div class="transport-section" id="transport">
+  <div class="eyebrow">Transport Reference</div>
+  <h2>Metro, Trams &amp; <em>Strike Fallbacks</em></h2>
+
+  <div class="warn">
+    <div class="warn-icon">⚠️</div>
+    <div>
+      <div class="warn-title">Nationwide Transport Strike — Thu 21:00 to Fri 20:59</div>
+      <div class="warn-desc">CUB Trasporti / SGB strike confirmed for national/regional rail. Milan's ATM network (metro/tram/bus) isn't confirmed to be included, but ATM sometimes calls separate, unrelated strikes — check atm.it a few days before for a definitive answer. Every leg above has been kept walkable as a precaution regardless, and Friday is routed as one flowing walk (Duomo → Castello → Park → Brera) so no leg fully depends on public transport.</div>
+    </div>
+  </div>
+
+  <div class="route-grid">
+    <div class="route-card">
+      <div class="route-dest">📍 Duomo</div>
+      <div class="route-row"><span class="route-label normal">Normal</span><span>M1 red, direct, ~10 min, €2.20</span></div>
+      <div class="route-row"><span class="route-label fallback">Fallback</span><span>Walk ~45-50 min (3.5-4km), or taxi/Uber Black ~€14-15</span></div>
+    </div>
+    <div class="route-card">
+      <div class="route-dest">📍 Castello Sforzesco</div>
+      <div class="route-row"><span class="route-label normal">Normal</span><span>Trams 1, 2, 4, 12, 14 from centre; or M1 to Cairoli</span></div>
+      <div class="route-row"><span class="route-label fallback">Fallback</span><span>Walk from Duomo ~15 min; from hotel ~55-60 min</span></div>
+    </div>
+    <div class="route-card">
+      <div class="route-dest">📍 Brera District</div>
+      <div class="route-row"><span class="route-label normal">Normal</span><span>Tram 12 passes through Brera</span></div>
+      <div class="route-row"><span class="route-label fallback">Fallback</span><span>Walk from Castello/Parco Sempione ~15-20 min</span></div>
+    </div>
+  </div>
+
+  <div class="trip-total">
+    <div class="total-item"><div class="total-num">€2.20</div><div class="total-label">Metro Fare</div></div>
+    <div class="total-item"><div class="total-num">€32</div><div class="total-label">Fast-Track Pass</div></div>
+    <div class="total-item"><div class="total-num">~45m</div><div class="total-label">Walk Fallback</div></div>
+    <div class="total-item"><div class="total-num">€14-15</div><div class="total-label">Taxi Backup</div></div>
+  </div>
+</div>
+
+<!-- TIPS -->
+<div class="tips-section">
+  <div class="eyebrow">Practical Notes</div>
+  <h2>Before <em>You Go</em></h2>
+  <div class="tips-grid">
+    <div class="tip"><div class="tip-icon">🎟️</div><div><div class="tip-title">Book the Fast-Track Pass</div><p class="tip-desc">The rooftop timeslot can sell out, especially in July. Book online in advance.</p></div></div>
+    <div class="tip"><div class="tip-icon">🚕</div><div><div class="tip-title">Taxi &amp; Uber Black Backup</div><p class="tip-desc">Licensed private drivers are unaffected by public transport strikes — keep as a backup for either day.</p></div></div>
+    <div class="tip"><div class="tip-icon">📱</div><div><div class="tip-title">Compare FreeNow &amp; Uber</div><p class="tip-desc">Both worth having installed to compare pricing and availability if ATM does strike.</p></div></div>
+    <div class="tip"><div class="tip-icon">🚶</div><div><div class="tip-title">Friday Is One Flowing Walk</div><p class="tip-desc">Duomo → Castello → Park → Brera, deliberately routed so no leg fully depends on public transport.</p></div></div>
+    <div class="tip"><div class="tip-icon">💶</div><div><div class="tip-title">Carry Small Change</div><p class="tip-desc">Panzerotti, church donations and short taxi hops are easier with coins and small notes on hand.</p></div></div>
+    <div class="tip"><div class="tip-icon">🌐</div><div><div class="tip-title">Check atm.it</div><p class="tip-desc">A few days before, for a definitive answer on whether Milan's own metro/tram network is affected.</p></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <a href="https://krishgrows.com" class="footer-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="footer-links">
+    <li><a href="https://krishgrows.com">Home</a></li>
+    <li><a href="https://travel.krishgrows.com">Travel</a></li>
+    <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
+    <li><a href="https://projects.krishgrows.com">Projects</a></li>
+  </ul>
+  <p class="footer-copy">Lombardy, Italy · 2 Days · Thu–Fri, 23–24 July 2026</p>
+</footer>
+
+</body>
+</html>

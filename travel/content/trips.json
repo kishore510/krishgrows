@@ -22,6 +22,23 @@
       "description": "Church Fenton to Llanrwst via Pistyll Rhaeadr — the tallest waterfall in England or Wales. Bala Lake Railway, Beaumaris Castle, the Llyn Peninsula, Swallow Falls, Aber Falls and Penrhyn Castle. Elderly-friendly throughout, all accessible. 512 miles in 3 days.",
       "pills": ["💧 3 Waterfalls", "🚂 Steam Train", "🏰 2 Castles", "🌊 Llyn Peninsula", "♿ Accessible"],
       "url": "trips/wales-may-2026.html"
+    },
+    {
+      "id": "milan-july-2026",
+      "title": "Duomo, Castello",
+      "titleEm": "& Brera",
+      "region": "Lombardy",
+      "country": "Italy, EU",
+      "date": "23–24 July 2026",
+      "duration": "2 days · Thu–Fri",
+      "status": "plan",
+      "statusLabel": "Trip Plan",
+      "featured": false,
+      "emoji": "🇮🇹",
+      "gradient": "linear-gradient(135deg,#2a2416,#1a140a,#3a2c16)",
+      "description": "Two days in Milan squeezed around a nationwide transport strike — Duomo rooftop and crypt on the Fast-Track Pass, the Galleria's glass dome, Castello Sforzesco, Parco Sempione and the Brera district, with every leg kept walkable as backup.",
+      "pills": ["🏰 Duomo Fast-Track", "🎭 Teatro alla Scala", "🏯 Castello Sforzesco", "🎨 Brera District", "⚠️ Strike-Proofed"],
+      "url": "trips/milan-july-2026.html"
     }
   ],
   "moreNote": "More trips added as they're planned."
