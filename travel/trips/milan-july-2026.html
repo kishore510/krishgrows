@@ -98,6 +98,13 @@ h2 em{color:var(--copper);font-style:italic}
 /* DAY NAV */
 .day-nav{display:flex;gap:8px;padding:14px var(--pad);background:var(--warm);overflow-x:auto;-webkit-overflow-scrolling:touch}
 .day-nav a{flex-shrink:0;font-size:12px;font-weight:600;color:var(--ink2);background:white;padding:8px 14px;border-radius:20px;text-decoration:none;box-shadow:var(--shadow);white-space:nowrap}
+.day-nav a.alt-link{border:1.5px dashed var(--copper);color:var(--copper)}
+
+/* ALTERNATIVE DAY */
+.day-header.alt-header{border-left-style:dashed}
+.alt-tag{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--copper);background:rgba(200,120,48,.12);padding:4px 10px;border-radius:20px;margin-bottom:8px}
+.alt-intro{margin:0 var(--pad) 20px;padding:16px 18px;background:white;border:1.5px dashed var(--copper);border-radius:16px;font-size:13px;color:var(--ink2);font-weight:300;line-height:1.65}
+.alt-intro strong{color:var(--ink);font-weight:600}
 
 /* TRANSIT LEGS */
 .leg-list{display:flex;flex-direction:column;gap:8px;margin:0 var(--pad) 20px}
@@ -208,7 +215,7 @@ h2 em{color:var(--copper);font-style:italic}
       <span class="hero-pill">🏰 Duomo Rooftop</span>
       <span class="hero-pill">🚤 Lake Como</span>
       <span class="hero-pill">🚡 Bergamo Città Alta</span>
-      <span class="hero-pill">🎨 Brera District</span>
+      <span class="hero-pill">🇨🇭 Lugano Alt</span>
       <span class="hero-pill">⚠️ Strike Day Fri</span>
       <span class="hero-pill">✈️ Evening Flight Sun</span>
     </div>
@@ -225,6 +232,7 @@ h2 em{color:var(--copper);font-style:italic}
   <a href="#day2">Day 2 · Fri · Strike Day</a>
   <a href="#day3">Day 3 · Sat · Lake Como</a>
   <a href="#day4">Day 4 · Sun · Bergamo</a>
+  <a href="#day4alt" class="alt-link">Day 4 Alt · Lugano</a>
 </div>
 
 <!-- STATS -->
@@ -803,6 +811,125 @@ h2 em{color:var(--copper);font-style:italic}
   <div class="day-total">Total per person (excl. airport transfer): <em>~€19</em> · plus Malpensa Express: <em>€15pp</em></div>
 </div>
 
+<!-- DAY 4 ALTERNATIVE: LUGANO -->
+<div id="day4alt">
+  <div class="day-header d4 alt-header">
+    <div class="day-num d4">🇨🇭</div>
+    <div>
+      <div class="alt-tag">⇄ Alternative to Day 4</div>
+      <div class="day-title">Lugano Day Trip</div>
+      <div class="day-meta">Milano Centrale → Lugano → Milano Centrale → Malpensa (MXP) · flight 22:30 · forecast ~27°C, ~80% chance of storms</div>
+    </div>
+  </div>
+
+  <div class="alt-intro">Swaps Bergamo for a Swiss lake town — <strong>same flight, same buffer, different Sunday.</strong> With an 80% chance of afternoon thunderstorms forecast for the 26th, this plan front-loads the viewpoint to the morning and keeps the afternoon flexible (lake cruise if clear, covered arcades if not). Lugano also runs noticeably quieter than Lake Como in peak season — Como pulls ~1.4 million visitors a year with boats needing advance booking; Lugano's boats are typically buy-on-the-day. A passport is needed for the Swiss border (quick/light for UK passport holders), and Switzerland uses Swiss Francs, not Euros.</div>
+
+  <div class="leg-list">
+    <div class="leg-row">
+      <div class="leg-from">🚉 Milano Centrale</div>
+      <div class="leg-mid"><span class="leg-mode">EuroCity</span><span class="leg-time">~1h13-1h20</span><span class="leg-price">€15-25pp</span></div>
+      <div class="leg-to">🇨🇭 Lugano</div>
+    </div>
+    <div class="leg-row">
+      <div class="leg-from">🇨🇭 Lugano</div>
+      <div class="leg-mid"><span class="leg-mode">EuroCity</span><span class="leg-time">~1h20</span><span class="leg-price">€15-25pp</span></div>
+      <div class="leg-to">🚉 Milano Centrale</div>
+    </div>
+    <div class="leg-row">
+      <div class="leg-from">🚉 Milano Centrale</div>
+      <div class="leg-mid"><span class="leg-mode">Malpensa Express</span><span class="leg-time">~51m</span><span class="leg-price">€15.00pp</span></div>
+      <div class="leg-to">✈️ Malpensa (MXP)</div>
+    </div>
+  </div>
+
+  <div class="stops-grid">
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#16242e,#0a1420)">
+        🚡
+        <div class="stop-type">🚡 Viewpoint First</div>
+        <div class="stop-time">9:30–11:15am</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Monte San Salvatore</div>
+        <p class="stop-desc">Funicular up from Paradiso (~12 min, 2 sections) before any afternoon storm risk builds. 360-degree summit view over the Alps and Lake Lugano — on clear days, visibility toward Milan and Italy. Coffee with a view at Ristorante Vetta.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">~24-28 CHF pp return</span>
+          <span class="stop-tag tag-rating">⭐ 4.7</span>
+        </div>
+        <a href="https://maps.google.com/?q=Monte+San+Salvatore,Lugano" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#241e30,#100c18)">
+        ⛪
+        <div class="stop-type">⛪ Old Town</div>
+        <div class="stop-time">11:15am–12:30pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Lugano Old Town</div>
+        <p class="stop-desc">Piazza della Riforma, Lugano Cathedral and the cobbled lanes of the old town.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">Free</span>
+          <span class="stop-tag tag-rating">⭐ 4.6</span>
+        </div>
+        <a href="https://maps.google.com/?q=Piazza+della+Riforma,Lugano" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#0e2230,#081420)">
+        🌊
+        <div class="stop-type">🌊 Lakefront</div>
+        <div class="stop-time">12:30–1:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Lakefront Promenade</div>
+        <p class="stop-desc">A flat walk along Lake Lugano's promenade before lunch.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-access">♿ Flat promenade</span>
+          <span class="stop-tag tag-cost">Free</span>
+        </div>
+        <a href="https://maps.google.com/?q=Lugano+Lakefront" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#2e1a12,#160c07)">
+        🍽️
+        <div class="stop-type">🍽️ Lunch</div>
+        <div class="stop-time">1:00–2:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Lunch — Old Town or Lakefront</div>
+        <p class="stop-desc">Swiss-Italian menus are common here — risotto, polenta, local lake fish.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">CHF</span>
+        </div>
+        <a href="https://maps.google.com/?q=Lugano+Old+Town" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="stop-card">
+      <div class="stop-img" style="background:linear-gradient(135deg,#1a2a3a,#0e1826)">
+        ⛴️
+        <div class="stop-type">⛴️ Weather-Flexible</div>
+        <div class="stop-time">2:00–3:00pm</div>
+      </div>
+      <div class="stop-body">
+        <div class="stop-name">Lake Cruise or Covered Arcades</div>
+        <p class="stop-desc">A short lake cruise if the weather holds, or the covered old-town arcades for chocolate and watch shopping if a storm passes through. Kept deliberately flexible either way.</p>
+        <div class="stop-tags">
+          <span class="stop-tag tag-cost">CHF, varies</span>
+        </div>
+        <a href="https://maps.google.com/?q=Lugano+Lake+Cruise" target="_blank" class="maps-btn">📍 Open in Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-total">Depart Lugano <em>3:30pm</em> (wider safety margin over the 5:30pm option) · arrive Milano Centrale <em>~4:50pm</em> · Malpensa Express <em>~5:15-5:30pm</em> · Malpensa <em>~6:15-6:30pm</em>, 4+ hour buffer before the 22:30 flight</div>
+</div>
+
 <!-- TRANSPORT & STRIKE PLAN -->
 <div class="transport-section" id="transport">
   <div class="eyebrow">Transport Reference</div>
@@ -858,6 +985,8 @@ h2 em{color:var(--copper);font-style:italic}
     <div class="tip"><div class="tip-icon">⛴️</div><div><div class="tip-title">Book the Hydrofoil Ahead</div><p class="tip-desc">Bellagio → Como hydrofoil tickets can't be bought onboard. Buy online or at the terminal — it runs only 4-6 times daily.</p></div></div>
     <div class="tip"><div class="tip-icon">🕰️</div><div><div class="tip-title">Check Trenord &amp; Navigazione Laghi</div><p class="tip-desc">A few days before either day trip, for any last-minute train or ferry disruption.</p></div></div>
     <div class="tip"><div class="tip-icon">🧳</div><div><div class="tip-title">Bergamo Needs No Booking</div><p class="tip-desc">Every site on the Bergamo day is walk-up — no advance tickets required anywhere.</p></div></div>
+    <div class="tip"><div class="tip-icon">🇨🇭</div><div><div class="tip-title">Lugano Alt — Passport &amp; Francs</div><p class="tip-desc">Switzerland isn't an EU/Schengen internal hop — bring a passport (checks are usually quick for UK holders). Carry some CHF or a no-foreign-fee card; Euros are often accepted but at a poor rate.</p></div></div>
+    <div class="tip"><div class="tip-icon">🚡</div><div><div class="tip-title">Monte Brè — the Other Viewpoint</div><p class="tip-desc">If San Salvatore doesn't appeal, Monte Brè is the alternative funicular — a similar though slightly less panoramic view, with the option to walk down to Brè village after.</p></div></div>
   </div>
 </div>
 
