@@ -331,9 +331,6 @@ a { color: inherit; text-decoration: none; }
 .hw-card li::before { content: ''; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; }
 .hw-owned li::before { background: var(--green); }
 .hw-buy li::before { background: var(--copper); }
-.hw-retired li::before { background: var(--ink2); opacity: .4; }
-.hw-retired { opacity: .75; }
-.hw-retired h3 { color: var(--ink2); }
 
 /* Spec grid */
 .spec-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: var(--space-md); }
@@ -432,35 +429,25 @@ a { color: inherit; text-decoration: none; }
 
 <section class="kg-section">
   <div class="kg-eyebrow">Hardware</div>
-  <h2>What's <em>on hand</em></h2>
-  <p class="kg-section-sub">Split across what's already owned, what's on order for the current phase, and what got tried and dropped along the way.</p>
+  <h2>What it <em>runs on</em></h2>
+  <p class="kg-section-sub">The equipment involved, grouped by which phase it's for.</p>
 
   <div class="hw-grid">
     <div class="hw-card hw-owned">
-      <h3>✅ Owned</h3>
+      <h3>🔧 Driving — Phases 1–2</h3>
       <ul>
-        <li>Waveshare Robot Chassis Kit MP — aluminium frame, 4 mecanum wheels, 4 TT motors, PH2.0 connectors</li>
-        <li>2× Nihewo 3S LiPo 11.1V 2200mAh 100C (XT60) — backup / Phase 3</li>
-        <li>Raspberry Pi 5 — Phase 3</li>
-        <li>Raspberry Pi camera module — Phase 3, spec unconfirmed</li>
-        <li>HC-SR04 ultrasonic distance sensor — Phase 3</li>
-        <li>Overlander e455 LiPo balance charger</li>
+        <li>Aluminium chassis kit — 4 mecanum wheels, 4 TT motors</li>
+        <li>WAV-23730 — ESP32-based motor controller board (WiFi + Bluetooth built in)</li>
+        <li>3S LiPo battery + balance charger</li>
       </ul>
     </div>
     <div class="hw-card hw-buy">
-      <h3>🛒 Purchased / To Buy</h3>
+      <h3>🧠 Autonomy — Phase 3</h3>
       <ul>
-        <li>Waveshare General Driver for Robots ESP32 — WAV-23730 (The Pi Hut, £26.90)</li>
-        <li>Tattu 1300mAh 3S 11.1V XT60 LiPo — slim 22mm profile</li>
-        <li>XT60 female → XH2.54 adapter cable</li>
-        <li>LiPo safe charging bag</li>
-      </ul>
-    </div>
-    <div class="hw-card hw-retired">
-      <h3>🗄️ Retired / Not Used</h3>
-      <ul>
-        <li>SparkFun TB6612FNG motor driver — replaced by the WAV-23730's built-in motor control</li>
-        <li>Breadboard, jumper wires, buck converter, ribbon cables</li>
+        <li>Raspberry Pi 5 + active cooler</li>
+        <li>Pi camera module (forward-facing)</li>
+        <li>HC-SR04 ultrasonic distance sensor</li>
+        <li>RPLiDAR A1 (SLAM mapping)</li>
       </ul>
     </div>
   </div>
