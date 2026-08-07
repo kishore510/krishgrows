@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+/* === BRAND SYSTEM === */
+/* ============================================================
+   KrishGrows — Shared Brand System
+   krishgrows.com | travel | allotment | projects
+   All subdomains import this file.
+   ============================================================ */
+
+/* ── GOOGLE FONTS ── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
+
+/* ── DESIGN TOKENS ── */
+:root {
+  /* Colours */
+  --ink:        #1a1208;
+  --ink2:       #4a3a28;
+  --cream:      #faf8f4;
+  --warm:       #f2ede4;
+  --border:     rgba(74,58,40,.1);
+  --shadow:     0 4px 24px rgba(26,18,8,.08);
+
+  /* Brand accents */
+  --copper:     #c87830;   /* primary accent */
+  --green:      #3a7a58;   /* secondary accent */
+  --blue:       #4a6898;   /* tertiary accent */
+
+  /* Aliases (used in components) */
+  --accent:     var(--copper);
+  --accent2:    var(--green);
+  --accent3:    var(--blue);
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body:    'Outfit', sans-serif;
+
+  /* Spacing scale */
+  --space-xs:   8px;
+  --space-sm:   16px;
+  --space-md:   24px;
+  --space-lg:   48px;
+  --space-xl:   72px;
+
+  /* Layout */
+  --page-pad:   5vw;
+  --radius-sm:  4px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+}
+
+/* ── RESET ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── BASE ── */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TYPOGRAPHY ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -.5px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+h1 { font-size: clamp(48px, 6vw, 86px); letter-spacing: -1px; line-height: .98; }
+h2 { font-size: clamp(30px, 4vw, 46px); }
+h3 { font-size: clamp(20px, 2.5vw, 28px); }
+
+h1 em, h2 em, h3 em {
+  color: var(--copper);
+  font-style: italic;
+}
+
+p {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--ink2);
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
+.kg-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,248,244,.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 var(--page-pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
+}
+
+.kg-logo {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kg-logo em { color: var(--copper); font-style: italic; }
+
+.kg-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+
+.kg-nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink2);
+  letter-spacing: .3px;
+  transition: color .2s;
+}
+
+.kg-nav-links a:hover { color: var(--copper); }
+
+.kg-nav-links a.active { color: var(--copper); }
+
+.kg-nav-badge {
+  background: var(--copper);
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+/* ── SECTION STRUCTURE ── */
+.kg-section { padding: var(--space-xl) var(--page-pad); }
+
+.kg-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kg-eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--copper);
+}
+
+.kg-section-sub {
+  font-size: 14px;
+  color: var(--ink2);
+  margin-top: 10px;
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+/* ── BUTTONS ── */
+.kg-btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 13px 28px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  letter-spacing: .4px;
+  transition: background .2s, transform .1s;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+
+.kg-btn-primary {
+  background: var(--ink);
+  color: white;
+}
+
+.kg-btn-primary:hover {
+  background: var(--copper);
+  transform: translateY(-1px);
+}
+
+.kg-btn-ghost {
+  background: transparent;
+  color: var(--ink2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kg-btn-ghost:hover { color: var(--copper); }
+
+/* ── FOOTER ── */
+.kg-footer {
+  background: var(--ink);
+  padding: var(--space-lg) var(--page-pad);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.kg-footer-logo {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.kg-footer-logo em { color: var(--copper); font-style: italic; }
+
+.kg-footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.kg-footer-links a {
+  font-size: 12px;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .3px;
+  transition: color .2s;
+}
+
+.kg-footer-links a:hover { color: var(--copper); }
+
+.kg-footer-copy {
+  font-size: 11px;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .5px;
+}
+
+/* ── UTILITY ── */
+.kg-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.kg-tag-copper { background: rgba(200,120,48,.12); color: var(--copper); }
+.kg-tag-green  { background: rgba(58,122,88,.12);  color: var(--green);  }
+.kg-tag-blue   { background: rgba(74,104,152,.12); color: var(--blue);   }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  :root {
+    --page-pad: 6vw;
+  }
+
+  .kg-nav-links { gap: 16px; }
+
+  h1 { font-size: clamp(36px, 8vw, 56px); }
+  h2 { font-size: clamp(24px, 5vw, 36px); }
+}
+
+@media (max-width: 480px) {
+  :root { --page-pad: 5vw; }
+  .kg-nav-links .hide-mobile { display: none; }
+}
+
+/* === END BRAND === */
+
+/* ── ARCADE PAGE ── */
+.arcade-hero {
+  position: relative;
+  padding: var(--space-xl) var(--page-pad) var(--space-lg);
+  background: #0a0f1a;
+  overflow: hidden;
+}
+.arcade-hero::before {
+  content: '';
+  position: absolute;
+  top: -140px; right: -100px;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34,184,160,.22), transparent 70%);
+  pointer-events: none;
+}
+.arcade-hero-inner { position: relative; z-index: 1; max-width: 640px; }
+.arcade-hero h1 { color: white; margin-top: 12px; }
+.arcade-hero h1 em { color: #22b8a0; }
+.arcade-hero p { color: rgba(255,255,255,.6); margin-top: 16px; max-width: 480px; }
+.arcade-hero .kg-eyebrow { color: #22b8a0; }
+.arcade-hero .kg-eyebrow::before { background: #22b8a0; }
+.arcade-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.kg-btn-teal { background: #22b8a0; color: #06110d; }
+.kg-btn-teal:hover { background: #2dd4b8; transform: translateY(-1px); }
+.kg-btn-outline { background: transparent; border: 1px solid rgba(255,255,255,.25); color: white; }
+.kg-btn-outline:hover { border-color: #22b8a0; color: #22b8a0; }
+
+.stat-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; margin-top: var(--space-md); }
+.stat-cell { background: var(--cream); padding: 18px 12px; text-align: center; }
+.stat-n { font-family: var(--font-heading); font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1; }
+.stat-l { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink2); margin-top: 4px; }
+
+.build-list { display: flex; flex-direction: column; gap: var(--space-md); margin-top: var(--space-md); }
+.build-item { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 22px; }
+.build-item h3 { margin-bottom: 8px; }
+.build-item p { margin-top: 4px; }
+.build-item .kg-tag { margin-top: 12px; margin-right: 6px; }
+
+.note-box { background: var(--warm); border-left: 3px solid var(--copper); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 16px 20px; margin-top: var(--space-md); }
+.note-box p { color: var(--ink2); font-size: 13px; }
+.note-box strong { color: var(--ink); font-weight: 600; }
+
+@media (min-width: 768px) {
+  .stat-row { grid-template-columns: repeat(4,1fr); }
+}
+</style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arcade — KrishGrows Projects</title>
+
+</head>
+<body>
+<nav class="kg-nav">
+  <a href="https://krishgrows.com" class="kg-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="kg-nav-links">
+    <li><a href="https://projects.krishgrows.com">← Projects</a></li>
+  </ul>
+</nav>
+
+<header class="arcade-hero">
+  <div class="arcade-hero-inner">
+    <div class="kg-eyebrow">Project · Public</div>
+    <h1>🕹️ <em>Arcade</em></h1>
+    <p>A small games hub — a growing shelf of self-contained browser games, built one weekend at a time. No accounts, no downloads, no tracking, just pick a cartridge and play.</p>
+    <div class="arcade-actions">
+      <a href="https://arcade.krishnabuilds.dev/" target="_blank" rel="noopener" class="kg-btn kg-btn-teal">Play the Arcade ↗</a>
+      <a href="https://github.com/kishore510/krishnabuilds-arcade" target="_blank" rel="noopener" class="kg-btn kg-btn-outline">View source on GitHub</a>
+    </div>
+  </div>
+</header>
+
+<section class="kg-section">
+  <div class="kg-eyebrow">What it is</div>
+  <h2>One repo, <em>many cartridges</em></h2>
+  <p class="kg-section-sub">Every game lives at its own URL as a single self-contained HTML file — its own inline &lt;style&gt; and &lt;script&gt;, nothing shared beyond one small embed script. Land on the front page and pick a card; there's no login, no install, no data collected about you.</p>
+
+  <div class="stat-row">
+    <div class="stat-cell"><div class="stat-n">30+</div><div class="stat-l">Games Live</div></div>
+    <div class="stat-cell"><div class="stat-n">0</div><div class="stat-l">Accounts / Sign-ups</div></div>
+    <div class="stat-cell"><div class="stat-n">0</div><div class="stat-l">Build Step</div></div>
+    <div class="stat-cell"><div class="stat-n">1</div><div class="stat-l">Optional Worker</div></div>
+  </div>
+</section>
+
+<section class="kg-section" style="background:var(--warm)">
+  <div class="kg-eyebrow">How it's built</div>
+  <h2>Static by <em>design</em></h2>
+  <p class="kg-section-sub">No framework, no package manager, no database. The whole site is plain HTML/CSS/JS, deployed straight from the repo — a deliberate constraint that keeps every game easy to drop in and easy to reason about on its own.</p>
+
+  <div class="build-list">
+    <div class="build-item">
+      <h3>A landing page that's just data</h3>
+      <p>The homepage renders every "cartridge" card — name, tagline, emoji, gradient, tags — from a single <code>GAMES</code> array in its inline script. Shipping a new game is: drop the folder in, add one object to the array, done. No template engine, no build step re-runs.</p>
+      <span class="kg-tag kg-tag-copper">Vanilla JS</span><span class="kg-tag kg-tag-blue">Data-driven cards</span>
+    </div>
+    <div class="build-item">
+      <h3>Shared chrome, not a shared framework</h3>
+      <p>Every game pulls in one script, <code>assets/game-embed.js</code>, which injects the top nav bar ("← All games") and a support link — without any per-game CSS or markup. It's the only thing games have in common; everything else in a game folder is free to do its own thing.</p>
+      <span class="kg-tag kg-tag-green">One embed script</span>
+    </div>
+    <div class="build-item">
+      <h3>An optional play-count counter</h3>
+      <p>A small Cloudflare Worker (<code>src/worker.js</code>) backs a single KV namespace tracking how many times each game's been played, read back on the homepage as "Played N times." It's genuinely optional — if it's not wired up, the fetch calls fail silently and every game still works exactly the same.</p>
+      <span class="kg-tag kg-tag-copper">Cloudflare Worker</span><span class="kg-tag kg-tag-blue">KV storage</span>
+    </div>
+    <div class="build-item">
+      <h3>Ship on push, no manual deploy</h3>
+      <p>Cloudflare Workers Builds watches <code>master</code> and deploys automatically on every push — no local <code>wrangler deploy</code>, no separate release step. A game isn't really done until it's merged to <code>master</code>; a feature branch alone never reaches the live site.</p>
+      <span class="kg-tag kg-tag-green">Auto-deploy</span>
+    </div>
+  </div>
+</section>
+
+<section class="kg-section">
+  <div class="kg-eyebrow">Design principles</div>
+  <h2>Rules every <em>game</em> follows</h2>
+  <p class="kg-section-sub">A few constraints repeat across all 30+ games, mostly learned the hard way while building for a phone-first audience.</p>
+
+  <div class="build-list">
+    <div class="build-item">
+      <h3>Mobile-first, not mobile-adapted</h3>
+      <p>Nothing that says "this is clickable" or "here's how you go back" may rely on <code>:hover</code> — touch devices never trigger it, so borders, glows and badges on interactive elements have to be visible at rest, not just on interaction.</p>
+    </div>
+    <div class="build-item">
+      <h3>Consistent Easy/Hard, not per-game guesswork</h3>
+      <p>Every reflex/arcade game exposes an Easy and Hard mode, and "harder" always means retuning spawn and reaction parameters — never removing the safety margin that keeps a run physically fair. Ramps always have a hard cap; procedurally placed hazards are spaced using the player's real jump arc or lane count, so nothing is ever unreachable by construction.</p>
+    </div>
+    <div class="build-item">
+      <h3>A version string you can actually check</h3>
+      <p><code>assets/version.js</code> is the single source of truth for a displayed version and date, shown in the homepage footer and every game's nav bar — a quick way to confirm you're looking at the latest deploy rather than a stale cached copy.</p>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <p><strong>Built with Claude Code.</strong> Each game — physics, difficulty tuning, mobile-fit quirks and all — has been built and iterated on with Claude Code, with the repo's own <code>CLAUDE.md</code> capturing the patterns and past bugs so the next game session starts from what was already learned, not from scratch.</p>
+  </div>
+</section>
+
+<section class="kg-section" style="text-align:center;background:var(--ink)">
+  <h2 style="color:white">Go on, <em>play one</em></h2>
+  <p style="color:rgba(255,255,255,.55);max-width:440px;margin:12px auto 0">New games get added when they're ready, not on a schedule — check back for more cartridges.</p>
+  <div style="margin-top:24px">
+    <a href="https://arcade.krishnabuilds.dev/" target="_blank" rel="noopener" class="kg-btn kg-btn-teal">Play the Arcade ↗</a>
+  </div>
+</section>
+
+<footer class="kg-footer">
+  <a href="https://krishgrows.com" class="kg-footer-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="kg-footer-links">
+    <li><a href="https://krishgrows.com">Home</a></li>
+    <li><a href="https://travel.krishgrows.com">Travel</a></li>
+    <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
+    <li><a href="https://projects.krishgrows.com">Projects</a></li>
+  </ul>
+  <p class="kg-footer-copy">projects.krishgrows.com — North Yorkshire</p>
+</footer>
+</body>
+</html>
