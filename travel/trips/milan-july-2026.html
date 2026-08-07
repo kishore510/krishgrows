@@ -20,8 +20,15 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--font-b);background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
+/* YOUTUBE BAR */
+.sticky-top{position:sticky;top:0;z-index:100}
+.yt-bar{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#ff0000,#cc0000);color:white;font-family:var(--font-b);font-size:13px;font-weight:700;padding:10px var(--pad);text-decoration:none;text-align:center;-webkit-tap-highlight-color:transparent}
+.yt-bar:active{background:#a80000}
+.yt-bar-arrow{transition:transform .2s}
+.btn-youtube{display:flex;align-items:center;justify-content:center;gap:8px;background:#ff0000;color:white;font-family:var(--font-b);font-size:15px;font-weight:600;padding:16px 24px;border-radius:12px;text-decoration:none}
+
 /* NAV */
-.nav{position:sticky;top:0;z-index:100;background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between}
+.nav{background:rgba(250,248,244,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:3px}
 .nav-logo em{color:var(--copper);font-style:italic}
 .nav-links{display:flex;gap:4px}
@@ -179,7 +186,7 @@ h2 em{color:var(--copper);font-style:italic}
   .hero{min-height:85vh;padding:0 var(--pad) 80px}
   .hero h1{font-size:clamp(64px,7vw,96px)}
   .hero-actions{flex-direction:row}
-  .btn-primary,.btn-ghost{width:auto}
+  .btn-primary,.btn-ghost,.btn-youtube{width:auto}
   .stops-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:0 var(--pad)}
   .stop-card{margin:0}
   .stay-card{margin:0 var(--pad)}
@@ -192,15 +199,18 @@ h2 em{color:var(--copper);font-style:italic}
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <a href="https://travel.krishgrows.com" class="nav-logo">🌿 Krish<em>Grows</em></a>
-  <div class="nav-links">
-    <a href="https://travel.krishgrows.com" class="active">Travel</a>
-    <a href="https://allotment.krishgrows.com">Allotment</a>
-    <a href="https://projects.krishgrows.com">Projects</a>
-  </div>
-</nav>
+<!-- YOUTUBE + NAV -->
+<div class="sticky-top">
+  <a href="https://www.youtube.com/playlist?list=PLIy67Vd2o_Lw" target="_blank" rel="noopener" class="yt-bar">▶️ Watch this trip come together — subscribe on YouTube <span class="yt-bar-arrow">→</span></a>
+  <nav class="nav">
+    <a href="https://travel.krishgrows.com" class="nav-logo">🌿 Krish<em>Grows</em></a>
+    <div class="nav-links">
+      <a href="https://travel.krishgrows.com" class="active">Travel</a>
+      <a href="https://allotment.krishgrows.com">Allotment</a>
+      <a href="https://projects.krishgrows.com">Projects</a>
+    </div>
+  </nav>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -222,6 +232,7 @@ h2 em{color:var(--copper);font-style:italic}
     <div class="hero-actions">
       <a href="#day1" class="btn-primary">Start Day 1 →</a>
       <a href="#transport" class="btn-ghost">Strike plan &amp; transport</a>
+      <a href="https://www.youtube.com/playlist?list=PLIy67Vd2o_Lw" target="_blank" rel="noopener" class="btn-youtube">▶️ Watch on YouTube</a>
     </div>
   </div>
 </div>
@@ -998,6 +1009,7 @@ h2 em{color:var(--copper);font-style:italic}
     <li><a href="https://travel.krishgrows.com">Travel</a></li>
     <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
     <li><a href="https://projects.krishgrows.com">Projects</a></li>
+    <li><a href="https://www.youtube.com/playlist?list=PLIy67Vd2o_Lw" target="_blank" rel="noopener">YouTube</a></li>
   </ul>
   <p class="footer-copy">Lombardy, Italy · 4 Days · Thu–Sun, 23–26 July 2026</p>
 </footer>
