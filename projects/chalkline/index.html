@@ -378,7 +378,7 @@ code { font-size: .9em; background: rgba(74,58,40,.07); padding: 1px 5px; border
     <div class="kg-eyebrow">Project · Public</div>
     <h1>✏️ <em>Chalkline</em></h1>
     <p class="chalk-tagline">Ideas to diagrams.</p>
-    <p>A modern, responsive web app for drawing architecture diagrams and whiteboard-style models. Think a lightweight draw.io, tuned to my own workflow. It works on phone, tablet and laptop, runs entirely in the browser with no backend, and has optional AI features (generate, summarise and review diagrams) powered by Claude using your own Anthropic API key.</p>
+    <p>A modern, responsive web app for drawing architecture diagrams and whiteboard-style models. Think a lightweight draw.io, tuned to my own workflow. It works on phone, tablet and laptop, runs entirely in the browser with no backend, and has optional AI features (generate, summarise, review and annotate diagrams) powered by Claude using your own Anthropic API key.</p>
     <div class="chalk-actions">
       <a href="https://kishore510.github.io/chalkline/" target="_blank" rel="noopener" class="kg-btn kg-btn-chalk">Open Chalkline ↗</a>
       <a href="https://github.com/kishore510/chalkline" target="_blank" rel="noopener" class="kg-btn kg-btn-outline">View source on GitHub</a>
@@ -392,7 +392,7 @@ code { font-size: .9em; background: rgba(74,58,40,.07); padding: 1px 5px; border
   <p class="kg-section-sub">Boxes, shapes, connectors and notes on a crisp canvas, with a chalk-on-slate look: a deep slate blackboard in dark mode and clean paper in light mode. Diagrams save as JSON that diffs cleanly in git, and export to PNG, SVG or PDF.</p>
 
   <div class="stat-row">
-    <div class="stat-cell"><div class="stat-n">0.24</div><div class="stat-l">Current Version</div></div>
+    <div class="stat-cell"><div class="stat-n">0.25</div><div class="stat-l">Current Version</div></div>
     <div class="stat-cell"><div class="stat-n">38</div><div class="stat-l">Shapes</div></div>
     <div class="stat-cell"><div class="stat-n">800+</div><div class="stat-l">Automated Tests</div></div>
     <div class="stat-cell"><div class="stat-n">0</div><div class="stat-l">Backend / Accounts</div></div>
@@ -442,7 +442,7 @@ code { font-size: .9em; background: rgba(74,58,40,.07); padding: 1px 5px; border
     </div>
     <div class="build-item">
       <h3>AI, on your terms</h3>
-      <p><strong>Generate</strong> a diagram from a description, <strong>summarise</strong> a diagram (or just a selection) as a short summary, component list or documentation, or <strong>review</strong> it for single points of failure, missing components, naming and data-flow issues, with findings that highlight the shapes involved. Free local checks run without a key. AI calls go straight from your browser to Anthropic using your own API key, with Claude Haiku 4.5 by default and Claude Sonnet 5.5 for generating diagrams and for Deeper review. Every request is an explicit button, shows a check step with the model and estimated size first, and reports the tokens used afterwards.</p>
+      <p><strong>Generate</strong> a diagram from a description, <strong>summarise</strong> a diagram (or just a selection) as a short summary, component list or documentation, or <strong>review</strong> it for single points of failure, missing components, naming and data-flow issues, with findings that highlight the shapes involved, or <strong>suggest notes</strong> for up to five selected shapes, which you edit, accept or dismiss before anything is written. Free local checks run without a key. AI calls go straight from your browser to Anthropic using your own API key, with Claude Haiku 4.5 by default and Claude Sonnet 5.5 for generating diagrams and for Deeper review. Every request is an explicit button, shows a check step with the model and estimated size first, and reports the tokens used afterwards.</p>
       <span class="kg-tag kg-tag-copper">BYO Anthropic key</span><span class="kg-tag kg-tag-blue">Claude</span>
     </div>
   </div>
@@ -466,7 +466,7 @@ code { font-size: .9em; background: rgba(74,58,40,.07); padding: 1px 5px; border
     </div>
     <div class="build-item">
       <h3>Token-thrifty AI</h3>
-      <p>AI features came last and follow strict rules. There's no proxy or server: you bring your own Anthropic API key, and requests go directly from the browser to Anthropic. Nothing runs on its own. Only compact JSON is sent, never screenshots. Notes and hidden layers stay out unless you include them. The key stays in memory for the session unless you choose to remember it, and it never ends up in exports or backups. Summaries and reviews use the cheapest model that does the job well, and the token counts Anthropic reports are shown after each request.</p>
+      <p>AI features came last and follow strict rules. There's no proxy or server: you bring your own Anthropic API key, and requests go directly from the browser to Anthropic. Nothing runs on its own. Only compact JSON is sent, never screenshots. Notes and hidden layers stay out unless you include them. The key stays in memory for the session unless you choose to remember it, and it never ends up in exports or backups. Summaries, reviews and suggested notes use the cheapest model that does the job well, and the token counts Anthropic reports are shown after each request.</p>
       <span class="kg-tag kg-tag-green">Explicit actions only</span>
     </div>
     <div class="build-item">
@@ -489,7 +489,7 @@ code { font-size: .9em; background: rgba(74,58,40,.07); padding: 1px 5px; border
     <div class="phase"><h3>3 · Persistence &amp; export</h3><p>Autosave, JSON open/save, PNG/SVG/PDF export, undo/redo, copy/paste, duplicate.</p><span class="kg-tag kg-tag-green">Done</span></div>
     <div class="phase"><h3>4 · Structure</h3><p>Align and distribute, groups and swimlanes, auto-arrange, shape packs, layers, smart guides, stencils and templates.</p><span class="kg-tag kg-tag-green">Done</span></div>
     <div class="phase wip"><h3>5 · Polish</h3><p>Help and What's new, find, shortcuts, accessibility, text styling, settings and backup, and performance are done. Still to come: a read-only share view, PWA install and optional <code>.drawio</code> import.</p><span class="kg-tag kg-tag-copper">Mostly done</span></div>
-    <div class="phase"><h3>6 · AI</h3><p>Bring-your-own Anthropic key setup, text-to-diagram, diagram summaries, and a review assistant that combines local checks with an AI review.</p><span class="kg-tag kg-tag-green">Done</span></div>
+    <div class="phase"><h3>6 · AI</h3><p>Bring-your-own Anthropic key setup, text-to-diagram, diagram summaries, a review assistant that combines local checks with an AI review, and suggested notes that you approve one by one.</p><span class="kg-tag kg-tag-green">Done</span></div>
   </div>
 
   <div class="note-box">
