@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+/* === BRAND SYSTEM === */
+/* ============================================================
+   KrishGrows — Shared Brand System
+   krishgrows.com | travel | allotment | projects
+   All subdomains import this file.
+   ============================================================ */
+
+/* ── GOOGLE FONTS ── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
+
+/* ── DESIGN TOKENS ── */
+:root {
+  /* Colours */
+  --ink:        #1a1208;
+  --ink2:       #4a3a28;
+  --cream:      #faf8f4;
+  --warm:       #f2ede4;
+  --border:     rgba(74,58,40,.1);
+  --shadow:     0 4px 24px rgba(26,18,8,.08);
+
+  /* Brand accents */
+  --copper:     #c87830;   /* primary accent */
+  --green:      #3a7a58;   /* secondary accent */
+  --blue:       #4a6898;   /* tertiary accent */
+
+  /* Aliases (used in components) */
+  --accent:     var(--copper);
+  --accent2:    var(--green);
+  --accent3:    var(--blue);
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body:    'Outfit', sans-serif;
+
+  /* Spacing scale */
+  --space-xs:   8px;
+  --space-sm:   16px;
+  --space-md:   24px;
+  --space-lg:   48px;
+  --space-xl:   72px;
+
+  /* Layout */
+  --page-pad:   5vw;
+  --radius-sm:  4px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+}
+
+/* ── RESET ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── BASE ── */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TYPOGRAPHY ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -.5px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+h1 { font-size: clamp(48px, 6vw, 86px); letter-spacing: -1px; line-height: .98; }
+h2 { font-size: clamp(30px, 4vw, 46px); }
+h3 { font-size: clamp(20px, 2.5vw, 28px); }
+
+h1 em, h2 em, h3 em {
+  color: var(--copper);
+  font-style: italic;
+}
+
+p {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--ink2);
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
+.kg-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,248,244,.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 var(--page-pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
+}
+
+.kg-logo {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kg-logo em { color: var(--copper); font-style: italic; }
+
+.kg-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+
+.kg-nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink2);
+  letter-spacing: .3px;
+  transition: color .2s;
+}
+
+.kg-nav-links a:hover { color: var(--copper); }
+
+.kg-nav-links a.active { color: var(--copper); }
+
+.kg-nav-badge {
+  background: var(--copper);
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+/* ── SECTION STRUCTURE ── */
+.kg-section { padding: var(--space-xl) var(--page-pad); }
+
+.kg-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kg-eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--copper);
+}
+
+.kg-section-sub {
+  font-size: 14px;
+  color: var(--ink2);
+  margin-top: 10px;
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+/* ── BUTTONS ── */
+.kg-btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 13px 28px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  letter-spacing: .4px;
+  transition: background .2s, transform .1s;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+
+.kg-btn-primary {
+  background: var(--ink);
+  color: white;
+}
+
+.kg-btn-primary:hover {
+  background: var(--copper);
+  transform: translateY(-1px);
+}
+
+.kg-btn-ghost {
+  background: transparent;
+  color: var(--ink2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kg-btn-ghost:hover { color: var(--copper); }
+
+/* ── FOOTER ── */
+.kg-footer {
+  background: var(--ink);
+  padding: var(--space-lg) var(--page-pad);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.kg-footer-logo {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.kg-footer-logo em { color: var(--copper); font-style: italic; }
+
+.kg-footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.kg-footer-links a {
+  font-size: 12px;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .3px;
+  transition: color .2s;
+}
+
+.kg-footer-links a:hover { color: var(--copper); }
+
+.kg-footer-copy {
+  font-size: 11px;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .5px;
+}
+
+/* ── UTILITY ── */
+.kg-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.kg-tag-copper { background: rgba(200,120,48,.12); color: var(--copper); }
+.kg-tag-green  { background: rgba(58,122,88,.12);  color: var(--green);  }
+.kg-tag-blue   { background: rgba(74,104,152,.12); color: var(--blue);   }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  :root {
+    --page-pad: 6vw;
+  }
+
+  .kg-nav-links { gap: 16px; }
+
+  h1 { font-size: clamp(36px, 8vw, 56px); }
+  h2 { font-size: clamp(24px, 5vw, 36px); }
+}
+
+@media (max-width: 480px) {
+  :root { --page-pad: 5vw; }
+  .kg-nav-links .hide-mobile { display: none; }
+}
+
+/* === END BRAND === */
+
+/* ── CHALKLINE PAGE ── */
+.chalk-hero {
+  position: relative;
+  padding: var(--space-xl) var(--page-pad) var(--space-lg);
+  background: #1c2329;
+  background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+  overflow: hidden;
+}
+.chalk-hero::before {
+  content: '';
+  position: absolute;
+  top: -140px; right: -100px;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(122,170,232,.22), transparent 70%);
+  pointer-events: none;
+}
+.chalk-hero-inner { position: relative; z-index: 1; max-width: 640px; }
+.chalk-hero h1 { color: #f1efe8; margin-top: 12px; }
+.chalk-hero h1 em { color: #7aaae8; }
+.chalk-hero p { color: rgba(241,239,232,.65); margin-top: 16px; max-width: 480px; }
+.chalk-hero .kg-eyebrow { color: #7aaae8; }
+.chalk-hero .kg-eyebrow::before { background: #7aaae8; }
+.chalk-tagline { font-family: var(--font-heading); font-style: italic; font-size: 22px; color: rgba(241,239,232,.85) !important; margin-top: 4px !important; }
+.chalk-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.kg-btn-chalk { background: #7aaae8; color: #0f161d; }
+.kg-btn-chalk:hover { background: #9cc0f0; transform: translateY(-1px); }
+.kg-btn-outline { background: transparent; border: 1px solid rgba(255,255,255,.25); color: white; }
+.kg-btn-outline:hover { border-color: #7aaae8; color: #7aaae8; }
+
+.stat-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; margin-top: var(--space-md); }
+.stat-cell { background: var(--cream); padding: 18px 12px; text-align: center; }
+.stat-n { font-family: var(--font-heading); font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1; }
+.stat-l { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink2); margin-top: 4px; }
+
+.build-list { display: flex; flex-direction: column; gap: var(--space-md); margin-top: var(--space-md); }
+.build-item { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 22px; }
+.build-item h3 { margin-bottom: 8px; }
+.build-item p { margin-top: 4px; }
+.build-item .kg-tag { margin-top: 12px; margin-right: 6px; }
+
+.phase-list { display: flex; flex-direction: column; margin-top: var(--space-md); border-left: 2px solid var(--border); }
+.phase { position: relative; padding: 0 0 22px 22px; }
+.phase:last-child { padding-bottom: 0; }
+.phase::before { content: ''; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--green); }
+.phase.wip::before { background: var(--copper); }
+.phase h3 { font-size: 20px; }
+.phase p { font-size: 14px; margin-top: 4px; }
+.phase .kg-tag { margin-top: 8px; }
+
+.note-box { background: var(--warm); border-left: 3px solid var(--copper); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 16px 20px; margin-top: var(--space-md); }
+.note-box p { color: var(--ink2); font-size: 13px; }
+.note-box strong { color: var(--ink); font-weight: 600; }
+
+code { font-size: .9em; background: rgba(74,58,40,.07); padding: 1px 5px; border-radius: 4px; }
+
+@media (min-width: 768px) {
+  .stat-row { grid-template-columns: repeat(4,1fr); }
+  .build-list.two-col { display: grid; grid-template-columns: repeat(2,1fr); }
+}
+</style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chalkline — KrishGrows Projects</title>
+
+</head>
+<body>
+<nav class="kg-nav">
+  <a href="https://krishgrows.com" class="kg-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="kg-nav-links">
+    <li><a href="https://projects.krishgrows.com">← Projects</a></li>
+  </ul>
+</nav>
+
+<header class="chalk-hero">
+  <div class="chalk-hero-inner">
+    <div class="kg-eyebrow">Project · Public</div>
+    <h1>✏️ <em>Chalkline</em></h1>
+    <p class="chalk-tagline">Ideas to diagrams.</p>
+    <p>A modern, responsive web app for drawing architecture diagrams and whiteboard-style models. Think a lightweight draw.io, tuned to my own workflow. It works on phone, tablet and laptop, runs entirely in the browser with no backend, and has optional AI features that use your own API key.</p>
+    <div class="chalk-actions">
+      <a href="https://kishore510.github.io/chalkline/" target="_blank" rel="noopener" class="kg-btn kg-btn-chalk">Open Chalkline ↗</a>
+      <a href="https://github.com/kishore510/chalkline" target="_blank" rel="noopener" class="kg-btn kg-btn-outline">View source on GitHub</a>
+    </div>
+  </div>
+</header>
+
+<section class="kg-section">
+  <div class="kg-eyebrow">What it is</div>
+  <h2>A whiteboard for <em>architecture</em></h2>
+  <p class="kg-section-sub">Boxes, shapes, connectors and notes on a crisp canvas, with a chalk-on-slate look: a deep slate blackboard in dark mode and clean paper in light mode. Diagrams save as JSON that diffs cleanly in git, and export to PNG, SVG or PDF.</p>
+
+  <div class="stat-row">
+    <div class="stat-cell"><div class="stat-n">0.23</div><div class="stat-l">Current Version</div></div>
+    <div class="stat-cell"><div class="stat-n">38</div><div class="stat-l">Shapes</div></div>
+    <div class="stat-cell"><div class="stat-n">800+</div><div class="stat-l">Automated Tests</div></div>
+    <div class="stat-cell"><div class="stat-n">0</div><div class="stat-l">Backend / Accounts</div></div>
+  </div>
+</section>
+
+<section class="kg-section" style="background:var(--warm)">
+  <div class="kg-eyebrow">Features</div>
+  <h2>What you can <em>do</em></h2>
+  <p class="kg-section-sub">Built in small slices, each usable on its own. Here's what's in the app today.</p>
+
+  <div class="build-list two-col">
+    <div class="build-item">
+      <h3>Draw and connect</h3>
+      <p>Tap or drag shapes onto the canvas, edit labels in place, resize, and link them with connectors. Connectors attach to each shape's outline, route around other shapes, and can be pinned to a side or docking point. Select, Pan and Link modes make it all work by touch.</p>
+      <span class="kg-tag kg-tag-copper">React Flow</span><span class="kg-tag kg-tag-blue">Touch-first</span>
+    </div>
+    <div class="build-item">
+      <h3>38 shapes across categories</h3>
+      <p>Basics, flowchart shapes, Networking (firewall, load balancer, API gateway, CDN), Architecture (cache, message bus, microservice, object storage) and AI &amp; ML (LLM, vector DB, guardrails, agents, MCP client/server). Palette search matches what a shape is <em>for</em>, so "rag" or "pub-sub" finds the right one.</p>
+      <span class="kg-tag kg-tag-green">Shape registry</span>
+    </div>
+    <div class="build-item">
+      <h3>Style and annotate</h3>
+      <p>Fill, border, text colour and theme-aware colour presets. Connector line shapes, arrowheads, dashes and labels. Five fonts with bold, italic, underline and alignment. Every shape and connector can carry notes.</p>
+      <span class="kg-tag kg-tag-copper">Design tokens</span>
+    </div>
+    <div class="build-item">
+      <h3>Structure big diagrams</h3>
+      <p>Groups with nesting and collapse, swimlane pools, layers (hide, lock, reorder), align and distribute, smart guides while dragging, and one-click auto-arrange using ELK in a Web Worker.</p>
+      <span class="kg-tag kg-tag-blue">ELK auto-layout</span><span class="kg-tag kg-tag-green">Layers</span>
+    </div>
+    <div class="build-item">
+      <h3>Stencils and templates</h3>
+      <p>Start from templates such as three-tier, microservices, event-driven, data pipeline, CI/CD or network zones. Save any selection as a reusable stencil, and import or export your library. There's also a built-in generic AI gateway stencil.</p>
+      <span class="kg-tag kg-tag-copper">7 templates</span>
+    </div>
+    <div class="build-item">
+      <h3>Save, export, undo</h3>
+      <p>Autosave in the browser, JSON open and save, and export to PNG, SVG and PDF. All three exporters are written in-house with no extra dependencies. Also 100-step undo and redo, copy and paste between tabs, and a full backup and restore.</p>
+      <span class="kg-tag kg-tag-green">Hand-written PDF writer</span>
+    </div>
+    <div class="build-item">
+      <h3>Find, keyboard and screen readers</h3>
+      <p>Search labels and notes, nudge with arrow keys, and use a full shortcuts page. You can Tab through shapes in reading order, and screen readers announce the selection, mode changes and undo.</p>
+      <span class="kg-tag kg-tag-blue">Accessibility</span>
+    </div>
+    <div class="build-item">
+      <h3>AI, on your terms</h3>
+      <p><strong>Generate</strong> a diagram from a description, or <strong>summarise</strong> a diagram (or just a selection) as a short summary, component list or documentation. You bring your own Anthropic key. Every request is an explicit button, shows a check step with the model and estimated size first, and reports the tokens used afterwards.</p>
+      <span class="kg-tag kg-tag-copper">Bring your own key</span><span class="kg-tag kg-tag-blue">Claude</span>
+    </div>
+  </div>
+</section>
+
+<section class="kg-section">
+  <div class="kg-eyebrow">How it's built</div>
+  <h2>Static, typed, <em>schema-first</em></h2>
+  <p class="kg-section-sub">Vite, React and strict TypeScript, with Zustand for state, Zod for the diagram format, Tailwind with shadcn/ui and Lucide for the interface, and Vitest for tests. It's plain static files deployed to GitHub Pages, so it can move to another host later.</p>
+
+  <div class="build-list">
+    <div class="build-item">
+      <h3>The schema is the source of truth</h3>
+      <p>A diagram is a JSON document defined by one Zod schema, and every type is inferred from it. The store must always pass validation. Each format change bumps <code>schemaVersion</code> and ships a tested migration (now at v5), so old diagrams keep opening. Diagrams that use a shape this version doesn't know still load and save unchanged.</p>
+      <span class="kg-tag kg-tag-copper">Zod</span><span class="kg-tag kg-tag-green">Versioned migrations</span>
+    </div>
+    <div class="build-item">
+      <h3>Mobile-first, on purpose</h3>
+      <p>The phone layout came first: a bottom drawer for the palette, a bottom sheet for properties, and a thumb-reachable toolbar. Tablet gets a side rail and desktop gets persistent panels. Every touch target is at least 44px, nothing depends on hover, and long-press replaces right-click. Each slice is checked at 360, 768 and 1280px in both themes.</p>
+      <span class="kg-tag kg-tag-blue">Responsive</span><span class="kg-tag kg-tag-copper">Light + dark</span>
+    </div>
+    <div class="build-item">
+      <h3>Token-thrifty AI</h3>
+      <p>AI features came last and follow strict rules. Nothing runs on its own. Only compact JSON is sent, never screenshots. Notes and hidden layers stay out unless you include them. The key stays in memory for the session unless you choose to remember it, and it never ends up in exports or backups. Summaries use the cheapest model that does the job well.</p>
+      <span class="kg-tag kg-tag-green">Explicit actions only</span>
+    </div>
+    <div class="build-item">
+      <h3>Built on a Raspberry Pi</h3>
+      <p>Development happens on a Raspberry Pi 5 (arm64) in VS Code, with no local browser. Every change has to pass <code>tsc --noEmit</code>, the Vitest suite and a production build, and CI runs the same checks before each deploy. Visual testing happens on a real phone and laptop against the live Pages URL.</p>
+      <span class="kg-tag kg-tag-copper">GitHub Actions</span><span class="kg-tag kg-tag-blue">GitHub Pages</span>
+    </div>
+  </div>
+</section>
+
+<section class="kg-section" style="background:var(--warm)">
+  <div class="kg-eyebrow">Roadmap</div>
+  <h2>Shipped in <em>phases</em></h2>
+  <p class="kg-section-sub">Each phase has its own branch and can ship on its own. Every merged slice bumps the minor version and gets a plain-language entry in the in-app "What's new".</p>
+
+  <div class="phase-list">
+    <div class="phase"><h3>0 · Foundations</h3><p>Scaffold, design tokens with contrast tests, light/dark themes, Zod schema, fixtures, CI and the Pages deploy.</p><span class="kg-tag kg-tag-green">Done</span></div>
+    <div class="phase"><h3>1 · Core canvas</h3><p>Pan, zoom, minimap, palette, labels, resize, connectors, multi-select, snap-to-grid, adaptive layouts.</p><span class="kg-tag kg-tag-green">Done</span></div>
+    <div class="phase"><h3>2 · Styling &amp; annotations</h3><p>Properties panel, colour presets, edge styles and labels, notes everywhere, connector sides and obstacle-aware routing.</p><span class="kg-tag kg-tag-green">Done</span></div>
+    <div class="phase"><h3>3 · Persistence &amp; export</h3><p>Autosave, JSON open/save, PNG/SVG/PDF export, undo/redo, copy/paste, duplicate.</p><span class="kg-tag kg-tag-green">Done</span></div>
+    <div class="phase"><h3>4 · Structure</h3><p>Align and distribute, groups and swimlanes, auto-arrange, shape packs, layers, smart guides, stencils and templates.</p><span class="kg-tag kg-tag-green">Done</span></div>
+    <div class="phase wip"><h3>5 · Polish</h3><p>Help and What's new, find, shortcuts, accessibility, text styling, settings and backup, and performance are done. Still to come: a read-only share view, PWA install and optional <code>.drawio</code> import.</p><span class="kg-tag kg-tag-copper">Mostly done</span></div>
+    <div class="phase wip"><h3>6 · AI</h3><p>Bring-your-own-key setup, text-to-diagram and diagram summaries are live. Annotation suggestions and a review assistant come next.</p><span class="kg-tag kg-tag-copper">In progress</span></div>
+  </div>
+
+  <div class="note-box">
+    <p><strong>Built with Claude Code.</strong> Each phase is planned in chat and then built with Claude Code. The repo's <code>CLAUDE.md</code> holds the working rules: one phase at a time, store and schema before UI, no hard-coded colours, and a definition of done that every slice must meet before it stops for review.</p>
+  </div>
+</section>
+
+<section class="kg-section" style="text-align:center;background:var(--ink)">
+  <h2 style="color:white">Go on, <em>draw something</em></h2>
+  <p style="color:rgba(255,255,255,.55);max-width:440px;margin:12px auto 0">No sign-up and nothing to install. Your diagrams stay in your browser unless you export them.</p>
+  <div style="margin-top:24px">
+    <a href="https://kishore510.github.io/chalkline/" target="_blank" rel="noopener" class="kg-btn kg-btn-chalk">Open Chalkline ↗</a>
+  </div>
+</section>
+
+<footer class="kg-footer">
+  <a href="https://krishgrows.com" class="kg-footer-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="kg-footer-links">
+    <li><a href="https://krishgrows.com">Home</a></li>
+    <li><a href="https://travel.krishgrows.com">Travel</a></li>
+    <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
+    <li><a href="https://projects.krishgrows.com">Projects</a></li>
+  </ul>
+  <p class="kg-footer-copy">projects.krishgrows.com — North Yorkshire</p>
+</footer>
+</body>
+</html>
