@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+/* === BRAND SYSTEM === */
+/* ============================================================
+   KrishGrows — Shared Brand System
+   krishgrows.com | travel | allotment | projects
+   All subdomains import this file.
+   ============================================================ */
+
+/* ── GOOGLE FONTS ── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
+
+/* ── DESIGN TOKENS ── */
+:root {
+  /* Colours */
+  --ink:        #1a1208;
+  --ink2:       #4a3a28;
+  --cream:      #faf8f4;
+  --warm:       #f2ede4;
+  --border:     rgba(74,58,40,.1);
+  --shadow:     0 4px 24px rgba(26,18,8,.08);
+
+  /* Brand accents */
+  --copper:     #c87830;   /* primary accent */
+  --green:      #3a7a58;   /* secondary accent */
+  --blue:       #4a6898;   /* tertiary accent */
+
+  /* Aliases (used in components) */
+  --accent:     var(--copper);
+  --accent2:    var(--green);
+  --accent3:    var(--blue);
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body:    'Outfit', sans-serif;
+
+  /* Spacing scale */
+  --space-xs:   8px;
+  --space-sm:   16px;
+  --space-md:   24px;
+  --space-lg:   48px;
+  --space-xl:   72px;
+
+  /* Layout */
+  --page-pad:   5vw;
+  --radius-sm:  4px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+}
+
+/* ── RESET ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── BASE ── */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TYPOGRAPHY ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -.5px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+h1 { font-size: clamp(48px, 6vw, 86px); letter-spacing: -1px; line-height: .98; }
+h2 { font-size: clamp(30px, 4vw, 46px); }
+h3 { font-size: clamp(20px, 2.5vw, 28px); }
+
+h1 em, h2 em, h3 em {
+  color: var(--copper);
+  font-style: italic;
+}
+
+p {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--ink2);
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
+.kg-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,248,244,.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 var(--page-pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
+}
+
+.kg-logo {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kg-logo em { color: var(--copper); font-style: italic; }
+
+.kg-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+
+.kg-nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink2);
+  letter-spacing: .3px;
+  transition: color .2s;
+}
+
+.kg-nav-links a:hover { color: var(--copper); }
+
+.kg-nav-links a.active { color: var(--copper); }
+
+.kg-nav-badge {
+  background: var(--copper);
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+/* ── SECTION STRUCTURE ── */
+.kg-section { padding: var(--space-xl) var(--page-pad); }
+
+.kg-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kg-eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--copper);
+}
+
+.kg-section-sub {
+  font-size: 14px;
+  color: var(--ink2);
+  margin-top: 10px;
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+/* ── BUTTONS ── */
+.kg-btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 13px 28px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  letter-spacing: .4px;
+  transition: background .2s, transform .1s;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+
+.kg-btn-primary {
+  background: var(--ink);
+  color: white;
+}
+
+.kg-btn-primary:hover {
+  background: var(--copper);
+  transform: translateY(-1px);
+}
+
+.kg-btn-ghost {
+  background: transparent;
+  color: var(--ink2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kg-btn-ghost:hover { color: var(--copper); }
+
+/* ── FOOTER ── */
+.kg-footer {
+  background: var(--ink);
+  padding: var(--space-lg) var(--page-pad);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.kg-footer-logo {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.kg-footer-logo em { color: var(--copper); font-style: italic; }
+
+.kg-footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.kg-footer-links a {
+  font-size: 12px;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .3px;
+  transition: color .2s;
+}
+
+.kg-footer-links a:hover { color: var(--copper); }
+
+.kg-footer-copy {
+  font-size: 11px;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .5px;
+}
+
+/* ── UTILITY ── */
+.kg-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.kg-tag-copper { background: rgba(200,120,48,.12); color: var(--copper); }
+.kg-tag-green  { background: rgba(58,122,88,.12);  color: var(--green);  }
+.kg-tag-blue   { background: rgba(74,104,152,.12); color: var(--blue);   }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  :root {
+    --page-pad: 6vw;
+  }
+
+  .kg-nav-links { gap: 16px; }
+
+  h1 { font-size: clamp(36px, 8vw, 56px); }
+  h2 { font-size: clamp(24px, 5vw, 36px); }
+}
+
+@media (max-width: 480px) {
+  :root { --page-pad: 5vw; }
+  .kg-nav-links .hide-mobile { display: none; }
+}
+
+/* === END BRAND === */
+
+/* ── STICKYARD PAGE ── */
+.sy-hero {
+  position: relative;
+  padding: var(--space-xl) var(--page-pad) var(--space-lg);
+  background: #23201a;
+  background-image: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+  overflow: hidden;
+}
+.sy-hero::before {
+  content: '';
+  position: absolute;
+  top: -140px; right: -100px;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240,200,80,.22), transparent 70%);
+  pointer-events: none;
+}
+.sy-hero-inner { position: relative; z-index: 1; max-width: 640px; }
+.sy-hero h1 { color: #f6f1e4; margin-top: 12px; }
+.sy-hero h1 em { color: #f0c850; }
+.sy-hero p { color: rgba(246,241,228,.65); margin-top: 16px; max-width: 480px; }
+.sy-hero .kg-eyebrow { color: #f0c850; }
+.sy-hero .kg-eyebrow::before { background: #f0c850; }
+.sy-tagline { font-family: var(--font-heading); font-style: italic; font-size: 22px; color: rgba(246,241,228,.85) !important; margin-top: 4px !important; }
+.sy-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.kg-btn-sticky { background: #f0c850; color: #23201a; }
+.kg-btn-sticky:hover { background: #f6d978; transform: translateY(-1px); }
+.kg-btn-outline { background: transparent; border: 1px solid rgba(255,255,255,.25); color: white; }
+.kg-btn-outline:hover { border-color: #f0c850; color: #f0c850; }
+
+.stat-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; margin-top: var(--space-md); }
+.stat-cell { background: var(--cream); padding: 18px 12px; text-align: center; }
+.stat-n { font-family: var(--font-heading); font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1; }
+.stat-l { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink2); margin-top: 4px; }
+
+.build-list { display: flex; flex-direction: column; gap: var(--space-md); margin-top: var(--space-md); }
+.build-item { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 22px; }
+.build-item h3 { margin-bottom: 8px; }
+.build-item p { margin-top: 4px; }
+.build-item .kg-tag { margin-top: 12px; margin-right: 6px; }
+
+.phase-list { display: flex; flex-direction: column; margin-top: var(--space-md); border-left: 2px solid var(--border); }
+.phase { position: relative; padding: 0 0 22px 22px; }
+.phase:last-child { padding-bottom: 0; }
+.phase::before { content: ''; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--green); }
+.phase.wip::before { background: var(--copper); }
+.phase.todo::before { background: var(--warm); border: 2px solid var(--ink2); }
+.phase h3 { font-size: 20px; }
+.phase p { font-size: 14px; margin-top: 4px; }
+.phase .kg-tag { margin-top: 8px; }
+
+.note-box { background: var(--warm); border-left: 3px solid var(--copper); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 16px 20px; margin-top: var(--space-md); }
+.note-box p { color: var(--ink2); font-size: 13px; }
+.note-box strong { color: var(--ink); font-weight: 600; }
+
+code { font-size: .9em; background: rgba(74,58,40,.07); padding: 1px 5px; border-radius: 4px; }
+
+@media (min-width: 768px) {
+  .stat-row { grid-template-columns: repeat(4,1fr); }
+  .build-list.two-col { display: grid; grid-template-columns: repeat(2,1fr); }
+}
+</style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stickyard — KrishGrows Projects</title>
+
+</head>
+<body>
+<nav class="kg-nav">
+  <a href="https://krishgrows.com" class="kg-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="kg-nav-links">
+    <li><a href="https://projects.krishgrows.com">← Projects</a></li>
+  </ul>
+</nav>
+
+<header class="sy-hero">
+  <div class="sy-hero-inner">
+    <div class="kg-eyebrow">Project · Public</div>
+    <h1>🗒️ <em>Stickyard</em></h1>
+    <p class="sy-tagline">A retro board you can start in ten seconds.</p>
+    <p>A real-time collaborative sticky-note whiteboard for workshops and retros. Share a link, type a name and you're in: no accounts, no sign-up. Everyone sees notes, frames and pointers move live, and the host gets proper facilitation tools: a timer, board lock, anonymous dot voting and a silent brainstorm.</p>
+    <div class="sy-actions">
+      <a href="https://kishore510.github.io/stickyard/" target="_blank" rel="noopener" class="kg-btn kg-btn-sticky">Open Stickyard ↗</a>
+      <a href="https://github.com/kishore510/stickyard" target="_blank" rel="noopener" class="kg-btn kg-btn-outline">View source on GitHub</a>
+    </div>
+  </div>
+</header>
+
+<section class="kg-section">
+  <div class="kg-eyebrow">What it is</div>
+  <h2>Frictionless joining, real <em>facilitation</em></h2>
+  <p class="kg-section-sub">The idea is simple: the quickest way to get a group onto a shared board. Joining is a link plus a typed name. Starting a session is gated by a passcode so the free relay can't be abused. Sessions clean themselves up after seven days with nobody in them.</p>
+
+  <div class="stat-row">
+    <div class="stat-cell"><div class="stat-n">0.29</div><div class="stat-l">Current Version</div></div>
+    <div class="stat-cell"><div class="stat-n">15</div><div class="stat-l">Templates</div></div>
+    <div class="stat-cell"><div class="stat-n">2,000+</div><div class="stat-l">Automated Tests</div></div>
+    <div class="stat-cell"><div class="stat-n">0</div><div class="stat-l">Accounts Needed</div></div>
+  </div>
+</section>
+
+<section class="kg-section" style="background:var(--warm)">
+  <div class="kg-eyebrow">Features</div>
+  <h2>What you can <em>do</em></h2>
+  <p class="kg-section-sub">Built in small slices, each usable on its own. Here's what's in the app today.</p>
+
+  <div class="build-list two-col">
+    <div class="build-item">
+      <h3>Sticky notes, frames and shapes</h3>
+      <p>Notes with a title and body, size, colour and text styling, edited in place. Frames mark out named areas and carry their notes when moved. Text labels plus rectangles, ovals and diamonds round it out, and an emoji picker works in note, shape and frame text. All on a 6400 × 4000 board.</p>
+      <span class="kg-tag kg-tag-copper">React Flow</span><span class="kg-tag kg-tag-green">Live sync</span>
+    </div>
+    <div class="build-item">
+      <h3>15 templates in three groups</h3>
+      <p><strong>Retros</strong> (Start Stop Continue and others), <strong>Planning and facilitation</strong> (sprint planning, Lean coffee, 2x2 impact and effort, RAID) and <strong>Architecture and analysis</strong> (SWOT, TIME, migration strategy, technology radar, architecture decision). Each one lands on the board in a single step.</p>
+      <span class="kg-tag kg-tag-blue">Frame templates</span>
+    </div>
+    <div class="build-item">
+      <h3>Host tools</h3>
+      <p>Whoever starts a session is the host on that device. They can run a countdown timer everyone sees, lock the board, and end the session. Guests see a clear banner and greyed-out controls with the reason, rather than things silently not working.</p>
+      <span class="kg-tag kg-tag-copper">Timer</span><span class="kg-tag kg-tag-green">Lock board</span>
+    </div>
+    <div class="build-item">
+      <h3>Anonymous dot voting</h3>
+      <p>The host starts a round and everyone spreads a few dots across the notes. Nobody sees totals until the host stops the round, then a Top voted highlight and a results list appear. Voters are anonymous, even to the relay, and budgets are enforced on the server.</p>
+      <span class="kg-tag kg-tag-blue">Facilitation</span>
+    </div>
+    <div class="build-item">
+      <h3>Silent brainstorm</h3>
+      <p>The host starts a silent round and everyone writes notes only they can see, marked "Only you". A strip shows how many notes each person has written, and the host reveals them all at once. The hidden notes stay sealed on the relay, so other people's pages never receive them early.</p>
+      <span class="kg-tag kg-tag-copper">Sealed notes</span>
+    </div>
+    <div class="build-item">
+      <h3>Presence and live cursors</h3>
+      <p>An avatar stack, join and leave messages, a chat, and everyone's pointer with their name as they move over the board. Go to a person's pointer from Participants, or switch cursor sharing off. Pointers are relayed live and never stored.</p>
+      <span class="kg-tag kg-tag-green">Real-time</span>
+    </div>
+    <div class="build-item">
+      <h3>Arrange, undo and navigate</h3>
+      <p>Multi-select across notes, shapes and frames, arrange into a grid, match sizes, bring to front or send to back, duplicate, and per-person undo and redo. Fit to notes, zoom to a selection and a clickable overview map keep big boards manageable.</p>
+      <span class="kg-tag kg-tag-blue">Multi-select</span><span class="kg-tag kg-tag-copper">Undo/redo</span>
+    </div>
+    <div class="build-item">
+      <h3>Export and reconnect</h3>
+      <p>Export the board as a PNG picture or a Markdown file, made entirely in the browser with nothing uploaded. If the connection drops, the page reconnects with backoff, resyncs the board, and tells you if any change didn't make it.</p>
+      <span class="kg-tag kg-tag-green">PNG + Markdown</span>
+    </div>
+  </div>
+</section>
+
+<section class="kg-section">
+  <div class="kg-eyebrow">How it's built</div>
+  <h2>A static page and a tiny <em>relay</em></h2>
+  <p class="kg-section-sub">The front end is Vite, React and strict TypeScript with Zustand, Tailwind and React Flow, deployed to GitHub Pages. The real-time side is a Cloudflare Worker with one SQLite-backed Durable Object per room, using the WebSocket Hibernation API on the free plan. The whole thing is one repo: <code>web/</code>, <code>worker/</code> and <code>shared/</code>.</p>
+
+  <div class="build-list">
+    <div class="build-item">
+      <h3>One protocol, shared by both sides</h3>
+      <p>Every message between browser and relay is a Zod schema in <code>shared/</code>, used by both the web app and the Worker. The relay validates every message and is the authority (last write wins, with optimistic updates on the page). The protocol is versioned (now at v18) and an old page gets a friendly "please reload" rather than breaking.</p>
+      <span class="kg-tag kg-tag-copper">Zod</span><span class="kg-tag kg-tag-green">Versioned protocol</span>
+    </div>
+    <div class="build-item">
+      <h3>Secure by default</h3>
+      <p>Room codes are long, random and HMAC-signed, and the Worker checks the signature before it touches any Durable Object. Creating a session needs a passcode (compared in constant time, rate-limited, never logged). There are per-IP and daily creation caps, per-room limits on size and message rate, an Origin check, and a kill switch that stops new sessions from a phone in under a minute without a redeploy. No secrets are ever committed.</p>
+      <span class="kg-tag kg-tag-blue">Signed room codes</span><span class="kg-tag kg-tag-copper">Kill switch</span>
+    </div>
+    <div class="build-item">
+      <h3>Privacy that's designed in</h3>
+      <p>There are no accounts, and names are typed and unverified (the app says so). The relay's own code logs nothing about requests, and a test fails if anyone adds a log line. Votes are anonymous via a per-room key that the relay never stores, cursors are never stored, and empty rooms delete themselves after seven days, leaving only a small marker so old links say "Session expired".</p>
+      <span class="kg-tag kg-tag-green">No accounts</span>
+    </div>
+    <div class="build-item">
+      <h3>Built on a Raspberry Pi</h3>
+      <p>Development happens on a Raspberry Pi 5 (arm64), including running the Worker locally. Every change must pass typecheck, the test suite (Worker tests run inside the real Workers runtime) and a build, and GitHub Actions deploys Pages and the Worker on each merge. Screenshots at 360, 768 and 1280px in light and dark are generated by a script.</p>
+      <span class="kg-tag kg-tag-copper">GitHub Actions</span><span class="kg-tag kg-tag-blue">Cloudflare Workers</span>
+    </div>
+  </div>
+</section>
+
+<section class="kg-section" style="background:var(--warm)">
+  <div class="kg-eyebrow">Roadmap</div>
+  <h2>Shipped in <em>slices</em></h2>
+  <p class="kg-section-sub">Each slice has its own branch, is built tests-first, and stops for review. Every protocol or storage change gets a version bump, compatibility handling and tests.</p>
+
+  <div class="phase-list">
+    <div class="phase"><h3>Foundations</h3><p>Repo, CI, Pages and Worker deploys, app shell and design system, gated room creation and signed room codes.</p><span class="kg-tag kg-tag-green">Done</span></div>
+    <div class="phase"><h3>Shared board</h3><p>Live sticky notes, styling, multi-select and arrange, inline editing, z-order, frames and the first templates.</p><span class="kg-tag kg-tag-green">Done</span></div>
+    <div class="phase"><h3>Resilience and presence</h3><p>Automatic reconnect and resync, avatars and join/leave messages, live cursors, idle room expiry.</p><span class="kg-tag kg-tag-green">Done</span></div>
+    <div class="phase"><h3>Facilitation</h3><p>Host timer, board lock and end session, anonymous dot voting, and a three-part silent brainstorm.</p><span class="kg-tag kg-tag-green">Done</span></div>
+    <div class="phase"><h3>Content and navigation</h3><p>Text and shapes, PNG and Markdown export, a four-times-larger board, panel layout, navigation and eleven more templates.</p><span class="kg-tag kg-tag-green">Done</span></div>
+    <div class="phase wip"><h3>Next up</h3><p>Follow a person and the host's Bring to me, a load test and accessibility pass, and reactions on notes.</p><span class="kg-tag kg-tag-copper">Next</span></div>
+    <div class="phase todo"><h3>Later</h3><p>Arrows bound to notes and shapes, grouping and stencils, a phone participant view with QR join, and optional AI summaries and sentiment.</p><span class="kg-tag kg-tag-blue">Planned</span></div>
+  </div>
+
+  <div class="note-box">
+    <p><strong>Built with Claude Code.</strong> Each slice is planned in chat and then built with Claude Code, tests first. The repo's <code>CLAUDE.md</code> is kept under 6 KB (a test checks it), with detail for each area in <code>docs/architecture/</code>, and a docs test fails CI if the changelog, plan and README fall out of step.</p>
+  </div>
+</section>
+
+<section class="kg-section" style="text-align:center;background:var(--ink)">
+  <h2 style="color:white">Bring a team, <em>start a retro</em></h2>
+  <p style="color:rgba(255,255,255,.55);max-width:440px;margin:12px auto 0">Join any session with just its link and a name. Starting a new session needs the create passcode, which keeps the free relay from being abused.</p>
+  <div style="margin-top:24px">
+    <a href="https://kishore510.github.io/stickyard/" target="_blank" rel="noopener" class="kg-btn kg-btn-sticky">Open Stickyard ↗</a>
+  </div>
+</section>
+
+<footer class="kg-footer">
+  <a href="https://krishgrows.com" class="kg-footer-logo">🌿 Krish<em>Grows</em></a>
+  <ul class="kg-footer-links">
+    <li><a href="https://krishgrows.com">Home</a></li>
+    <li><a href="https://travel.krishgrows.com">Travel</a></li>
+    <li><a href="https://allotment.krishgrows.com">Allotment</a></li>
+    <li><a href="https://projects.krishgrows.com">Projects</a></li>
+  </ul>
+  <p class="kg-footer-copy">projects.krishgrows.com — North Yorkshire</p>
+</footer>
+</body>
+</html>
